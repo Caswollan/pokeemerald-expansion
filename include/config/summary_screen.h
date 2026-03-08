@@ -52,6 +52,6 @@ Info taken from https://bulbapedia.bulbagarden.net/wiki/Stats_judge.
 #define P_SUMMARY_MOVE_RELEARNER_FULL_PP TRUE   // If TRUE, the move relearner in the summary screen restores relearned moves' PP to full.
 
 // Move Relearner party menu
-#define P_PARTY_MOVE_RELEARNER           FALSE  // If TRUE, it enables the move relearner in the party menu.
+#define P_PARTY_MOVE_RELEARNER           TRUE  // If TRUE, it enables the move relearner in the party menu.
 
 #endif // GUARD_CONFIG_SUMMARY_SCREEN_H
