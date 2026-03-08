@@ -1280,6 +1280,8 @@ bool32 ShouldSwitch(enum BattlerId battler)
 
     if (!CanBattlerConsiderSwitch(battler))
         return FALSE;
+    
+    return FALSE; // Temporary to disable switching while we test individual functions
 
     // Sequence Switching AI never switches mid-battle
     if (gAiThinkingStruct->aiFlags[battler] & AI_FLAG_SEQUENCE_SWITCHING)
