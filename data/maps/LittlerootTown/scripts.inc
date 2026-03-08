@@ -902,6 +902,7 @@ LittlerootTown_EventScript_GiveRunningShoes::
 	msgbox LittlerootTown_Text_ComeHomeIfAnythingHappens, MSGBOX_DEFAULT
 	closemessage
 	delay 30
+	giveitem ITEM_INFINITE_CANDY
 	return
 
 LittlerootTown_Text_OurNewHomeLetsGoInside:
