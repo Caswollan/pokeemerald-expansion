@@ -5551,6 +5551,8 @@ u8 CalculateFriendshipBonuses(struct Pokemon *mon, u32 modifier, enum HoldEffect
 
 void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
 {
+    return; // EV disabilitati
+    
     u8 evs[NUM_STATS];
     u16 evIncrease = 0;
     u16 totalEVs = 0;
