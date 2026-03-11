@@ -10,7 +10,20 @@ PokemonCenter_EventScript_PokemonCenterServices::
 	end
 
 PokemonCenter_EventScript_ChangeNature::
-	msgbox PokemonCenter_Text_NotImplemented, MSGBOX_DEFAULT
+	msgbox PokemonCenter_Text_ChoosePokemon, MSGBOX_DEFAULT
+	special ChoosePartyMon
+	waitstate
+	goto_if_ge VAR_0x8004, PARTY_SIZE, PokemonCenter_EventScript_ChangeNatureCancel
+	multichoice 5, 1, MULTI_NATURE_SELECT, FALSE
+	copyvar VAR_0x8005, VAR_RESULT
+	goto_if_eq VAR_0x8005, 25, PokemonCenter_EventScript_ChangeNatureCancel
+	copyvar VAR_RESULT, VAR_0x8005
+	special SetHiddenNature
+	msgbox PokemonCenter_Text_NatureChanged, MSGBOX_DEFAULT
+	release
+	end
+
+PokemonCenter_EventScript_ChangeNatureCancel::
 	release
 	end
 
@@ -22,6 +35,14 @@ PokemonCenter_EventScript_ChangeGender::
 PokemonCenter_Text_PokemonCenterServicesIntro:
 	.string "Hello there, what can I\n"
 	.string "help you with today?$"
+
+PokemonCenter_Text_ChoosePokemon:
+	.string "Which POKéMON would you\n"
+	.string "like to change?$"
+
+PokemonCenter_Text_NatureChanged:
+	.string "Done! Your POKéMON's\n"
+	.string "nature has been changed!$"
 
 PokemonCenter_Text_NotImplemented:
 	.string "Coming soon!$"

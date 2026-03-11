@@ -1100,6 +1100,36 @@ static const struct MenuAction MultichoiceList_PokemonCenterServices[] =
     {gText_Exit},
 };
 
+static const struct MenuAction MultichoiceList_NatureSelect[] =
+{
+    {COMPOUND_STRING("Hardy")},
+    {COMPOUND_STRING("Lonely")},
+    {COMPOUND_STRING("Brave")},
+    {COMPOUND_STRING("Adamant")},
+    {COMPOUND_STRING("Naughty")},
+    {COMPOUND_STRING("Bold")},
+    {COMPOUND_STRING("Docile")},
+    {COMPOUND_STRING("Relaxed")},
+    {COMPOUND_STRING("Impish")},
+    {COMPOUND_STRING("Lax")},
+    {COMPOUND_STRING("Timid")},
+    {COMPOUND_STRING("Hasty")},
+    {COMPOUND_STRING("Serious")},
+    {COMPOUND_STRING("Jolly")},
+    {COMPOUND_STRING("Naive")},
+    {COMPOUND_STRING("Modest")},
+    {COMPOUND_STRING("Mild")},
+    {COMPOUND_STRING("Quiet")},
+    {COMPOUND_STRING("Bashful")},
+    {COMPOUND_STRING("Rash")},
+    {COMPOUND_STRING("Calm")},
+    {COMPOUND_STRING("Gentle")},
+    {COMPOUND_STRING("Sassy")},
+    {COMPOUND_STRING("Careful")},
+    {COMPOUND_STRING("Quirky")},
+    {gText_Exit},
+};
+
 struct MultichoiceListStruct
 {
     const struct MenuAction *list;
@@ -1268,6 +1298,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_EGGS_VICTORIES_QUIT]                        = MULTICHOICE(sMultichoiceList_Eggs_Victories_Quit),
     [MULTI_HOF_EGGS_VICTORIES_QUIT]                    = MULTICHOICE(sMultichoiceList_HOF_Eggs_Victories_Quit),
     [MULTI_POKEMON_CENTER_SERVICES]                    = MULTICHOICE(MultichoiceList_PokemonCenterServices),
+    [MULTI_NATURE_SELECT]                              = MULTICHOICE(MultichoiceList_NatureSelect),
 };
 
 const u8 *const gStdStrings[] =

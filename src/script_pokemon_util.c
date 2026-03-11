@@ -681,3 +681,14 @@ void Script_SetKO(struct ScriptContext *ctx)
         SetMonData(&gPlayerParty[slot], MON_DATA_HP, &hp);
     }
 }
+
+void Script_SetMonNature(void)
+{
+    u32 slot = gSpecialVar_0x8004;
+    u32 nature = gSpecialVar_0x8005;
+    if (slot < PARTY_SIZE && nature < NUM_NATURES)
+    {
+        SetMonData(&gPlayerParty[slot], MON_DATA_HIDDEN_NATURE, &nature);
+        CalculateMonStats(&gPlayerParty[slot]);
+    }
+}
