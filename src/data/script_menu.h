@@ -1093,6 +1093,13 @@ static const struct MenuAction MultichoiceList_Exit[] =
     {gText_Exit},
 };
 
+static const struct MenuAction MultichoiceList_PokemonCenterServices[] =
+{
+    {COMPOUND_STRING("Change Nature")},
+    {COMPOUND_STRING("Change Gender")},
+    {gText_Exit},
+};
+
 struct MultichoiceListStruct
 {
     const struct MenuAction *list;
@@ -1260,6 +1267,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_HOF_VICTORIES_QUIT]                         = MULTICHOICE(sMultichoiceList_HOF_Victories_Quit),
     [MULTI_EGGS_VICTORIES_QUIT]                        = MULTICHOICE(sMultichoiceList_Eggs_Victories_Quit),
     [MULTI_HOF_EGGS_VICTORIES_QUIT]                    = MULTICHOICE(sMultichoiceList_HOF_Eggs_Victories_Quit),
+    [MULTI_POKEMON_CENTER_SERVICES]                    = MULTICHOICE(MultichoiceList_PokemonCenterServices),
 };
 
 const u8 *const gStdStrings[] =
