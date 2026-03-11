@@ -7994,6 +7994,9 @@ s32 CalcCritChanceStage(struct BattleContext *ctx)
             critChance = ARRAY_COUNT(sCriticalHitOdds) - 1;
     }
 
+    if (critChance == 0)
+        critChance = CRITICAL_HIT_BLOCKED;
+
     if (critChance != CRITICAL_HIT_BLOCKED && (ctx->abilityDef == ABILITY_BATTLE_ARMOR || ctx->abilityDef == ABILITY_SHELL_ARMOR))
     {
         // Record ability only if move had 100% chance to get a crit
