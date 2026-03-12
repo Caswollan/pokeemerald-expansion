@@ -14,10 +14,9 @@ PokemonCenter_EventScript_ChangeNature::
 	special ChoosePartyMon
 	waitstate
 	goto_if_ge VAR_0x8004, PARTY_SIZE, PokemonCenter_EventScript_ChangeNatureCancel
-	multichoice 5, 1, MULTI_NATURE_SELECT, FALSE
-	copyvar VAR_0x8005, VAR_RESULT
-	goto_if_eq VAR_0x8005, 25, PokemonCenter_EventScript_ChangeNatureCancel
-	copyvar VAR_RESULT, VAR_0x8005
+	special OpenNatureMenu
+	waitstate
+	goto_if_eq VAR_RESULT, 25, PokemonCenter_EventScript_ChangeNatureCancel
 	special SetHiddenNature
 	msgbox PokemonCenter_Text_NatureChanged, MSGBOX_DEFAULT
 	release
