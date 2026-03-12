@@ -184,3 +184,27 @@ void OpenNatureMenu(void)
     gTasks[taskId].tWindowId = windowId;
     ScriptContext_Stop();
 }
+
+void SetMonGender(void)
+{
+    u32 slot = gSpecialVar_0x8004;
+    if (slot >= PARTY_SIZE)
+        return;
+
+    struct Pokemon *mon = &gPlayerParty[slot];
+    u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+    u8 genderRatio = gSpeciesInfo[species].genderRatio;
+
+    if (genderRatio == MON_MALE || genderRatio == MON_FEMALE || genderRatio == MON_GENDERLESS)
+    {
+        gSpecialVar_Result = 1;
+        return;
+    }
+
+    u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
+    u8 currentGender = GetMonGender(mon);
+    u8 targetGender = (currentGender == MON_FEMALE) ? MON_MALE : MON_FEMALE;
+
+    SetMonGenderKeepData(mon, targetGender);
+    gSpecialVar_Result = 0;
+}

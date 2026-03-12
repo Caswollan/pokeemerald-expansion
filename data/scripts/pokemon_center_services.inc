@@ -27,9 +27,32 @@ PokemonCenter_EventScript_ChangeNatureCancel::
 	end
 
 PokemonCenter_EventScript_ChangeGender::
-	msgbox PokemonCenter_Text_NotImplemented, MSGBOX_DEFAULT
+	msgbox PokemonCenter_Text_ChoosePokemon, MSGBOX_DEFAULT
+	special ChoosePartyMon
+	waitstate
+	goto_if_ge VAR_0x8004, PARTY_SIZE, PokemonCenter_EventScript_ChangeGenderCancel
+	special SetMonGender
+	goto_if_eq VAR_RESULT, 1, PokemonCenter_EventScript_ChangeGenderFailed
+	msgbox PokemonCenter_Text_GenderChanged, MSGBOX_DEFAULT
 	release
 	end
+
+PokemonCenter_EventScript_ChangeGenderCancel::
+	release
+	end
+
+PokemonCenter_EventScript_ChangeGenderFailed::
+	msgbox PokemonCenter_Text_GenderChangeFailed, MSGBOX_DEFAULT
+	release
+	end
+
+PokemonCenter_Text_GenderChanged:
+	.string "Done! Your POKéMON's\n"
+	.string "gender has been changed!$"
+
+PokemonCenter_Text_GenderChangeFailed:
+	.string "Sorry, this POKéMON's\n"
+	.string "gender cannot be changed!$"
 
 PokemonCenter_Text_PokemonCenterServicesIntro:
 	.string "Hello there, what can I\n"

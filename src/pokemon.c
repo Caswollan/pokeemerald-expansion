@@ -2256,7 +2256,7 @@ u8 GetBoxMonGender(struct BoxPokemon *boxMon)
 {
     u16 species = GetBoxMonData(boxMon, MON_DATA_SPECIES);
     u32 personality = GetBoxMonData(boxMon, MON_DATA_PERSONALITY);
-
+    u8 gender;
     switch (gSpeciesInfo[species].genderRatio)
     {
     case MON_MALE:
@@ -2264,11 +2264,10 @@ u8 GetBoxMonGender(struct BoxPokemon *boxMon)
     case MON_GENDERLESS:
         return gSpeciesInfo[species].genderRatio;
     }
-
-    if (gSpeciesInfo[species].genderRatio > (personality & 0xFF))
-        return MON_FEMALE;
-    else
-        return MON_MALE;
+    gender = (gSpeciesInfo[species].genderRatio > (personality & 0xFF)) ? MON_FEMALE : MON_MALE;
+    if (boxMon->genderFlipped)
+        gender = (gender == MON_FEMALE) ? MON_MALE : MON_FEMALE;
+    return gender;
 }
 
 u8 GetGenderFromSpeciesAndPersonality(u16 species, u32 personality)
@@ -7433,4 +7432,18 @@ void ChangePokemonNicknameWithCallback(void (*callback)(void))
     GetBoxMonData(boxMon, MON_DATA_NICKNAME, gStringVar3);
     GetBoxMonData(boxMon, MON_DATA_NICKNAME, gStringVar2);
     DoNamingScreen(NAMING_SCREEN_NICKNAME, gStringVar2, GetBoxMonData(boxMon, MON_DATA_SPECIES), GetBoxMonGender(boxMon), GetBoxMonData(boxMon, MON_DATA_PERSONALITY), callback);
+}
+
+void SetMonGenderKeepData(struct Pokemon *mon, u8 targetGender)
+{
+    struct BoxPokemon *boxMon = &mon->box;
+    u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+    u8 genderRatio = gSpeciesInfo[species].genderRatio;
+
+    if (genderRatio == MON_MALE || genderRatio == MON_FEMALE || genderRatio == MON_GENDERLESS)
+        return;
+
+    u8 naturalGender = GetGenderFromSpeciesAndPersonality(species, boxMon->personality);
+    boxMon->genderFlipped = (naturalGender != targetGender) ? 1 : 0;
+    CalculateMonStats(mon);
 }

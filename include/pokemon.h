@@ -264,7 +264,7 @@ struct BoxPokemon
     u8 isEgg:1;
     u8 blockBoxRS:1; // Unused, but Pokémon Box Ruby & Sapphire will refuse to deposit a Pokémon with this flag set.
     u8 daysSinceFormChange:3; // 7 days.
-    u8 unused_13:1;
+    u8 genderFlipped:1;
     u8 otName[PLAYER_NAME_LENGTH];
     u8 markings:4;
     u8 compressedStatus:4;
@@ -941,5 +941,6 @@ bool32 IsSpeciesOfType(u32 species, enum Type type);
 struct BoxPokemon *GetSelectedBoxMonFromPcOrParty(void);
 u32 GiveScriptedMonToPlayer(struct Pokemon *mon, u8 slot);
 void ChangePokemonNicknameWithCallback(void (*callback)(void));
+void SetMonGenderKeepData(struct Pokemon *mon, u8 targetGender);
 
 #endif // GUARD_POKEMON_H
