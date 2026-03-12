@@ -27,7 +27,7 @@ PokemonCenter_EventScript_ChangeNatureCancel::
 	end
 
 PokemonCenter_EventScript_ChangeGender::
-	msgbox PokemonCenter_Text_ChoosePokemon, MSGBOX_DEFAULT
+	msgbox PokemonCenter_Text_GenderChangerIntro, MSGBOX_DEFAULT
 	special ChoosePartyMon
 	waitstate
 	goto_if_ge VAR_0x8004, PARTY_SIZE, PokemonCenter_EventScript_ChangeGenderCancel
@@ -47,24 +47,30 @@ PokemonCenter_EventScript_ChangeGenderFailed::
 	end
 
 PokemonCenter_Text_GenderChanged:
-	.string "Done! Your POKéMON's\n"
-	.string "gender has been changed!$"
+	.string "Done! Your POKéMON's gender has been\n"
+	.string "changed!$"
 
 PokemonCenter_Text_GenderChangeFailed:
-	.string "Sorry, this POKéMON's\n"
-	.string "gender cannot be changed!$"
+	.string "Sorry, this POKéMON's gender cannot\n"
+	.string "be changed!$"
 
 PokemonCenter_Text_PokemonCenterServicesIntro:
-	.string "Hello there, what can I\n"
-	.string "help you with today?$"
+	.string "Hello there, what can I help you\n"
+	.string "with today?$"
 
 PokemonCenter_Text_ChoosePokemon:
-	.string "Which POKéMON would you\n"
-	.string "like to change?$"
+	.string "Which POKéMON would you like to change?$"
 
 PokemonCenter_Text_NatureChanged:
-	.string "Done! Your POKéMON's\n"
-	.string "nature has been changed!$"
+	.string "Done! Your POKéMON's nature has been\n"
+	.string "changed!$"
 
-PokemonCenter_Text_NotImplemented:
-	.string "Coming soon!$"
+PokemonCenter_Text_GenderChangerIntro:
+	.string "I can swap the Gender of the\n"
+	.string "following POKéMON:\p"
+	.string "{COLOR GREEN}Snorunt, Ralts, Kirlia, Salandit, Burmy,\n"
+	.string "Combee, Espurr, Basculin, Lechonk\l"
+	.string "and Wurmple. {COLOR DARK_GRAY}\p"
+	.string "This is because these POKéMON have\n"
+	.string "Gender-based evolutions.\p"
+	.string "Which POKéMON's Gender should I swap?$"

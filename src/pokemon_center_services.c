@@ -185,6 +185,28 @@ void OpenNatureMenu(void)
     ScriptContext_Stop();
 }
 
+static bool32 CanChangeGender(u16 species)
+{
+    static const u16 sGenderChangeSpecies[] = {
+        SPECIES_SNORUNT,
+        SPECIES_RALTS,
+        SPECIES_KIRLIA,
+        SPECIES_SALANDIT,
+        SPECIES_BURMY,
+        SPECIES_COMBEE,
+        SPECIES_ESPURR,
+        SPECIES_BASCULIN_RED_STRIPED,
+        SPECIES_LECHONK,
+        SPECIES_WURMPLE,
+    };
+    for (u32 i = 0; i < ARRAY_COUNT(sGenderChangeSpecies); i++)
+    {
+        if (species == sGenderChangeSpecies[i])
+            return TRUE;
+    }
+    return FALSE;
+}
+
 void SetMonGender(void)
 {
     u32 slot = gSpecialVar_0x8004;
@@ -193,6 +215,13 @@ void SetMonGender(void)
 
     struct Pokemon *mon = &gPlayerParty[slot];
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+
+    if (!CanChangeGender(species))
+    {
+        gSpecialVar_Result = 1;
+        return;
+    }
+    
     u8 genderRatio = gSpeciesInfo[species].genderRatio;
 
     if (genderRatio == MON_MALE || genderRatio == MON_FEMALE || genderRatio == MON_GENDERLESS)
@@ -200,8 +229,7 @@ void SetMonGender(void)
         gSpecialVar_Result = 1;
         return;
     }
-
-    u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
+    
     u8 currentGender = GetMonGender(mon);
     u8 targetGender = (currentGender == MON_FEMALE) ? MON_MALE : MON_FEMALE;
 
