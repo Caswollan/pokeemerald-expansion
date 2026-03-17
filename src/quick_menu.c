@@ -23,13 +23,23 @@
 #include "text_window.h"
 #include "palette.h"
 #include "event_scripts.h"
+#include "constants/rtc.h"
 
 extern void HealPlayerParty(void);
+extern void RtcInitLocalTimeOffset(s32 hour, s32 minute);
+extern void CB2_LoadMap(void);
 
 #define QUICK_MENU_POKEVIAL  0
 #define QUICK_MENU_PC        1
 #define QUICK_MENU_REPEL     2
-#define QUICK_MENU_EXIT      3
+#define QUICK_MENU_TIME      3
+#define QUICK_MENU_EXIT      4
+
+#define TIME_MENU_MORNING  0
+#define TIME_MENU_DAY      1
+#define TIME_MENU_EVENING  2
+#define TIME_MENU_NIGHT    3
+#define TIME_MENU_EXIT     4
 
 #define tMenuListTaskId  data[0]
 #define tWindowId        data[1]
@@ -38,7 +48,13 @@ extern void HealPlayerParty(void);
 static const u8 sText_QM_PokeVial[] = _("PokéVial");
 static const u8 sText_QM_PC[]       = _("PC");
 static const u8 sText_QM_Repel[]    = _("Repel");
+static const u8 sText_QM_Time[]     = _("Time");
 static const u8 sText_QM_Exit[]     = _("Exit");
+
+static const u8 sText_QM_Morning[] = _("Morning");
+static const u8 sText_QM_Day[]     = _("Day");
+static const u8 sText_QM_Evening[] = _("Evening");
+static const u8 sText_QM_Night[]   = _("Night");
 
 static const u8 sText_QM_RepelGreen[] = _("{COLOR GREEN}Repel");
 static const u8 sText_QM_RepelRed[]   = _("{COLOR RED}Repel");
@@ -51,7 +67,8 @@ static const u8 sColorNormal[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GRAY, 
 static const u8 sColorGreen[]  = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_GREEN,     TEXT_COLOR_LIGHT_GRAY};
 static const u8 sColorRed[]    = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_RED,       TEXT_COLOR_LIGHT_GRAY};
 
-static EWRAM_DATA struct ListMenuItem sQuickMenuItems[4] = {};
+static EWRAM_DATA struct ListMenuItem sQuickMenuItems[5] = {};
+static EWRAM_DATA struct ListMenuItem sTimeMenuItems[5] = {};
 
 static void QuickMenuItemPrintFunc(u8 windowId, u32 itemId, u8 y)
 {
@@ -81,10 +98,21 @@ static const struct WindowTemplate sQuickMenuWindowTemplate =
     .bg = 0,
     .tilemapLeft = 1,
     .tilemapTop = 1,
-    .width = 12,
+    .width = 10,
     .height = 10,
     .paletteNum = 15,
     .baseBlock = 0x8,
+};
+
+static const struct WindowTemplate sTimeMenuWindowTemplate =
+{
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 1,
+    .width = 8,
+    .height = 10,
+    .paletteNum = 15,
+    .baseBlock = 0x100,
 };
 
 static const struct ListMenuTemplate sQuickMenuTemplate =
@@ -92,8 +120,30 @@ static const struct ListMenuTemplate sQuickMenuTemplate =
     .items = sQuickMenuItems,
     .moveCursorFunc = ListMenuDefaultCursorMoveFunc,
     .itemPrintFunc = QuickMenuItemPrintFunc,
-    .totalItems = 4,
-    .maxShowed = 4,
+    .totalItems = 5,
+    .maxShowed = 5,
+    .windowId = 0,
+    .header_X = 0,
+    .item_X = 8,
+    .cursor_X = 0,
+    .upText_Y = 1,
+    .cursorPal = 2,
+    .fillValue = 1,
+    .cursorShadowPal = 3,
+    .lettersSpacing = 1,
+    .itemVerticalPadding = 0,
+    .scrollMultiple = LIST_NO_MULTIPLE_SCROLL,
+    .fontId = FONT_NORMAL,
+    .cursorKind = CURSOR_BLACK_ARROW,
+};
+
+static const struct ListMenuTemplate sTimeMenuTemplate =
+{
+    .items = sTimeMenuItems,
+    .moveCursorFunc = ListMenuDefaultCursorMoveFunc,
+    .itemPrintFunc = NULL,
+    .totalItems = 5,
+    .maxShowed = 5,
     .windowId = 0,
     .header_X = 0,
     .item_X = 8,
@@ -111,6 +161,8 @@ static const struct ListMenuTemplate sQuickMenuTemplate =
 
 static void Task_QuickMenu(u8 taskId);
 extern void ShowPokemonStorageSystemPC(void);
+static void Task_TimeMenu(u8 taskId);
+static void OpenTimeMenu(void);
 
 void ShowQuickMenu(void)
 {
@@ -125,8 +177,10 @@ void ShowQuickMenu(void)
     sQuickMenuItems[1].id   = QUICK_MENU_PC;
     sQuickMenuItems[2].name = FlagGet(FLAG_QUICK_REPEL_ACTIVE) ? sText_QM_RepelGreen : sText_QM_RepelRed;
     sQuickMenuItems[2].id   = QUICK_MENU_REPEL;
-    sQuickMenuItems[3].name = sText_QM_Exit;
-    sQuickMenuItems[3].id   = QUICK_MENU_EXIT;
+    sQuickMenuItems[3].name = sText_QM_Time;
+    sQuickMenuItems[3].id   = QUICK_MENU_TIME;
+    sQuickMenuItems[4].name = sText_QM_Exit;
+    sQuickMenuItems[4].id   = QUICK_MENU_EXIT;
 
     HideMapNamePopUpWindow();
     FreezeObjectEvents();
@@ -196,6 +250,10 @@ static void Task_QuickMenu(u8 taskId)
                     ScriptContext_Enable();
                     DestroyTask(taskId);
                     return;
+                case QUICK_MENU_TIME:
+                    OpenTimeMenu();
+                    DestroyTask(taskId);
+                    return;
                 case QUICK_MENU_EXIT:
                 default:
                     ScriptUnfreezeObjectEvents();
@@ -225,4 +283,89 @@ static void Task_QuickMenu(u8 taskId)
             }
             break;
     }
+}
+
+static void Task_TimeMenu(u8 taskId)
+{
+    struct Task *task = &gTasks[taskId];
+
+    if (task->data[2] == 0)
+    {
+        task->data[2] = 1;
+        return;
+    }
+
+    u32 input = ListMenu_ProcessInput(task->tMenuListTaskId);
+
+    if (JOY_NEW(A_BUTTON))
+    {
+        DestroyListMenuTask(task->tMenuListTaskId, NULL, NULL);
+        ClearStdWindowAndFrame(task->tWindowId, TRUE);
+        RemoveWindow(task->tWindowId);
+
+        switch (input)
+        {
+            case TIME_MENU_MORNING:
+                RtcInitLocalTimeOffset(MORNING_HOUR_BEGIN, 0);
+                break;
+            case TIME_MENU_DAY:
+                RtcInitLocalTimeOffset(DAY_HOUR_BEGIN, 0);
+                break;
+            case TIME_MENU_EVENING:
+                RtcInitLocalTimeOffset(EVENING_HOUR_BEGIN, 0);
+                break;
+            case TIME_MENU_NIGHT:
+                RtcInitLocalTimeOffset(NIGHT_HOUR_BEGIN, 0);
+                break;
+        }
+
+        if (input != TIME_MENU_EXIT)
+            SetMainCallback2(CB2_LoadMap);
+        else
+        {
+            ScriptUnfreezeObjectEvents();
+            UnlockPlayerFieldControls();
+        }
+        DestroyTask(taskId);
+    }
+    if (JOY_NEW(B_BUTTON))
+    {
+        DestroyListMenuTask(task->tMenuListTaskId, NULL, NULL);
+        ClearStdWindowAndFrame(task->tWindowId, TRUE);
+        RemoveWindow(task->tWindowId);
+        ScriptUnfreezeObjectEvents();
+        UnlockPlayerFieldControls();
+        DestroyTask(taskId);
+    }
+}
+
+static void OpenTimeMenu(void)
+{
+    struct ListMenuTemplate menuTemplate;
+    u8 windowId;
+    u8 listMenuTaskId;
+    u8 taskId;
+
+    sTimeMenuItems[0].name = sText_QM_Morning;
+    sTimeMenuItems[0].id   = TIME_MENU_MORNING;
+    sTimeMenuItems[1].name = sText_QM_Day;
+    sTimeMenuItems[1].id   = TIME_MENU_DAY;
+    sTimeMenuItems[2].name = sText_QM_Evening;
+    sTimeMenuItems[2].id   = TIME_MENU_EVENING;
+    sTimeMenuItems[3].name = sText_QM_Night;
+    sTimeMenuItems[3].id   = TIME_MENU_NIGHT;
+    sTimeMenuItems[4].name = sText_QM_Exit;
+    sTimeMenuItems[4].id   = TIME_MENU_EXIT;
+
+    LoadUserWindowBorderGfx(0, STD_WINDOW_BASE_TILE_NUM, BG_PLTT_ID(STD_WINDOW_PALETTE_NUM));
+    windowId = AddWindow(&sTimeMenuWindowTemplate);
+    DrawStdWindowFrame(windowId, FALSE);
+    menuTemplate = sTimeMenuTemplate;
+    menuTemplate.windowId = windowId;
+    listMenuTaskId = ListMenuInit(&menuTemplate, 0, 0);
+    CopyWindowToVram(windowId, COPYWIN_FULL);
+
+    taskId = CreateTask(Task_TimeMenu, 0x50);
+    gTasks[taskId].tMenuListTaskId = listMenuTaskId;
+    gTasks[taskId].tWindowId = windowId;
 }
