@@ -230,6 +230,7 @@ static void Task_QuickMenu(u8 taskId)
         case 0:
         {
             u32 input = ListMenu_ProcessInput(task->tMenuListTaskId);
+            
             if (JOY_NEW(A_BUTTON))
             {
                 DestroyListMenuTask(task->tMenuListTaskId, NULL, NULL);
@@ -238,79 +239,88 @@ static void Task_QuickMenu(u8 taskId)
 
                 switch (input)
                 {
-                case QUICK_MENU_POKEVIAL:
-                    HealPlayerParty();
-                    PlayFanfare(MUS_HEAL);
-                    ShowFieldMessage(sText_QM_PartyHealed);
-                    task->tState = 1;
-                    return;
-                case QUICK_MENU_REPEL:
-                    if (FlagGet(FLAG_QUICK_REPEL_ACTIVE))
-                    {
-                        FlagClear(FLAG_QUICK_REPEL_ACTIVE);
-                        VarSet(VAR_REPEL_STEP_COUNT, 0);
-                        ShowFieldMessage(sText_QM_RepelDisabled);
-                    }
-                    else
-                    {
-                        FlagSet(FLAG_QUICK_REPEL_ACTIVE);
-                        VarSet(VAR_REPEL_STEP_COUNT, 255);
-                        VarSet(VAR_LAST_REPEL_LURE_USED, ITEM_MAX_REPEL);
-                        ShowFieldMessage(sText_QM_RepelEnabled);
-                    }
-                    task->tState = 1;
-                    return;
-                case QUICK_MENU_PC:
-                    u8 battleType = gMapHeader.battleType;
+                    case QUICK_MENU_POKEVIAL:
+                        {
+                            HealPlayerParty();
+                            PlayFanfare(MUS_HEAL);
+                            ShowFieldMessage(sText_QM_PartyHealed);
+                            task->tState = 1;
+                            return;
+                        }
+                    case QUICK_MENU_REPEL:
+                        {
+                            if (FlagGet(FLAG_QUICK_REPEL_ACTIVE))
+                            {
+                                FlagClear(FLAG_QUICK_REPEL_ACTIVE);
+                                VarSet(VAR_REPEL_STEP_COUNT, 0);
+                                ShowFieldMessage(sText_QM_RepelDisabled);
+                            }
+                            else
+                            {
+                                FlagSet(FLAG_QUICK_REPEL_ACTIVE);
+                                VarSet(VAR_REPEL_STEP_COUNT, 255);
+                                VarSet(VAR_LAST_REPEL_LURE_USED, ITEM_MAX_REPEL);
+                                ShowFieldMessage(sText_QM_RepelEnabled);
+                            }
+                            task->tState = 1;
+                            return;
+                        }
+                    case QUICK_MENU_PC:
+                        {
+                            u8 battleType = gMapHeader.battleType;
 
-                    if (battleType == MAP_BATTLE_SCENE_SIDNEY ||
-                        battleType == MAP_BATTLE_SCENE_PHOEBE ||
-                        battleType == MAP_BATTLE_SCENE_GLACIA  ||
-                        battleType == MAP_BATTLE_SCENE_DRAKE)
-                    {
-                        ShowFieldMessage(sText_QM_CantUsePCHere);
-                        task->tState = 1;
-                    }
-                    else
-                    {
-                        DestroyListMenuTask(task->tMenuListTaskId, NULL, NULL);
-                        ClearStdWindowAndFrame(task->tWindowId, TRUE);
-                        RemoveWindow(task->tWindowId);
-                        ScriptContext_SetupScript(EventScript_PCMainMenu);
-                        ScriptContext_Enable();
-                        DestroyTask(taskId);
-                    }
-                    return;
-                    return;
-                case QUICK_MENU_TIME:
-                    OpenTimeMenu();
-                    DestroyTask(taskId);
-                    return;
-                case QUICK_MENU_POKERIDER:
-                    {
-                        u8 mapType = gMapHeader.mapType;
-                        if (mapType == MAP_TYPE_TOWN || mapType == MAP_TYPE_ROUTE)
+                            if (battleType == MAP_BATTLE_SCENE_SIDNEY ||
+                                battleType == MAP_BATTLE_SCENE_PHOEBE ||
+                                battleType == MAP_BATTLE_SCENE_GLACIA  ||
+                                battleType == MAP_BATTLE_SCENE_DRAKE)
+                            {
+                                ShowFieldMessage(sText_QM_CantUsePCHere);
+                                task->tState = 1;
+                            }
+                            else
+                            {
+                                DestroyListMenuTask(task->tMenuListTaskId, NULL, NULL);
+                                ClearStdWindowAndFrame(task->tWindowId, TRUE);
+                                RemoveWindow(task->tWindowId);
+                                ScriptContext_SetupScript(EventScript_PCMainMenu);
+                                ScriptContext_Enable();
+                                DestroyTask(taskId);
+                            }
+                            return;
+                        }
+                    case QUICK_MENU_TIME:
+                        {
+                            OpenTimeMenu();
+                            DestroyTask(taskId);
+                            return;
+                        }
+                    case QUICK_MENU_POKERIDER:
+                        {
+                            u8 mapType = gMapHeader.mapType;
+                            if (mapType == MAP_TYPE_TOWN || mapType == MAP_TYPE_ROUTE)
+                            {
+                                ScriptUnfreezeObjectEvents();
+                                UnlockPlayerFieldControls();
+                                DestroyTask(taskId);
+                                gSkipShowMonAnim = TRUE;
+                                gQuickMenuFlyActive = 1; 
+                                SetMainCallback2(CB2_OpenFlyMap);
+                            }
+                            else
+                            {
+                                ShowFieldMessage(sText_QM_CantPokeRiderHere);
+                                task->tState = 1;
+                            }
+                            return;
+                        }
+                    case QUICK_MENU_EXIT:
+                    default:
                         {
                             ScriptUnfreezeObjectEvents();
                             UnlockPlayerFieldControls();
                             DestroyTask(taskId);
-                            gSkipShowMonAnim = TRUE;
-                            gQuickMenuFlyActive = 1; 
-                            SetMainCallback2(CB2_OpenFlyMap);
+                            return;
                         }
-                        else
-                        {
-                            ShowFieldMessage(sText_QM_CantPokeRiderHere);
-                            task->tState = 1;
-                        }
-                        return;
-                    }
-                case QUICK_MENU_EXIT:
-                default:
-                    ScriptUnfreezeObjectEvents();
-                    UnlockPlayerFieldControls();
-                    DestroyTask(taskId);
-                    return;
                 }
             }
             if (JOY_NEW(B_BUTTON))
