@@ -60,6 +60,9 @@ static const u8 sText_QM_Time[]      = _("Time");
 static const u8 sText_QM_PokeRider[] = _("Poké Rider");
 static const u8 sText_QM_Exit[]      = _("Exit");
 
+//Quick Menu PC
+static const u8 sText_QM_CantUsePCHere[] = _("Can't use the PC here!");
+
 //Quick Menu Time
 static const u8 sText_QM_Morning[] = _("Morning");
 static const u8 sText_QM_Day[]     = _("Day");
@@ -112,7 +115,7 @@ static const struct WindowTemplate sQuickMenuWindowTemplate =
     .tilemapLeft = 1,
     .tilemapTop = 1,
     .width = 10,
-    .height = 10,
+    .height = 12,
     .paletteNum = 15,
     .baseBlock = 0x8,
 };
@@ -258,12 +261,26 @@ static void Task_QuickMenu(u8 taskId)
                     task->tState = 1;
                     return;
                 case QUICK_MENU_PC:
-                    DestroyListMenuTask(task->tMenuListTaskId, NULL, NULL);
-                    ClearStdWindowAndFrame(task->tWindowId, TRUE);
-                    RemoveWindow(task->tWindowId);
-                    ScriptContext_SetupScript(EventScript_PCMainMenu);
-                    ScriptContext_Enable();
-                    DestroyTask(taskId);
+                    u8 battleType = gMapHeader.battleType;
+
+                    if (battleType == MAP_BATTLE_SCENE_SIDNEY ||
+                        battleType == MAP_BATTLE_SCENE_PHOEBE ||
+                        battleType == MAP_BATTLE_SCENE_GLACIA  ||
+                        battleType == MAP_BATTLE_SCENE_DRAKE)
+                    {
+                        ShowFieldMessage(sText_QM_CantUsePCHere);
+                        task->tState = 1;
+                    }
+                    else
+                    {
+                        DestroyListMenuTask(task->tMenuListTaskId, NULL, NULL);
+                        ClearStdWindowAndFrame(task->tWindowId, TRUE);
+                        RemoveWindow(task->tWindowId);
+                        ScriptContext_SetupScript(EventScript_PCMainMenu);
+                        ScriptContext_Enable();
+                        DestroyTask(taskId);
+                    }
+                    return;
                     return;
                 case QUICK_MENU_TIME:
                     OpenTimeMenu();
@@ -277,8 +294,8 @@ static void Task_QuickMenu(u8 taskId)
                             ScriptUnfreezeObjectEvents();
                             UnlockPlayerFieldControls();
                             DestroyTask(taskId);
-                            gSkipShowMonAnim = TRUE;       // ← salta l'animazione del Pokémon
-                            gQuickMenuFlyActive = 1;       // ← segnala che veniamo dal Quick Menu
+                            gSkipShowMonAnim = TRUE;
+                            gQuickMenuFlyActive = 1; 
                             SetMainCallback2(CB2_OpenFlyMap);
                         }
                         else
