@@ -24,16 +24,23 @@
 #include "palette.h"
 #include "event_scripts.h"
 #include "constants/rtc.h"
+#include "constants/map_types.h"
 
 extern void HealPlayerParty(void);
 extern void RtcInitLocalTimeOffset(s32 hour, s32 minute);
+
 extern void CB2_LoadMap(void);
+extern void CB2_OpenFlyMap(void);
+
+extern bool8 gSkipShowMonAnim;
+u8 gQuickMenuFlyActive = 0;
 
 #define QUICK_MENU_POKEVIAL  0
 #define QUICK_MENU_PC        1
 #define QUICK_MENU_REPEL     2
 #define QUICK_MENU_TIME      3
-#define QUICK_MENU_EXIT      4
+#define QUICK_MENU_POKERIDER 4
+#define QUICK_MENU_EXIT      5
 
 #define TIME_MENU_MORNING  0
 #define TIME_MENU_DAY      1
@@ -45,20 +52,23 @@ extern void CB2_LoadMap(void);
 #define tWindowId        data[1]
 #define tState           data[2]
 
-static const u8 sText_QM_PokeVial[] = _("PokéVial");
-static const u8 sText_QM_PC[]       = _("PC");
-static const u8 sText_QM_Repel[]    = _("Repel");
-static const u8 sText_QM_Time[]     = _("Time");
-static const u8 sText_QM_Exit[]     = _("Exit");
+//Quick Menu
+static const u8 sText_QM_PokeVial[]  = _("PokéVial");
+static const u8 sText_QM_PC[]        = _("PC");
+static const u8 sText_QM_Repel[]     = _("Repel");
+static const u8 sText_QM_Time[]      = _("Time");
+static const u8 sText_QM_PokeRider[] = _("Poké Rider");
+static const u8 sText_QM_Exit[]      = _("Exit");
 
+//Quick Menu Time
 static const u8 sText_QM_Morning[] = _("Morning");
 static const u8 sText_QM_Day[]     = _("Day");
 static const u8 sText_QM_Evening[] = _("Evening");
 static const u8 sText_QM_Night[]   = _("Night");
 
+//Quick Menu Repel
 static const u8 sText_QM_RepelGreen[] = _("{COLOR GREEN}Repel");
 static const u8 sText_QM_RepelRed[]   = _("{COLOR RED}Repel");
-
 static const u8 sText_QM_RepelEnabled[]  = _("Infinite Repel {COLOR GREEN}enabled!");
 static const u8 sText_QM_RepelDisabled[] = _("Infinite Repel {COLOR RED}disabled!");
 static const u8 sText_QM_PartyHealed[]   = _("Your party has been {COLOR GREEN}healed!");
@@ -67,7 +77,10 @@ static const u8 sColorNormal[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GRAY, 
 static const u8 sColorGreen[]  = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_GREEN,     TEXT_COLOR_LIGHT_GRAY};
 static const u8 sColorRed[]    = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_RED,       TEXT_COLOR_LIGHT_GRAY};
 
-static EWRAM_DATA struct ListMenuItem sQuickMenuItems[5] = {};
+//Quick Menu Poké Rider
+static const u8 sText_QM_CantPokeRiderHere[] = _("Can't use Poké Rider from here!");
+
+static EWRAM_DATA struct ListMenuItem sQuickMenuItems[6] = {};
 static EWRAM_DATA struct ListMenuItem sTimeMenuItems[5] = {};
 
 static void QuickMenuItemPrintFunc(u8 windowId, u32 itemId, u8 y)
@@ -120,8 +133,8 @@ static const struct ListMenuTemplate sQuickMenuTemplate =
     .items = sQuickMenuItems,
     .moveCursorFunc = ListMenuDefaultCursorMoveFunc,
     .itemPrintFunc = QuickMenuItemPrintFunc,
-    .totalItems = 5,
-    .maxShowed = 5,
+    .totalItems = 6,
+    .maxShowed = 6,
     .windowId = 0,
     .header_X = 0,
     .item_X = 8,
@@ -179,8 +192,10 @@ void ShowQuickMenu(void)
     sQuickMenuItems[2].id   = QUICK_MENU_REPEL;
     sQuickMenuItems[3].name = sText_QM_Time;
     sQuickMenuItems[3].id   = QUICK_MENU_TIME;
-    sQuickMenuItems[4].name = sText_QM_Exit;
-    sQuickMenuItems[4].id   = QUICK_MENU_EXIT;
+    sQuickMenuItems[4].name = sText_QM_PokeRider;
+    sQuickMenuItems[4].id   = QUICK_MENU_POKERIDER;
+    sQuickMenuItems[5].name = sText_QM_Exit;
+    sQuickMenuItems[5].id   = QUICK_MENU_EXIT;
 
     HideMapNamePopUpWindow();
     FreezeObjectEvents();
@@ -254,6 +269,25 @@ static void Task_QuickMenu(u8 taskId)
                     OpenTimeMenu();
                     DestroyTask(taskId);
                     return;
+                case QUICK_MENU_POKERIDER:
+                    {
+                        u8 mapType = gMapHeader.mapType;
+                        if (mapType == MAP_TYPE_TOWN || mapType == MAP_TYPE_ROUTE)
+                        {
+                            ScriptUnfreezeObjectEvents();
+                            UnlockPlayerFieldControls();
+                            DestroyTask(taskId);
+                            gSkipShowMonAnim = TRUE;       // ← salta l'animazione del Pokémon
+                            gQuickMenuFlyActive = 1;       // ← segnala che veniamo dal Quick Menu
+                            SetMainCallback2(CB2_OpenFlyMap);
+                        }
+                        else
+                        {
+                            ShowFieldMessage(sText_QM_CantPokeRiderHere);
+                            task->tState = 1;
+                        }
+                        return;
+                    }
                 case QUICK_MENU_EXIT:
                 default:
                     ScriptUnfreezeObjectEvents();
