@@ -42,17 +42,16 @@ u8 gQuickMenuFlyActive = 0;
 #define QUICK_MENU_POKERIDER 4
 #define QUICK_MENU_EXIT      5
 
-#define TIME_MENU_MORNING  0
-#define TIME_MENU_DAY      1
-#define TIME_MENU_EVENING  2
-#define TIME_MENU_NIGHT    3
-#define TIME_MENU_EXIT     4
+#define TIME_MENU_DAY      0
+#define TIME_MENU_NIGHT    1
+#define TIME_MENU_EXIT     2
 
 #define tMenuListTaskId  data[0]
 #define tWindowId        data[1]
 #define tState           data[2]
 
 //Quick Menu
+static EWRAM_DATA struct ListMenuItem sQuickMenuItems[6] = {};
 static const u8 sText_QM_PokeVial[]  = _("PokéVial");
 static const u8 sText_QM_PC[]        = _("PC");
 static const u8 sText_QM_Repel[]     = _("Repel");
@@ -64,14 +63,13 @@ static const u8 sText_QM_Exit[]      = _("Exit");
 static const u8 sText_QM_CantUsePCHere[] = _("Can't use the PC here!");
 
 //Quick Menu Time
-static const u8 sText_QM_Morning[] = _("Morning");
-static const u8 sText_QM_Day[]     = _("Day");
-static const u8 sText_QM_Evening[] = _("Evening");
-static const u8 sText_QM_Night[]   = _("Night");
+static EWRAM_DATA struct ListMenuItem sTimeMenuItems[3] = {};
+static const u8 sText_QM_Day[]   = _("Day");
+static const u8 sText_QM_Night[] = _("Night");
 
 //Quick Menu Repel
-static const u8 sText_QM_RepelGreen[] = _("{COLOR GREEN}Repel");
-static const u8 sText_QM_RepelRed[]   = _("{COLOR RED}Repel");
+static const u8 sText_QM_RepelGreen[]    = _("{COLOR GREEN}Repel");
+static const u8 sText_QM_RepelRed[]      = _("{COLOR RED}Repel");
 static const u8 sText_QM_RepelEnabled[]  = _("Infinite Repel {COLOR GREEN}enabled!");
 static const u8 sText_QM_RepelDisabled[] = _("Infinite Repel {COLOR RED}disabled!");
 static const u8 sText_QM_PartyHealed[]   = _("Your party has been {COLOR GREEN}healed!");
@@ -82,9 +80,6 @@ static const u8 sColorRed[]    = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_RED,       
 
 //Quick Menu Poké Rider
 static const u8 sText_QM_CantPokeRiderHere[] = _("Can't use Poké Rider from here!");
-
-static EWRAM_DATA struct ListMenuItem sQuickMenuItems[6] = {};
-static EWRAM_DATA struct ListMenuItem sTimeMenuItems[5] = {};
 
 static void QuickMenuItemPrintFunc(u8 windowId, u32 itemId, u8 y)
 {
@@ -126,7 +121,7 @@ static const struct WindowTemplate sTimeMenuWindowTemplate =
     .tilemapLeft = 1,
     .tilemapTop = 1,
     .width = 8,
-    .height = 10,
+    .height = 6,
     .paletteNum = 15,
     .baseBlock = 0x100,
 };
@@ -158,8 +153,8 @@ static const struct ListMenuTemplate sTimeMenuTemplate =
     .items = sTimeMenuItems,
     .moveCursorFunc = ListMenuDefaultCursorMoveFunc,
     .itemPrintFunc = NULL,
-    .totalItems = 5,
-    .maxShowed = 5,
+    .totalItems = 3,
+    .maxShowed = 3,
     .windowId = 0,
     .header_X = 0,
     .item_X = 8,
@@ -323,6 +318,7 @@ static void Task_QuickMenu(u8 taskId)
                         }
                 }
             }
+            
             if (JOY_NEW(B_BUTTON))
             {
                 DestroyListMenuTask(task->tMenuListTaskId, NULL, NULL);
@@ -366,14 +362,8 @@ static void Task_TimeMenu(u8 taskId)
 
         switch (input)
         {
-            case TIME_MENU_MORNING:
-                RtcInitLocalTimeOffset(MORNING_HOUR_BEGIN, 0);
-                break;
             case TIME_MENU_DAY:
                 RtcInitLocalTimeOffset(DAY_HOUR_BEGIN, 0);
-                break;
-            case TIME_MENU_EVENING:
-                RtcInitLocalTimeOffset(EVENING_HOUR_BEGIN, 0);
                 break;
             case TIME_MENU_NIGHT:
                 RtcInitLocalTimeOffset(NIGHT_HOUR_BEGIN, 0);
@@ -387,8 +377,10 @@ static void Task_TimeMenu(u8 taskId)
             ScriptUnfreezeObjectEvents();
             UnlockPlayerFieldControls();
         }
+
         DestroyTask(taskId);
     }
+
     if (JOY_NEW(B_BUTTON))
     {
         DestroyListMenuTask(task->tMenuListTaskId, NULL, NULL);
@@ -407,16 +399,12 @@ static void OpenTimeMenu(void)
     u8 listMenuTaskId;
     u8 taskId;
 
-    sTimeMenuItems[0].name = sText_QM_Morning;
-    sTimeMenuItems[0].id   = TIME_MENU_MORNING;
-    sTimeMenuItems[1].name = sText_QM_Day;
-    sTimeMenuItems[1].id   = TIME_MENU_DAY;
-    sTimeMenuItems[2].name = sText_QM_Evening;
-    sTimeMenuItems[2].id   = TIME_MENU_EVENING;
-    sTimeMenuItems[3].name = sText_QM_Night;
-    sTimeMenuItems[3].id   = TIME_MENU_NIGHT;
-    sTimeMenuItems[4].name = sText_QM_Exit;
-    sTimeMenuItems[4].id   = TIME_MENU_EXIT;
+    sTimeMenuItems[0].name = sText_QM_Day;
+    sTimeMenuItems[0].id   = TIME_MENU_DAY;
+    sTimeMenuItems[1].name = sText_QM_Night;
+    sTimeMenuItems[1].id   = TIME_MENU_NIGHT;
+    sTimeMenuItems[2].name = sText_QM_Exit;
+    sTimeMenuItems[2].id   = TIME_MENU_EXIT;
 
     LoadUserWindowBorderGfx(0, STD_WINDOW_BASE_TILE_NUM, BG_PLTT_ID(STD_WINDOW_PALETTE_NUM));
     windowId = AddWindow(&sTimeMenuWindowTemplate);
