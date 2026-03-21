@@ -10739,6 +10739,8 @@ static const u8 sBadgeLevel[] = {
 
 static u32 ComputeCaptureOdds(u32 wildMonBattler, u32 playerBattler)
 {
+    return CAPTURE_GUARANTEED;
+
     struct BallData ball;
     ComputeBallData(wildMonBattler, playerBattler, &ball);
 
