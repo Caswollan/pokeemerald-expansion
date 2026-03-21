@@ -547,6 +547,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_BirchGiveItems::
 	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_BirchGiveItems, MSGBOX_DEFAULT
+	additem ITEM_INFINITE_CANDY
 	additem ITEM_ABILITY_CAPSULE, 999
 	additem ITEM_BLACK_BELT, 10
 	additem ITEM_BLACK_GLASSES, 10
