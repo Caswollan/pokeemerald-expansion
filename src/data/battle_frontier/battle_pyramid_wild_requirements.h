@@ -135,7 +135,7 @@ static const struct BattlePyramidRequirement sBattlePyramidRequirementsByRound[]
         .type = TYPE_MYSTERY,
         .moves = sPoisoningMoves,
         .nMoves = NELEMS(sPoisoningMoves),
-        .abilities = { ABILITY_POISON_POINT },
+        .abilities = { ABILITY_POISON_TOUCH },
     },
     [2] = /* Pokemon with moves that burn */
     {

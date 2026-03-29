@@ -3851,7 +3851,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
     #if P_UPDATED_ABILITIES >= GEN_6
         .abilities = { ABILITY_POISON_TOUCH, ABILITY_SWARM, ABILITY_SPEED_BOOST },
     #else
-        .abilities = { ABILITY_POISON_POINT, ABILITY_SWARM, ABILITY_QUICK_FEET },
+        .abilities = { ABILITY_POISON_TOUCH, ABILITY_SWARM, ABILITY_QUICK_FEET },
     #endif
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Venipede"),
@@ -3929,7 +3929,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
     #if P_UPDATED_ABILITIES >= GEN_6
         .abilities = { ABILITY_POISON_TOUCH, ABILITY_SWARM, ABILITY_SPEED_BOOST },
     #else
-        .abilities = { ABILITY_POISON_POINT, ABILITY_SWARM, ABILITY_QUICK_FEET },
+        .abilities = { ABILITY_POISON_TOUCH, ABILITY_SWARM, ABILITY_QUICK_FEET },
     #endif
         .bodyColor = BODY_COLOR_GRAY,
         .speciesName = _("Whirlipede"),
@@ -4011,7 +4011,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
     #if P_UPDATED_ABILITIES >= GEN_6
         .abilities = { ABILITY_POISON_TOUCH, ABILITY_SWARM, ABILITY_SPEED_BOOST },
     #else
-        .abilities = { ABILITY_POISON_POINT, ABILITY_SWARM, ABILITY_QUICK_FEET },
+        .abilities = { ABILITY_POISON_TOUCH, ABILITY_SWARM, ABILITY_QUICK_FEET },
     #endif
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Scolipede"),
@@ -4082,7 +4082,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
-        .abilities = { ABILITY_POISON_POINT, ABILITY_SWARM, ABILITY_SPEED_BOOST },
+        .abilities = { ABILITY_POISON_TOUCH, ABILITY_SWARM, ABILITY_SPEED_BOOST },
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Scolipede"),
     #if P_MODIFIED_MEGA_CRIES

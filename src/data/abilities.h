@@ -270,8 +270,8 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_ILLUMINATE] =
     {
         .name = _("Illuminate"),
-        .description = COMPOUND_STRING("Encounter rate increases."),
-        .aiRating = 0,
+        .description = COMPOUND_STRING("Raises accuracy."),
+        .aiRating = 7,
         .breakable = TRUE,
     },
 
@@ -557,11 +557,11 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .breakable = TRUE,
     },
 
-    [ABILITY_PURE_POWER] =
+    [ABILITY_STRIKER] =
     {
-        .name = _("Pure Power"),
-        .description = COMPOUND_STRING("Raises Attack."),
-        .aiRating = 10,
+        .name = _("Striker"),
+        .description = COMPOUND_STRING("Boosts kicking moves."),
+        .aiRating = 6,
     },
 
     [ABILITY_SHELL_ARMOR] =
