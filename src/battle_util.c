@@ -7613,6 +7613,13 @@ static inline uq4_12_t GetDefenderAbilitiesModifier(struct BattleContext *ctx)
             recordAbility = TRUE;
         }
         break;
+    case ABILITY_MAGMA_ARMOR:
+        if (ctx->moveType == TYPE_WATER)
+        {
+            modifier = UQ_4_12(0.125);
+            recordAbility = TRUE;
+        }
+        break;
     default:
         break;
     }
