@@ -6239,6 +6239,56 @@ BattleScript_IntimidateInReverse::
 	call BattleScript_TryIntimidateHoldEffects
 	goto BattleScript_IntimidateLoopIncrement
 
+BattleScript_DemoraliseActivates::
+        savetarget
+        call BattleScript_AbilityPopUp
+        setbyte gBattlerTarget, 0
+BattleScript_DemoraliseLoop:
+        jumpiftargetally BattleScript_DemoraliseLoopIncrement
+        jumpifabsent BS_TARGET, BattleScript_DemoraliseLoopIncrement
+        jumpifvolatile BS_TARGET, VOLATILE_SUBSTITUTE, BattleScript_DemoraliseLoopIncrement
+        jumpifintimidateabilityprevented
+BattleScript_DemoraliseEffect:
+        copybyte sBATTLER, gBattlerAttacker
+        setstatchanger STAT_SPATK, 1, TRUE
+        statbuffchange BS_TARGET, STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_ALLOW_PTR, BattleScript_DemoraliseLoopIncrement
+        jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_CHANGE, BattleScript_DemoraliseWontDecrease
+        printstring STRINGID_PKMNCUTSSPECIALATTACKWITH
+BattleScript_DemoraliseEffect_WaitString:
+        waitmessage B_WAIT_TIME_LONG
+        saveattacker
+        savetarget
+        copybyte sBATTLER, gBattlerTarget
+        call BattleScript_TryIntimidateHoldEffects
+        restoreattacker
+        restoretarget
+BattleScript_DemoraliseLoopIncrement:
+        addbyte gBattlerTarget, 1
+        jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_DemoraliseLoop
+        copybyte sBATTLER, gBattlerAttacker
+        destroyabilitypopup
+        restoretarget
+        restoreattacker
+        end
+BattleScript_DemoraliseWontDecrease:
+        printstring STRINGID_PKMNCUTSSPECIALATTACKWITH
+        waitmessage B_WAIT_TIME_LONG
+        goto BattleScript_DemoraliseLoopIncrement
+
+BattleScript_DemoraliserPrevented::
+        copybyte sBATTLER, gBattlerTarget
+        call BattleScript_AbilityPopUp
+        printstring STRINGID_PKMNPREVENTSSTATLOSSWITH
+        goto BattleScript_DemoraliseEffect_WaitString
+
+BattleScript_DemoraliseInReverse::
+        copybyte sBATTLER, gBattlerTarget
+        call BattleScript_AbilityPopUpTarget
+        pause B_WAIT_TIME_SHORT
+        modifybattlerstatstage BS_TARGET, STAT_SPATK, INCREASE, 1, BattleScript_DemoraliseLoopIncrement, ANIM_ON
+        call BattleScript_TryIntimidateHoldEffects
+        goto BattleScript_DemoraliseLoopIncrement
+
 BattleScript_SupersweetSyrupActivates::
  	savetarget
 	call BattleScript_AbilityPopUp

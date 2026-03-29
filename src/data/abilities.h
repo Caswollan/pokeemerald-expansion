@@ -177,6 +177,13 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .aiRating = 7,
     },
 
+    [ABILITY_DEMORALISE] =
+    {
+        .name = _("Demoralise"),
+        .description = COMPOUND_STRING("Lowers the foe's Sp. Atk."),
+        .aiRating = 7,
+    },
+
     [ABILITY_SHADOW_TAG] =
     {
         .name = _("Shadow Tag"),

@@ -13185,27 +13185,30 @@ void BS_JumpIfIntimidateAbilityPrevented(void)
 
     switch (ability)
     {
-    case ABILITY_INNER_FOCUS:
-    case ABILITY_SCRAPPY:
-    case ABILITY_OWN_TEMPO:
-    case ABILITY_OBLIVIOUS:
-        if (GetConfig(B_UPDATED_INTIMIDATE) >= GEN_8)
-        {
+        case ABILITY_INNER_FOCUS:
+        case ABILITY_SCRAPPY:
+        case ABILITY_OWN_TEMPO:
+        case ABILITY_OBLIVIOUS:
+            if (GetConfig(B_UPDATED_INTIMIDATE) >= GEN_8)
+            {
+                hasAbility = TRUE;
+                gBattlescriptCurrInstr = (GetBattlerAbility(gBattlerAttacker) == ABILITY_DEMORALISE)
+                    ? BattleScript_DemoraliserPrevented
+                    : BattleScript_IntimidatePrevented;
+            }
+            else
+            {
+                gBattlescriptCurrInstr = cmd->nextInstr;
+            }
+            break;
+        case ABILITY_GUARD_DOG:
             hasAbility = TRUE;
-            gBattlescriptCurrInstr = BattleScript_IntimidatePrevented;
-        }
-        else
-        {
+            gBattlescriptCurrInstr = (GetBattlerAbility(gBattlerAttacker) == ABILITY_DEMORALISE)
+                ? BattleScript_DemoraliseInReverse
+                : BattleScript_IntimidateInReverse;
+            break;
+        default:
             gBattlescriptCurrInstr = cmd->nextInstr;
-        }
-        break;
-    case ABILITY_GUARD_DOG:
-        hasAbility = TRUE;
-        gBattlescriptCurrInstr = BattleScript_IntimidateInReverse;
-        break;
-    default:
-        gBattlescriptCurrInstr = cmd->nextInstr;
-        break;
     }
 
     if (hasAbility)

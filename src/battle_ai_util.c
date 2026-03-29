@@ -6214,6 +6214,35 @@ enum AIScore BattlerBenefitsFromAbilityScore(enum BattlerId battler, enum Abilit
             return IncreaseStatDownScore(battler, LEFT_FOE(battler), STAT_ATK);
         }
     }
+    case ABILITY_DEMORALISE:
+    {
+        enum Ability abilityDef = aiData->abilities[LEFT_FOE(battler)];
+        if (DoesIntimidateRaiseStats(abilityDef))
+        {
+            return AWFUL_EFFECT;
+        }
+        else
+        {
+            if (HasTwoOpponents(battler))
+            {
+                abilityDef = aiData->abilities[RIGHT_FOE(battler)];
+                if (DoesIntimidateRaiseStats(abilityDef))
+                {
+                    return AWFUL_EFFECT;
+                }
+                else
+                {
+                    enum AIScore score1 = IncreaseStatDownScore(battler, LEFT_FOE(battler), STAT_SPATK);
+                    enum AIScore score2 = IncreaseStatDownScore(battler, RIGHT_FOE(battler), STAT_SPATK);
+                    if (score1 > score2)
+                        return score1;
+                    else
+                        return score2;
+                }
+            }
+            return IncreaseStatDownScore(battler, LEFT_FOE(battler), STAT_SPATK);
+        }
+    }
     case ABILITY_NO_GUARD:
         if (HasMoveWithLowAccuracy(battler, LEFT_FOE(battler), LOW_ACCURACY_THRESHOLD, FALSE)
          || HasMoveWithLowAccuracy(battler, RIGHT_FOE(battler), LOW_ACCURACY_THRESHOLD, FALSE))
