@@ -5931,11 +5931,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .baseSpeed     = 86,
         .baseSpAttack  = 105,
         .baseSpDefense = 107,
-    #if P_UPDATED_TYPES >= GEN_5
         .types = MON_TYPES(TYPE_ELECTRIC, TYPE_FIRE),
-    #else
-        .types = ROTOM_FAMILY_TYPES,
-    #endif
         .catchRate = 45,
         .expYield = ROTOM_APPLIANCE_EXP_YIELD,
         .evYield_Speed = 1,
@@ -6006,11 +6002,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .baseSpeed     = 86,
         .baseSpAttack  = 105,
         .baseSpDefense = 107,
-    #if P_UPDATED_TYPES >= GEN_5
         .types = MON_TYPES(TYPE_ELECTRIC, TYPE_WATER),
-    #else
-        .types = ROTOM_FAMILY_TYPES,
-    #endif
         .catchRate = 45,
         .expYield = ROTOM_APPLIANCE_EXP_YIELD,
         .evYield_Speed = 1,
@@ -6082,11 +6074,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .baseSpeed     = 86,
         .baseSpAttack  = 105,
         .baseSpDefense = 107,
-    #if P_UPDATED_TYPES >= GEN_5
         .types = MON_TYPES(TYPE_ELECTRIC, TYPE_ICE),
-    #else
-        .types = ROTOM_FAMILY_TYPES,
-    #endif
         .catchRate = 45,
         .expYield = ROTOM_APPLIANCE_EXP_YIELD,
         .evYield_Speed = 1,
@@ -6156,11 +6144,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .baseSpeed     = 86,
         .baseSpAttack  = 105,
         .baseSpDefense = 107,
-    #if P_UPDATED_TYPES >= GEN_5
         .types = MON_TYPES(TYPE_ELECTRIC, TYPE_FLYING),
-    #else
-        .types = ROTOM_FAMILY_TYPES,
-    #endif
         .catchRate = 45,
         .expYield = ROTOM_APPLIANCE_EXP_YIELD,
         .evYield_Speed = 1,
@@ -6255,11 +6239,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .baseSpeed     = 86,
         .baseSpAttack  = 105,
         .baseSpDefense = 107,
-    #if P_UPDATED_TYPES >= GEN_5
         .types = MON_TYPES(TYPE_ELECTRIC, TYPE_GRASS),
-    #else
-        .types = ROTOM_FAMILY_TYPES,
-    #endif
         .catchRate = 45,
         .expYield = ROTOM_APPLIANCE_EXP_YIELD,
         .evYield_Speed = 1,
