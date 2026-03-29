@@ -4859,6 +4859,12 @@ s32 GetBattleMovePriority(enum BattlerId battler, enum Ability ability, enum Mov
     {
         priority += 3;
     }
+    else if (ability == ABILITY_BLAZING_SOUL
+          && IsBattlerAtMaxHp(battler)
+          && GetMoveType(move) == TYPE_FIRE)
+    {
+        priority++;
+    }
 
     return priority;
 }
