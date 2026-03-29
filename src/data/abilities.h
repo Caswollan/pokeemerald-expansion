@@ -177,13 +177,6 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .aiRating = 7,
     },
 
-    [ABILITY_DEMORALISE] =
-    {
-        .name = _("Demoralise"),
-        .description = COMPOUND_STRING("Lowers the foe's Sp. Atk."),
-        .aiRating = 7,
-    },
-
     [ABILITY_SHADOW_TAG] =
     {
         .name = _("Shadow Tag"),
@@ -295,13 +288,6 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
     {
         .name = _("Huge Power"),
         .description = COMPOUND_STRING("Raises Attack."),
-        .aiRating = 10,
-    },
-
-    [ABILITY_MYSTIC_POWER] =
-    {
-        .name = _("Mystic Power"),
-        .description = COMPOUND_STRING("Raises Special Attack."),
         .aiRating = 10,
     },
 
@@ -569,13 +555,6 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Prevents ability reduction."),
         .aiRating = 4,
         .breakable = TRUE,
-    },
-
-    [ABILITY_STRIKER] =
-    {
-        .name = _("Striker"),
-        .description = COMPOUND_STRING("Boosts kicking moves."),
-        .aiRating = 6,
     },
 
     [ABILITY_SHELL_ARMOR] =
@@ -1625,7 +1604,7 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
     {
         .name = _("Corrosion"),
         .description = COMPOUND_STRING("Poisons any type."),
-        .aiRating = 5,
+        .aiRating = 7,
     },
 
     [ABILITY_COMATOSE] =
@@ -2429,10 +2408,38 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
     },
 
     // NEW
+    [ABILITY_STRIKER] =
+    {
+        .name = _("Striker"),
+        .description = COMPOUND_STRING("Boosts kicking moves."),
+        .aiRating = 6,
+    },
+
     [ABILITY_BLAZING_SOUL] =
     {
         .name = _("Blazing Soul"),
         .description = COMPOUND_STRING("Fire moves go first."),
         .aiRating = 6,
+    },
+
+    [ABILITY_MYSTIC_POWER] =
+    {
+        .name = _("Mystic Power"),
+        .description = COMPOUND_STRING("Raises Special Attack."),
+        .aiRating = 10,
+    },
+    
+    [ABILITY_DEMORALISE] =
+    {
+        .name = _("Demoralise"),
+        .description = COMPOUND_STRING("Lowers the foe's Sp. Atk."),
+        .aiRating = 7,
+    },
+
+    [ABILITY_BONE_ZONE] =
+    {
+        .name = _("Bone Zone"),
+        .description = COMPOUND_STRING("Bone ignore imm & res."),
+        .aiRating = 7,
     },
 };

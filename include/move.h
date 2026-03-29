@@ -115,6 +115,7 @@ struct MoveInfo
     bool32 slicingMove:1;
     bool32 healingMove:1;
     bool32 minimizeDoubleDamage:1;
+    bool32 boneMove:1;
     // end of word
     bool32 ignoresTargetAbility:1;
     bool32 ignoresTargetDefenseEvasionStages:1;
@@ -401,6 +402,11 @@ static inline bool32 IsHealingMove(enum Move moveId)
 static inline bool32 MoveIncreasesPowerToMinimizedTargets(enum Move moveId)
 {
     return gMovesInfo[SanitizeMoveId(moveId)].minimizeDoubleDamage;
+}
+
+static inline bool32 IsBoneMove(enum Move moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].boneMove;
 }
 
 static inline bool32 MoveIgnoresTargetAbility(enum Move moveId)

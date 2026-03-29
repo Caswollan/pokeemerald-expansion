@@ -7553,6 +7553,10 @@ static inline uq4_12_t GetAttackerAbilitiesModifier(enum BattlerId battlerAtk, u
         if (typeEffectivenessModifier <= UQ_4_12(0.5))
             return UQ_4_12(2.0);
         break;
+    case ABILITY_BONE_ZONE:
+        if (gMovesInfo[gCurrentMove].boneMove && typeEffectivenessModifier <= UQ_4_12(0.5))
+            return UQ_4_12(2.0);
+        break;
     default:
         break;
     }
@@ -8255,15 +8259,19 @@ static inline void MulByTypeEffectiveness(struct BattleContext *ctx, uq4_12_t *m
         if (ctx->updateFlags)
             RecordAbilityBattle(ctx->battlerAtk, ctx->abilityAtk);
     }
-    else if (ctx->moveType == TYPE_POISON && defType == TYPE_STEEL
-        && ctx->abilityAtk == ABILITY_CORROSION
-        && mod == UQ_4_12(0.0))
+    else if (ctx->moveType == TYPE_POISON && defType == TYPE_STEEL && ctx->abilityAtk == ABILITY_CORROSION && mod == UQ_4_12(0.0))
     {
         mod = UQ_4_12(1.0);
         if (ctx->updateFlags)
             RecordAbilityBattle(ctx->battlerAtk, ctx->abilityAtk);
     }
-
+    else if (gMovesInfo[ctx->move].boneMove && ctx->abilityAtk == ABILITY_BONE_ZONE && mod == UQ_4_12(0.0))
+    {
+        mod = UQ_4_12(1.0);
+        if (ctx->updateFlags)
+            RecordAbilityBattle(ctx->battlerAtk, ctx->abilityAtk);
+    }
+    
     if (ctx->moveType == TYPE_PSYCHIC && defType == TYPE_DARK && gBattleMons[ctx->battlerDef].volatiles.miracleEye && mod == UQ_4_12(0.0))
         mod = UQ_4_12(1.0);
     if (GetMoveEffect(ctx->move) == EFFECT_SUPER_EFFECTIVE_ON_ARG && defType == GetMoveArgType(ctx->move) && !ctx->isAnticipation)
