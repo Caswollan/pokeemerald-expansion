@@ -298,6 +298,13 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .aiRating = 10,
     },
 
+    [ABILITY_MYSTIC_POWER] =
+    {
+        .name = _("Mystic Power"),
+        .description = COMPOUND_STRING("Raises Special Attack."),
+        .aiRating = 10,
+    },
+
     [ABILITY_POISON_POINT] =
     {
         .name = _("Poison Point"),
