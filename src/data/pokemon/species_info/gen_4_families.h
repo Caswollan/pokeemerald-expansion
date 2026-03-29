@@ -846,7 +846,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .baseDefense   = 70,
         .baseSpeed     = 100,
         .baseSpAttack  = 50,
-        .baseSpDefense = P_UPDATED_STATS >= GEN_6 ? 60 : 50,
+        .baseSpDefense = 60,
         .types = MON_TYPES(TYPE_NORMAL, TYPE_FLYING),
         .catchRate = 45,
     #if P_UPDATED_EXP_YIELDS >= GEN_8
@@ -7262,10 +7262,10 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
     {
         .baseHP        = 120,
         .baseAttack    = 70,
-        .baseDefense   = P_UPDATED_STATS >= GEN_9 ? 110 : 120,
+        .baseDefense   = 110,
         .baseSpeed     = 85,
         .baseSpAttack  = 75,
-        .baseSpDefense = P_UPDATED_STATS >= GEN_9 ? 120 : 130,
+        .baseSpDefense = 120,
         .types = MON_TYPES(TYPE_PSYCHIC),
         .catchRate = 3,
     #if P_UPDATED_EXP_YIELDS >= GEN_9

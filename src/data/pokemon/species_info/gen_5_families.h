@@ -1146,7 +1146,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
     [SPECIES_STOUTLAND] =
     {
         .baseHP        = 85,
-        .baseAttack    = P_UPDATED_STATS >= GEN_6 ? 110 : 100,
+        .baseAttack    = 110,
         .baseDefense   = 90,
         .baseSpeed     = 80,
         .baseSpAttack  = 45,
@@ -2064,7 +2064,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
     [SPECIES_UNFEZANT] =
     {
         .baseHP        = 80,
-        .baseAttack    = P_UPDATED_STATS >= GEN_6 ? 115 : 105,
+        .baseAttack    = 115,
         .baseDefense   = 80,
         .baseSpeed     = 93,
         .baseSpAttack  = 65,
@@ -2456,7 +2456,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .baseDefense   = 130,
         .baseSpeed     = 25,
         .baseSpAttack  = 60,
-        .baseSpDefense = P_UPDATED_STATS >= GEN_6 ? 80 : 70,
+        .baseSpDefense = 80,
         .types = MON_TYPES(TYPE_ROCK),
         .catchRate = 45,
     #if P_UPDATED_EXP_YIELDS >= GEN_8
@@ -2532,7 +2532,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #if P_FAMILY_WOOBAT
     [SPECIES_WOOBAT] =
     {
-        .baseHP        = P_UPDATED_STATS >= GEN_7 ? 65 : 55,
+        .baseHP        = 65,
         .baseAttack    = 45,
         .baseDefense   = 43,
         .baseSpeed     = 72,
@@ -3395,7 +3395,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
     [SPECIES_SEISMITOAD] =
     {
         .baseHP        = 105,
-        .baseAttack    = P_UPDATED_STATS >= GEN_6 ? 95 : 85,
+        .baseAttack    = 95,
         .baseDefense   = 75,
         .baseSpeed     = 74,
         .baseSpAttack  = 85,
@@ -3761,7 +3761,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .baseDefense   = 80,
         .baseSpeed     = 92,
         .baseSpAttack  = 70,
-        .baseSpDefense = P_UPDATED_STATS >= GEN_6 ? 80 : 70,
+        .baseSpDefense = 80,
         .types = MON_TYPES(TYPE_BUG, TYPE_GRASS),
         .catchRate = 45,
     #if P_UPDATED_EXP_YIELDS >= GEN_8
@@ -3987,7 +3987,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
     [SPECIES_SCOLIPEDE] =
     {
         .baseHP        = 60,
-        .baseAttack    = P_UPDATED_STATS >= GEN_6 ? 100 : 90,
+        .baseAttack    = 100,
         .baseDefense   = 89,
         .baseSpeed     = 112,
         .baseSpAttack  = 55,
@@ -4966,7 +4966,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
     {
         .baseHP        = 95,
         .baseAttack    = 117,
-        .baseDefense   = P_UPDATED_STATS >= GEN_6 ? 80 : 70,
+        .baseDefense   = 80,
         .baseSpeed     = 92,
         .baseSpAttack  = 65,
         .baseSpDefense = 70,
@@ -5587,7 +5587,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
     [SPECIES_CRUSTLE] =
     {
         .baseHP        = 70,
-        .baseAttack    = P_UPDATED_STATS >= GEN_7 ? 105 : 95,
+        .baseAttack    = 105,
         .baseDefense   = 125,
         .baseSpeed     = 45,
         .baseSpAttack  = 65,
@@ -10568,7 +10568,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
     [SPECIES_BEARTIC] =
     {
         .baseHP        = 95,
-        .baseAttack    = P_UPDATED_STATS >= GEN_7 ? 130 : 110,
+        .baseAttack    = 130,
         .baseDefense   = 80,
         .baseSpeed     = 50,
         .baseSpAttack  = 70,
@@ -10641,9 +10641,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #if P_FAMILY_CRYOGONAL
     [SPECIES_CRYOGONAL] =
     {
-        .baseHP        = P_UPDATED_STATS >= GEN_7 ? 80 : 70,
+        .baseHP        = 80,
         .baseAttack    = 50,
-        .baseDefense   = P_UPDATED_STATS >= GEN_7 ? 50 : 30,
+        .baseDefense   = 50,
         .baseSpeed     = 105,
         .baseSpAttack  = 95,
         .baseSpDefense = 135,

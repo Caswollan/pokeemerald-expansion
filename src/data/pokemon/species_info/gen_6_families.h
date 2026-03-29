@@ -3181,16 +3181,14 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_DUSK_STONE, SPECIES_AEGISLASH_SHIELD}),
     },
 
-#define AEGISLASH_MAIN_STAT (P_UPDATED_STATS >= GEN_8 ? 140 : 150)
-
     [SPECIES_AEGISLASH_SHIELD] =
     {
         .baseHP        = 60,
         .baseAttack    = 50,
-        .baseDefense   = AEGISLASH_MAIN_STAT,
+        .baseDefense   = 140,
         .baseSpeed     = 60,
         .baseSpAttack  = 50,
-        .baseSpDefense = AEGISLASH_MAIN_STAT,
+        .baseSpDefense = 140,
         .types = MON_TYPES(TYPE_STEEL, TYPE_GHOST),
         .catchRate = 45,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 250 : 234,
@@ -3259,10 +3257,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
     [SPECIES_AEGISLASH_BLADE] =
     {
         .baseHP        = 60,
-        .baseAttack    = AEGISLASH_MAIN_STAT,
+        .baseAttack    = 140,
         .baseDefense   = 50,
         .baseSpeed     = 60,
-        .baseSpAttack  = AEGISLASH_MAIN_STAT,
+        .baseSpAttack  = 140,
         .baseSpDefense = 50,
         .types = MON_TYPES(TYPE_STEEL, TYPE_GHOST),
         .catchRate = 45,

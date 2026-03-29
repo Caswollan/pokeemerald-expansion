@@ -6611,7 +6611,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
     [SPECIES_ZACIAN_HERO] =
     {
         .baseHP        = 92,
-        .baseAttack    = P_UPDATED_STATS >= GEN_9 ? 120 : 130,
+        .baseAttack    = 120,
         .baseDefense   = 115,
         .baseSpeed     = 138,
         .baseSpAttack  = 80,
@@ -6678,7 +6678,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
     [SPECIES_ZACIAN_CROWNED] =
     {
         .baseHP        = 92,
-        .baseAttack    = P_UPDATED_STATS >= GEN_9 ? 150 : 170,
+        .baseAttack    = 150,
         .baseDefense   = 115,
         .baseSpeed     = 148,
         .baseSpAttack  = 80,
@@ -6748,7 +6748,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
     [SPECIES_ZAMAZENTA_HERO] =
     {
         .baseHP        = 92,
-        .baseAttack    = P_UPDATED_STATS >= GEN_9 ? 120 : 130,
+        .baseAttack    = 120,
         .baseDefense   = 115,
         .baseSpeed     = 138,
         .baseSpAttack  = 80,
@@ -6816,11 +6816,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
     [SPECIES_ZAMAZENTA_CROWNED] =
     {
         .baseHP        = 92,
-        .baseAttack    = P_UPDATED_STATS >= GEN_9 ? 120 : 130,
-        .baseDefense   = P_UPDATED_STATS >= GEN_9 ? 140 : 145,
+        .baseAttack    = 120,
+        .baseDefense   = 140,
         .baseSpeed     = 128,
         .baseSpAttack  = 80,
-        .baseSpDefense = P_UPDATED_STATS >= GEN_9 ? 140 : 145,
+        .baseSpDefense = 140,
         .types = MON_TYPES(TYPE_FIGHTING, TYPE_STEEL),
         .catchRate = 10,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_9) ? 350 : 360,
