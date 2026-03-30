@@ -10271,7 +10271,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .types = MON_TYPES(TYPE_WATER, TYPE_PSYCHIC),
         .catchRate = 70,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 172 : 164,
-        .evYield_SpDefense = (P_UPDATED_EVS >= GEN_8) ? 2 : 3,
+        .evYield_SpDefense = 2,
         .itemRare = ITEM_KINGS_ROCK,
         .genderRatio = PERCENT_FEMALE(50),
         .eggCycles = 20,
@@ -14634,7 +14634,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     #else
         .expYield = 255,
     #endif
-        .evYield_HP = (P_UPDATED_EVS >= GEN_4) ? 3 : 2,
+        .evYield_HP = 3,
         .itemCommon = ITEM_OVAL_STONE,
         .genderRatio = MON_FEMALE,
         .eggCycles = 40,

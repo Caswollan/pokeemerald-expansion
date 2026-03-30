@@ -7707,11 +7707,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .types = MON_TYPES(TYPE_GRASS, TYPE_FLYING),
         .catchRate = 45,
         .expYield = SHAYMIN_EXP_YIELD,
-    #if P_UPDATED_EVS >= GEN_5
         .evYield_Speed = 3,
-    #else
-        .evYield_HP = 3,
-    #endif
         .itemCommon = ITEM_LUM_BERRY,
         .itemRare = ITEM_LUM_BERRY,
         .genderRatio = MON_GENDERLESS,
