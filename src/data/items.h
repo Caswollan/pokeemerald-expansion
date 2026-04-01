@@ -5687,6 +5687,24 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_Blastoisinite,
     },
 
+    [ITEM_BUTTERFREEITE] =
+    {
+        .name = ITEM_NAME("Butterfreeite"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = COMPOUND_STRING(
+            "This stone enables\n"
+            "Butterfree to Mega\n"
+            "Evolve in battle."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_MEGA_STONE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 80,
+        .iconPic = gItemIcon_Beedrillite,
+        .iconPalette = gItemIconPalette_Beedrillite,
+    },
+
     [ITEM_BEEDRILLITE] =
     {
         .name = ITEM_NAME("Beedrillite"),

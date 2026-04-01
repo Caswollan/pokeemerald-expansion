@@ -1391,6 +1391,68 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .formChangeTable = sButterfreeFormChangeTable,
     },
 
+#if P_MEGA_EVOLUTIONS
+    [SPECIES_BUTTERFREE_MEGA] =
+    {
+        .baseHP        = 60,
+        .baseAttack    = 45,
+        .baseDefense   = 50,
+        .baseSpeed     = 70,
+        .baseSpAttack  = 90,
+        .baseSpDefense = 80,
+        .types = MON_TYPES(TYPE_BUG, TYPE_FLYING),
+        .catchRate = 45,
+        .expYield = BUTTERFREE_EXP_YIELD,
+        .evYield_SpAttack = 2,
+        .evYield_SpDefense = 1,
+        .itemRare = ITEM_SILVER_POWDER,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
+        .abilities = { ABILITY_COMPOUND_EYES, ABILITY_COMPOUND_EYES, ABILITY_COMPOUND_EYES },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Butterfree"),
+        .cryId = CRY_BUTTERFREE,
+        .natDexNum = NATIONAL_DEX_BUTTERFREE,
+        .categoryName = _("Butterfly"),
+        .height = 11,
+        .weight = 320,
+        .description = COMPOUND_STRING(
+            "Its legs have become poison stingers.\n"
+            "It stabs its prey repeatedly with the\n"
+            "stingers on its limbs, dealing the final\n"
+            "blow with the stinger on its rear."),
+        .pokemonScale = 366,
+        .pokemonOffset = 2,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_ButterfreeGmax,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 3,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .enemyMonElevation = 7,
+        .backPic = gMonBackPic_ButterfreeGmax,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 3,
+        .backAnimId = BACK_ANIM_H_VIBRATE,
+        .palette = gMonPalette_ButterfreeGmax,
+        .shinyPalette = gMonShinyPalette_ButterfreeGmax,
+        .iconSprite = gMonIcon_ButterfreeGmax,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(-4, 15, SHADOW_SIZE_S)
+        FOOTPRINT(Butterfree)
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sButterfreeLevelUpLearnset,
+        .teachableLearnset = sBeedrillTeachableLearnset,
+        .formSpeciesIdTable = sButterfreeFormSpeciesIdTable,
+        .formChangeTable = sButterfreeFormChangeTable,
+    },
+#endif //P_MEGA_EVOLUTIONS
+
 #if P_GIGANTAMAX_FORMS
     [SPECIES_BUTTERFREE_GMAX] =
     {

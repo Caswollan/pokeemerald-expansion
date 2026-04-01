@@ -47,6 +47,9 @@ static const struct FormChange sBlastoiseFormChangeTable[] =
 #if P_FAMILY_CATERPIE
 static const struct FormChange sButterfreeFormChangeTable[] =
 {
+#if P_MEGA_EVOLUTIONS
+    {FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM,    SPECIES_BUTTERFREE_MEGA, ITEM_BUTTERFREEITE},
+#endif
 #if P_GIGANTAMAX_FORMS
     {FORM_CHANGE_BATTLE_GIGANTAMAX, SPECIES_BUTTERFREE_GMAX},
 #endif
