@@ -1874,6 +1874,21 @@ static bool32 IsMoveParentalBondAffected(struct BattleContext *ctx)
     return TRUE;
 }
 
+static bool32 IsMoveHydroBarrageAffected(struct BattleContext *ctx)
+{
+    if (ctx->abilityAtk != ABILITY_HYDRO_BARRAGE
+     || gBattleStruct->numSpreadTargets > 1
+     || GetMoveType(ctx->move) != TYPE_WATER
+     || IsMoveParentalBondBanned(ctx->move)
+     || GetMoveCategory(ctx->move) == DAMAGE_CATEGORY_STATUS
+     || GetMoveEffect(ctx->move) == EFFECT_SEMI_INVULNERABLE
+     || GetMoveEffect(ctx->move) == EFFECT_TWO_TURNS_ATTACK
+     || GetActiveGimmick(ctx->battlerAtk) == GIMMICK_Z_MOVE
+     || ctx->move == MOVE_STRUGGLE)
+        return FALSE;
+    return TRUE;
+}
+
 static void SetPossibleNewSmartTarget(u32 move)
 {
     if (!IsBattlerUnaffectedByMove(gBattlerTarget)
@@ -1965,6 +1980,12 @@ static enum CancelerResult CancelerMultihitMoves(struct BattleContext *ctx)
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
     }
     else if (IsMoveParentalBondAffected(ctx))
+    {
+        gSpecialStatuses[gBattlerAttacker].parentalBondState = PARENTAL_BOND_1ST_HIT;
+        gMultiHitCounter = 2;
+        PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
+    }
+    else if (IsMoveHydroBarrageAffected(ctx))
     {
         gSpecialStatuses[gBattlerAttacker].parentalBondState = PARENTAL_BOND_1ST_HIT;
         gMultiHitCounter = 2;

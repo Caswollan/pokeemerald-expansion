@@ -2442,4 +2442,11 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Bone ignore imm & res."),
         .aiRating = 7,
     },
+
+    [ABILITY_HYDRO_BARRAGE] =
+    {
+        .name = _("Hydro Barrage"),
+        .description = COMPOUND_STRING("Water moves hit twice."),
+        .aiRating = 10,
+    },
 };

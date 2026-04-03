@@ -1027,7 +1027,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_WATER_1),
-        .abilities = { ABILITY_MEGA_LAUNCHER, ABILITY_MEGA_LAUNCHER, ABILITY_MEGA_LAUNCHER },
+        .abilities = { ABILITY_HYDRO_BARRAGE, ABILITY_HYDRO_BARRAGE, ABILITY_HYDRO_BARRAGE },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Blastoise"),
     #if P_MODIFIED_MEGA_CRIES
