@@ -4440,8 +4440,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
     {
         .baseHP        = 108,
         .baseAttack    = 170,
-        .baseDefense   = 115,
-        .baseSpeed     = 92,
+        .baseDefense   = 105,
+        .baseSpeed     = 102,
         .baseSpAttack  = 120,
         .baseSpDefense = 95,
         .types = MON_TYPES(TYPE_DRAGON, TYPE_GROUND),
@@ -5767,8 +5767,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
     {
         .baseHP        = 90,
         .baseAttack    = 132,
-        .baseDefense   = 105,
-        .baseSpeed     = 30,
+        .baseDefense   = 95,
+        .baseSpeed     = 40,
         .baseSpAttack  = 132,
         .baseSpDefense = 105,
         .types = MON_TYPES(TYPE_GRASS, TYPE_ICE),
@@ -5782,7 +5782,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_GRASS),
-        .abilities = { ABILITY_SNOW_WARNING, ABILITY_SNOW_WARNING, ABILITY_SNOW_WARNING },
+        .abilities = { ABILITY_SLUSH_RUSH, ABILITY_SLUSH_RUSH, ABILITY_SLUSH_RUSH },
         .bodyColor = BODY_COLOR_WHITE,
         .speciesName = _("Abomasnow"),
     #if P_MODIFIED_MEGA_CRIES
