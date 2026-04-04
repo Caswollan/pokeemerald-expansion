@@ -2470,4 +2470,11 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Normal moves turn Ghost."),
         .aiRating = 8,
     },
+
+    [ABILITY_SELF_SUFFICIENT] =
+    {
+        .name = _("Self Sufficient"),
+        .description = COMPOUND_STRING("HP recovery at the end of the turn."),
+        .aiRating = 3,
+    },
 };

@@ -3666,196 +3666,205 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
             gBattlerAttacker = battler;
             switch (gLastUsedAbility)
             {
-            case ABILITY_PICKUP:
-                if (gBattleMons[battler].item == ITEM_NONE
-                 && PickupHasValidTarget(battler))
-                {
-                    gBattlerTarget = RandomUniformExcept(RNG_PICKUP, 0, gBattlersCount - 1, CantPickupItem);
-                    gLastUsedItem = GetBattlerPartyState(gBattlerTarget)->usedHeldItem;
-                    BattleScriptExecute(BattleScript_PickupActivates);
-                    effect++;
-                }
-                break;
-            case ABILITY_HARVEST:
-                if ((IsBattlerWeatherAffected(battler, B_WEATHER_SUN) || RandomPercentage(RNG_HARVEST, 50))
-                 && gBattleMons[battler].item == ITEM_NONE
-                 && GetItemPocket(GetBattlerPartyState(battler)->usedHeldItem) == POCKET_BERRIES)
-                {
-                    gLastUsedItem = GetBattlerPartyState(battler)->usedHeldItem;
-                    BattleScriptExecute(BattleScript_HarvestActivates);
-                    effect++;
-                }
-                break;
-            case ABILITY_ICE_BODY:
-                if (IsBattlerWeatherAffected(battler, B_WEATHER_ICY_ANY)
-                 && !IsBattlerAtMaxHp(battler)
-                 && gBattleMons[battler].volatiles.semiInvulnerable != STATE_UNDERGROUND
-                 && gBattleMons[battler].volatiles.semiInvulnerable != STATE_UNDERWATER
-                 && !gBattleMons[battler].volatiles.healBlock)
-                {
-                    BattleScriptExecute(BattleScript_IceBodyHeal);
-                    SetHealAmount(battler, GetNonDynamaxMaxHP(battler) / 16);
-                    effect++;
-                }
-                break;
-            case ABILITY_DRY_SKIN:
-                if (IsBattlerWeatherAffected(battler, B_WEATHER_SUN))
-                    goto SOLAR_POWER_HP_DROP;
-            // Dry Skin works similarly to Rain Dish in Rain
-            case ABILITY_RAIN_DISH:
-                if (IsBattlerWeatherAffected(battler, B_WEATHER_RAIN)
-                 && !IsBattlerAtMaxHp(battler)
-                 && !gBattleMons[battler].volatiles.healBlock)
-                {
-                    s32 healAmount = gLastUsedAbility == ABILITY_RAIN_DISH ? 16 : 8;
-                    SetHealAmount(battler, GetNonDynamaxMaxHP(battler) / healAmount);
-                    BattleScriptExecute(BattleScript_RainDishActivates);
-                    effect++;
-                }
-                break;
-            case ABILITY_HYDRATION:
-                if (IsBattlerWeatherAffected(battler, B_WEATHER_RAIN)
-                 && gBattleMons[battler].status1 & STATUS1_ANY)
-                {
-                    goto ABILITY_HEAL_MON_STATUS;
-                }
-                break;
-            case ABILITY_SHED_SKIN:
-                if ((gBattleMons[battler].status1 & STATUS1_ANY)
-                 && (GetConfig(B_ABILITY_TRIGGER_CHANCE) == GEN_4 ? RandomPercentage(RNG_SHED_SKIN, 30) : RandomChance(RNG_SHED_SKIN, 1, 3)))
-                {
-                ABILITY_HEAL_MON_STATUS:
-                    if (gBattleMons[battler].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON))
-                        StringCopy(gBattleTextBuff1, gStatusConditionString_PoisonJpn);
-                    if (gBattleMons[battler].status1 & STATUS1_SLEEP)
+                case ABILITY_PICKUP:
+                    if (gBattleMons[battler].item == ITEM_NONE
+                    && PickupHasValidTarget(battler))
                     {
-                        StringCopy(gBattleTextBuff1, gStatusConditionString_SleepJpn);
-                        TryDeactivateSleepClause(GetBattlerSide(battler), gBattlerPartyIndexes[battler]);
+                        gBattlerTarget = RandomUniformExcept(RNG_PICKUP, 0, gBattlersCount - 1, CantPickupItem);
+                        gLastUsedItem = GetBattlerPartyState(gBattlerTarget)->usedHeldItem;
+                        BattleScriptExecute(BattleScript_PickupActivates);
+                        effect++;
                     }
-
-                    if (gBattleMons[battler].status1 & STATUS1_PARALYSIS)
-                        StringCopy(gBattleTextBuff1, gStatusConditionString_ParalysisJpn);
-                    if (gBattleMons[battler].status1 & STATUS1_BURN)
-                        StringCopy(gBattleTextBuff1, gStatusConditionString_BurnJpn);
-                    if (gBattleMons[battler].status1 & STATUS1_ICY_ANY)
-                        StringCopy(gBattleTextBuff1, gStatusConditionString_IceJpn);
-
-                    gBattleMons[battler].status1 = 0;
-                    gBattleMons[battler].volatiles.nightmare = FALSE;
-                    gBattleScripting.battler = battler;
-                    BattleScriptExecute(BattleScript_ShedSkinActivates);
-                    BtlController_EmitSetMonData(battler, B_COMM_TO_CONTROLLER, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[battler].status1);
-                    MarkBattlerForControllerExec(battler);
-                    effect++;
-                }
-                break;
-            case ABILITY_SPEED_BOOST:
-                if (CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN, gLastUsedAbility) && gBattleStruct->battlerState[battler].isFirstTurn != 2)
-                {
-                    SaveBattlerAttacker(gBattlerAttacker);
-                    SET_STATCHANGER(STAT_SPEED, 1, FALSE);
-                    BattleScriptExecute(BattleScript_AttackerAbilityStatRaiseEnd2);
-                    gBattleScripting.battler = battler;
-                    effect++;
-                }
-                break;
-            case ABILITY_MOODY:
-                if (gBattleStruct->battlerState[battler].isFirstTurn != 2)
-                {
-                    u32 validToRaise = 0, validToLower = 0;
-                    u32 statsNum = GetConfig(B_MOODY_ACC_EVASION) >= GEN_8 ? NUM_STATS : NUM_BATTLE_STATS;
-
-                    for (i = STAT_ATK; i < statsNum; i++)
-                    {
-                        if (CompareStat(battler, i, MIN_STAT_STAGE, CMP_GREATER_THAN, gLastUsedAbility))
-                            validToLower |= 1u << i;
-                        if (CompareStat(battler, i, MAX_STAT_STAGE, CMP_LESS_THAN, gLastUsedAbility))
-                            validToRaise |= 1u << i;
-                    }
-
-                    gBattleScripting.statChanger = gBattleScripting.savedStatChanger = 0; // for raising and lowering stat respectively
-                    if (validToRaise) // Find stat to raise
-                    {
-                        i = RandomUniformExcept(RNG_MOODY_INCREASE, STAT_ATK, statsNum - 1, MoodyCantRaiseStat);
-                        SET_STATCHANGER(i, 2, FALSE);
-                        validToLower &= ~(1u << i); // Can't lower the same stat as raising.
-                    }
-                    if (validToLower) // Find stat to lower
-                    {
-                        // MoodyCantLowerStat already checks that both stats are different
-                        i = RandomUniformExcept(RNG_MOODY_DECREASE, STAT_ATK, statsNum - 1, MoodyCantLowerStat);
-                        SET_STATCHANGER2(gBattleScripting.savedStatChanger, i, 1, TRUE);
-                    }
-                    BattleScriptExecute(BattleScript_MoodyActivates);
-                    effect++;
-                }
-                break;
-            case ABILITY_TRUANT:
-                gBattleMons[gBattlerAttacker].volatiles.truantCounter ^= 1;
-                break;
-            case ABILITY_SLOW_START:
-                if (gBattleMons[battler].volatiles.slowStartTimer > 0 && --gBattleMons[battler].volatiles.slowStartTimer == 0)
-                {
-                    BattleScriptExecute(BattleScript_SlowStartEnds);
-                    effect++;
-                }
-                break;
-            case ABILITY_BAD_DREAMS:
-                BattleScriptExecute(BattleScript_BadDreamsActivates);
-                effect++;
-                break;
-            case ABILITY_SOLAR_POWER:
-                if (IsBattlerWeatherAffected(battler, B_WEATHER_SUN))
-                {
-                SOLAR_POWER_HP_DROP:
-                    SetPassiveDamageAmount(battler, GetNonDynamaxMaxHP(battler) / 8);
-                    BattleScriptExecute(BattleScript_SolarPowerActivates);
-                    effect++;
-                }
-                break;
-            case ABILITY_HEALER:
-                gBattleScripting.battler = BATTLE_PARTNER(battler);
-                if (IsBattlerAlive(gBattleScripting.battler)
-                    && gBattleMons[gBattleScripting.battler].status1 & STATUS1_ANY
-                    && RandomPercentage(RNG_HEALER, 30))
-                {
-                    BattleScriptExecute(BattleScript_HealerActivates);
-                    effect++;
-                }
-                break;
-            case ABILITY_BALL_FETCH:
-                if (!(gBattleTypeFlags & BATTLE_TYPE_RAID)
+                    break;
+                case ABILITY_HARVEST:
+                    if ((IsBattlerWeatherAffected(battler, B_WEATHER_SUN) || RandomPercentage(RNG_HARVEST, 50))
                     && gBattleMons[battler].item == ITEM_NONE
-                    && gBattleResults.catchAttempts[ItemIdToBallId(gLastUsedBall)] >= 1
-                    && !gHasFetchedBall)
-                {
-                    gLastUsedItem = gLastUsedBall;
-                    gBattleScripting.battler = battler;
-                    gBattleMons[battler].item = gLastUsedItem;
-                    BtlController_EmitSetMonData(battler, B_COMM_TO_CONTROLLER, REQUEST_HELDITEM_BATTLE, 0, 2, &gLastUsedItem);
-                    MarkBattlerForControllerExec(battler);
-                    gHasFetchedBall = TRUE;
-                    BattleScriptExecute(BattleScript_BallFetch);
+                    && GetItemPocket(GetBattlerPartyState(battler)->usedHeldItem) == POCKET_BERRIES)
+                    {
+                        gLastUsedItem = GetBattlerPartyState(battler)->usedHeldItem;
+                        BattleScriptExecute(BattleScript_HarvestActivates);
+                        effect++;
+                    }
+                    break;
+                case ABILITY_ICE_BODY:
+                    if (IsBattlerWeatherAffected(battler, B_WEATHER_ICY_ANY)
+                    && !IsBattlerAtMaxHp(battler)
+                    && gBattleMons[battler].volatiles.semiInvulnerable != STATE_UNDERGROUND
+                    && gBattleMons[battler].volatiles.semiInvulnerable != STATE_UNDERWATER
+                    && !gBattleMons[battler].volatiles.healBlock)
+                    {
+                        BattleScriptExecute(BattleScript_IceBodyHeal);
+                        SetHealAmount(battler, GetNonDynamaxMaxHP(battler) / 16);
+                        effect++;
+                    }
+                    break;
+                case ABILITY_SELF_SUFFICIENT:
+                    if (!IsBattlerAtMaxHp(battler)
+                    && !gBattleMons[battler].volatiles.healBlock)
+                    {
+                        SetHealAmount(battler, GetNonDynamaxMaxHP(battler) / 16);
+                        BattleScriptExecute(BattleScript_IceBodyHeal);
+                        effect++;
+                    }
+                    break;
+                case ABILITY_DRY_SKIN:
+                    if (IsBattlerWeatherAffected(battler, B_WEATHER_SUN))
+                        goto SOLAR_POWER_HP_DROP;
+                // Dry Skin works similarly to Rain Dish in Rain
+                case ABILITY_RAIN_DISH:
+                    if (IsBattlerWeatherAffected(battler, B_WEATHER_RAIN)
+                    && !IsBattlerAtMaxHp(battler)
+                    && !gBattleMons[battler].volatiles.healBlock)
+                    {
+                        s32 healAmount = gLastUsedAbility == ABILITY_RAIN_DISH ? 16 : 8;
+                        SetHealAmount(battler, GetNonDynamaxMaxHP(battler) / healAmount);
+                        BattleScriptExecute(BattleScript_RainDishActivates);
+                        effect++;
+                    }
+                    break;
+                case ABILITY_HYDRATION:
+                    if (IsBattlerWeatherAffected(battler, B_WEATHER_RAIN)
+                    && gBattleMons[battler].status1 & STATUS1_ANY)
+                    {
+                        goto ABILITY_HEAL_MON_STATUS;
+                    }
+                    break;
+                case ABILITY_SHED_SKIN:
+                    if ((gBattleMons[battler].status1 & STATUS1_ANY)
+                    && (GetConfig(B_ABILITY_TRIGGER_CHANCE) == GEN_4 ? RandomPercentage(RNG_SHED_SKIN, 30) : RandomChance(RNG_SHED_SKIN, 1, 3)))
+                    {
+                    ABILITY_HEAL_MON_STATUS:
+                        if (gBattleMons[battler].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON))
+                            StringCopy(gBattleTextBuff1, gStatusConditionString_PoisonJpn);
+                        if (gBattleMons[battler].status1 & STATUS1_SLEEP)
+                        {
+                            StringCopy(gBattleTextBuff1, gStatusConditionString_SleepJpn);
+                            TryDeactivateSleepClause(GetBattlerSide(battler), gBattlerPartyIndexes[battler]);
+                        }
+
+                        if (gBattleMons[battler].status1 & STATUS1_PARALYSIS)
+                            StringCopy(gBattleTextBuff1, gStatusConditionString_ParalysisJpn);
+                        if (gBattleMons[battler].status1 & STATUS1_BURN)
+                            StringCopy(gBattleTextBuff1, gStatusConditionString_BurnJpn);
+                        if (gBattleMons[battler].status1 & STATUS1_ICY_ANY)
+                            StringCopy(gBattleTextBuff1, gStatusConditionString_IceJpn);
+
+                        gBattleMons[battler].status1 = 0;
+                        gBattleMons[battler].volatiles.nightmare = FALSE;
+                        gBattleScripting.battler = battler;
+                        BattleScriptExecute(BattleScript_ShedSkinActivates);
+                        BtlController_EmitSetMonData(battler, B_COMM_TO_CONTROLLER, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[battler].status1);
+                        MarkBattlerForControllerExec(battler);
+                        effect++;
+                    }
+                    break;
+                case ABILITY_SPEED_BOOST:
+                    if (CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN, gLastUsedAbility) && gBattleStruct->battlerState[battler].isFirstTurn != 2)
+                    {
+                        SaveBattlerAttacker(gBattlerAttacker);
+                        SET_STATCHANGER(STAT_SPEED, 1, FALSE);
+                        BattleScriptExecute(BattleScript_AttackerAbilityStatRaiseEnd2);
+                        gBattleScripting.battler = battler;
+                        effect++;
+                    }
+                    break;
+                case ABILITY_MOODY:
+                    if (gBattleStruct->battlerState[battler].isFirstTurn != 2)
+                    {
+                        u32 validToRaise = 0, validToLower = 0;
+                        u32 statsNum = GetConfig(B_MOODY_ACC_EVASION) >= GEN_8 ? NUM_STATS : NUM_BATTLE_STATS;
+
+                        for (i = STAT_ATK; i < statsNum; i++)
+                        {
+                            if (CompareStat(battler, i, MIN_STAT_STAGE, CMP_GREATER_THAN, gLastUsedAbility))
+                                validToLower |= 1u << i;
+                            if (CompareStat(battler, i, MAX_STAT_STAGE, CMP_LESS_THAN, gLastUsedAbility))
+                                validToRaise |= 1u << i;
+                        }
+
+                        gBattleScripting.statChanger = gBattleScripting.savedStatChanger = 0; // for raising and lowering stat respectively
+                        if (validToRaise) // Find stat to raise
+                        {
+                            i = RandomUniformExcept(RNG_MOODY_INCREASE, STAT_ATK, statsNum - 1, MoodyCantRaiseStat);
+                            SET_STATCHANGER(i, 2, FALSE);
+                            validToLower &= ~(1u << i); // Can't lower the same stat as raising.
+                        }
+                        if (validToLower) // Find stat to lower
+                        {
+                            // MoodyCantLowerStat already checks that both stats are different
+                            i = RandomUniformExcept(RNG_MOODY_DECREASE, STAT_ATK, statsNum - 1, MoodyCantLowerStat);
+                            SET_STATCHANGER2(gBattleScripting.savedStatChanger, i, 1, TRUE);
+                        }
+                        BattleScriptExecute(BattleScript_MoodyActivates);
+                        effect++;
+                    }
+                    break;
+                case ABILITY_TRUANT:
+                    gBattleMons[gBattlerAttacker].volatiles.truantCounter ^= 1;
+                    break;
+                case ABILITY_SLOW_START:
+                    if (gBattleMons[battler].volatiles.slowStartTimer > 0 && --gBattleMons[battler].volatiles.slowStartTimer == 0)
+                    {
+                        BattleScriptExecute(BattleScript_SlowStartEnds);
+                        effect++;
+                    }
+                    break;
+                case ABILITY_BAD_DREAMS:
+                    BattleScriptExecute(BattleScript_BadDreamsActivates);
                     effect++;
-                }
-                break;
-            case ABILITY_CUD_CHEW:
-                if (gBattleMons[battler].volatiles.cudChew == TRUE)
-                {
-                    gBattleScripting.battler = battler;
-                    gBattleMons[battler].volatiles.cudChew = FALSE;
-                    gLastUsedItem = GetBattlerPartyState(battler)->usedHeldItem;
-                    GetBattlerPartyState(battler)->usedHeldItem = ITEM_NONE;
-                    BattleScriptExecute(BattleScript_CudChewActivates);
-                    effect++;
-                }
-                else if (!gBattleMons[battler].volatiles.cudChew && GetItemPocket(GetBattlerPartyState(battler)->usedHeldItem) == POCKET_BERRIES)
-                {
-                    gBattleMons[battler].volatiles.cudChew = TRUE;
-                }
-                break;
-            default:
-                break;
+                    break;
+                case ABILITY_SOLAR_POWER:
+                    if (IsBattlerWeatherAffected(battler, B_WEATHER_SUN))
+                    {
+                    SOLAR_POWER_HP_DROP:
+                        SetPassiveDamageAmount(battler, GetNonDynamaxMaxHP(battler) / 8);
+                        BattleScriptExecute(BattleScript_SolarPowerActivates);
+                        effect++;
+                    }
+                    break;
+                case ABILITY_HEALER:
+                    gBattleScripting.battler = BATTLE_PARTNER(battler);
+                    if (IsBattlerAlive(gBattleScripting.battler)
+                        && gBattleMons[gBattleScripting.battler].status1 & STATUS1_ANY
+                        && RandomPercentage(RNG_HEALER, 30))
+                    {
+                        BattleScriptExecute(BattleScript_HealerActivates);
+                        effect++;
+                    }
+                    break;
+                case ABILITY_BALL_FETCH:
+                    if (!(gBattleTypeFlags & BATTLE_TYPE_RAID)
+                        && gBattleMons[battler].item == ITEM_NONE
+                        && gBattleResults.catchAttempts[ItemIdToBallId(gLastUsedBall)] >= 1
+                        && !gHasFetchedBall)
+                    {
+                        gLastUsedItem = gLastUsedBall;
+                        gBattleScripting.battler = battler;
+                        gBattleMons[battler].item = gLastUsedItem;
+                        BtlController_EmitSetMonData(battler, B_COMM_TO_CONTROLLER, REQUEST_HELDITEM_BATTLE, 0, 2, &gLastUsedItem);
+                        MarkBattlerForControllerExec(battler);
+                        gHasFetchedBall = TRUE;
+                        BattleScriptExecute(BattleScript_BallFetch);
+                        effect++;
+                    }
+                    break;
+                case ABILITY_CUD_CHEW:
+                    if (gBattleMons[battler].volatiles.cudChew == TRUE)
+                    {
+                        gBattleScripting.battler = battler;
+                        gBattleMons[battler].volatiles.cudChew = FALSE;
+                        gLastUsedItem = GetBattlerPartyState(battler)->usedHeldItem;
+                        GetBattlerPartyState(battler)->usedHeldItem = ITEM_NONE;
+                        BattleScriptExecute(BattleScript_CudChewActivates);
+                        effect++;
+                    }
+                    else if (!gBattleMons[battler].volatiles.cudChew && GetItemPocket(GetBattlerPartyState(battler)->usedHeldItem) == POCKET_BERRIES)
+                    {
+                        gBattleMons[battler].volatiles.cudChew = TRUE;
+                    }
+                    break;
+                default:
+                    break;
             }
         }
         break;
