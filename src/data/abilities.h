@@ -2456,4 +2456,11 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Punch moves hit twice."),
         .aiRating = 10,
     },
+
+    [ABILITY_MOUNTAINEER] =
+    {
+        .name = _("Mountaineer"),
+        .description = COMPOUND_STRING("Cannot hit by Rock moves."),
+        .aiRating = 9,
+    },
 };

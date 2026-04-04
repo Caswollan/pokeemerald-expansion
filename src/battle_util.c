@@ -2499,6 +2499,10 @@ bool32 CanAbilityAbsorbMove(struct BattleContext *ctx)
                 battleScript = BattleScript_GoodAsGoldActivates;
         }
         break;
+    case ABILITY_MOUNTAINEER:
+        if (ctx->moveType == TYPE_ROCK)
+            battleScript = BattleScript_SoundproofProtected;
+        break;
     default:
         break;
     }
