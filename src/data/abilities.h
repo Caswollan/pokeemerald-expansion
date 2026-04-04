@@ -2463,4 +2463,11 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Cannot hit by Rock moves."),
         .aiRating = 9,
     },
+
+    [ABILITY_PHANTOMIZE] =
+    {
+        .name = _("Phantomize"),
+        .description = COMPOUND_STRING("Normal moves turn Ghost."),
+        .aiRating = 8,
+    },
 };
