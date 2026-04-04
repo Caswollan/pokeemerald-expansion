@@ -2449,4 +2449,11 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Water moves hit twice."),
         .aiRating = 10,
     },
+
+    [ABILITY_FOURFOLD_STRIKE] =
+    {
+        .name = _("Fourfold Strike"),
+        .description = COMPOUND_STRING("Punch moves hit twice."),
+        .aiRating = 10,
+    },
 };

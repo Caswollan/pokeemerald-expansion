@@ -832,6 +832,15 @@ static inline void CalcDynamicMoveDamage(struct BattleContext *ctx, u16 *medianD
         minimum += minimum / 2;
         maximum += maximum / 2;
     }
+    else if (ctx->abilityAtk == ABILITY_FOURFOLD_STRIKE
+          && strikeCount == 0
+          && !AI_IsDoubleSpreadMove(ctx->battlerAtk, ctx->move)
+          && IsPunchingMove(ctx->move))
+    {
+        median  += median  / 2;
+        minimum += minimum / 2;
+        maximum += maximum / 2;
+    }
 
     if (median == 0)
         median = 1;
@@ -1519,7 +1528,7 @@ s32 AI_WhoStrikesFirst(enum BattlerId battlerAI, enum BattlerId battler, enum Mo
 bool32 CanEndureHit(enum BattlerId battler, enum BattlerId battlerTarget, enum Move move)
 {
     if (!AI_BattlerAtMaxHp(battlerTarget) || IsMultiHitMove(move) || gAiLogicData->abilities[battler] == ABILITY_PARENTAL_BOND
-        || gAiLogicData->abilities[battler] == ABILITY_HYDRO_BARRAGE)
+        || gAiLogicData->abilities[battler] == ABILITY_HYDRO_BARRAGE || gAiLogicData->abilities[battler] == ABILITY_FOURFOLD_STRIKE)
         return FALSE;
     if (GetMoveStrikeCount(move) > 1 && !(AI_GetBattlerMoveTargetType(battler, move) == TARGET_SMART && !HasTwoOpponents(battler)))
         return FALSE;
