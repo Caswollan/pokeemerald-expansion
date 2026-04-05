@@ -2474,7 +2474,7 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SELF_SUFFICIENT] =
     {
         .name = _("Self Sufficient"),
-        .description = COMPOUND_STRING("HP recovery at the end of the turn."),
+        .description = COMPOUND_STRING("Recovers HP every turn."),
         .aiRating = 3,
     },
 };
