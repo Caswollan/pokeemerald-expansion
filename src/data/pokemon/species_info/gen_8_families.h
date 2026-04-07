@@ -1562,7 +1562,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .baseAttack    = 58,
         .baseDefense   = 58,
         .baseSpeed     = 90,
-        .baseSpAttack  = 87,
+        .baseSpAttack  = 97,
         .baseSpDefense = 92,
         .types = MON_TYPES(TYPE_DARK),
         .catchRate = 127,
@@ -1688,7 +1688,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
 
     [SPECIES_ELDEGOSS] =
     {
-        .baseHP        = 60,
+        .baseHP        = 70,
         .baseAttack    = 50,
         .baseDefense   = 90,
         .baseSpeed     = 60,
@@ -1818,7 +1818,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
 
     [SPECIES_DUBWOOL] =
     {
-        .baseHP        = 72,
+        .baseHP        = 82,
         .baseAttack    = 80,
         .baseDefense   = 100,
         .baseSpeed     = 88,
@@ -2205,10 +2205,10 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
     [SPECIES_BOLTUND] =
     {
         .baseHP        = 69,
-        .baseAttack    = 90,
+        .baseAttack    = 100,
         .baseDefense   = 60,
         .baseSpeed     = 121,
-        .baseSpAttack  = 90,
+        .baseSpAttack  = 80,
         .baseSpDefense = 60,
         .types = MON_TYPES(TYPE_ELECTRIC),
         .catchRate = 45,
@@ -5647,8 +5647,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
 #if P_FAMILY_PINCURCHIN
     [SPECIES_PINCURCHIN] =
     {
-        .baseHP        = 48,
-        .baseAttack    = 101,
+        .baseHP        = 68,
+        .baseAttack    = 81,
         .baseDefense   = 95,
         .baseSpeed     = 15,
         .baseSpAttack  = 91,
@@ -5849,7 +5849,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .baseDefense   = 135,
         .baseSpeed     = 70,
         .baseSpAttack  = 20,
-        .baseSpDefense = 20,
+        .baseSpDefense = 50,
         .types = MON_TYPES(TYPE_ROCK),
         .catchRate = 60,
         .expYield = 165,

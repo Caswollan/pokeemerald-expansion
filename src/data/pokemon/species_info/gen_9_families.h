@@ -848,11 +848,11 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 
     [SPECIES_SPIDOPS] =
     {
-        .baseHP        = 60,
-        .baseAttack    = 79,
+        .baseHP        = 75,
+        .baseAttack    = 89,
         .baseDefense   = 92,
         .baseSpeed     = 35,
-        .baseSpAttack  = 52,
+        .baseSpAttack  = 32,
         .baseSpDefense = 86,
         .types = MON_TYPES(TYPE_BUG),
         .catchRate = 120,
@@ -2862,12 +2862,12 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 
     [SPECIES_GRAFAIAI] =
     {
-        .baseHP        = 63,
+        .baseHP        = 73,
         .baseAttack    = 95,
-        .baseDefense   = 65,
+        .baseDefense   = 75,
         .baseSpeed     = 110,
-        .baseSpAttack  = 80,
-        .baseSpDefense = 72,
+        .baseSpAttack  = 50,
+        .baseSpDefense = 82,
         .types = MON_TYPES(TYPE_POISON, TYPE_NORMAL),
         .catchRate = 90,
         .expYield = 170,
@@ -3125,8 +3125,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
     [SPECIES_TOEDSCRUEL] =
     {
         .baseHP        = 80,
-        .baseAttack    = 70,
-        .baseDefense   = 65,
+        .baseAttack    = 60,
+        .baseDefense   = 75,
         .baseSpeed     = 100,
         .baseSpAttack  = 80,
         .baseSpDefense = 120,
@@ -5073,12 +5073,12 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 #if P_FAMILY_VELUZA
     [SPECIES_VELUZA] =
     {
-        .baseHP        = 90,
+        .baseHP        = 95,
         .baseAttack    = 102,
-        .baseDefense   = 73,
+        .baseDefense   = 83,
         .baseSpeed     = 70,
         .baseSpAttack  = 78,
-        .baseSpDefense = 65,
+        .baseSpDefense = 75,
         .types = MON_TYPES(TYPE_WATER, TYPE_PSYCHIC),
         .catchRate = 100,
         .expYield = 167,

@@ -2373,7 +2373,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     [SPECIES_RATICATE_ALOLA] =
     {
         .baseHP        = 75,
-        .baseAttack    = 71,
+        .baseAttack    = 81,
         .baseDefense   = 70,
         .baseSpeed     = 77,
         .baseSpAttack  = 40,
@@ -4436,7 +4436,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     [SPECIES_SANDSLASH_ALOLA] =
     {
         .baseHP        = 75,
-        .baseAttack    = 100,
+        .baseAttack    = 110,
         .baseDefense   = 120,
         .baseSpeed     = 65,
         .baseSpAttack  = 25,
@@ -7331,11 +7331,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 
     [SPECIES_PERRSERKER] =
     {
-        .baseHP        = 70,
+        .baseHP        = 90,
         .baseAttack    = 110,
         .baseDefense   = 100,
         .baseSpeed     = 50,
-        .baseSpAttack  = 50,
+        .baseSpAttack  = 30,
         .baseSpDefense = 60,
         .types = MON_TYPES(TYPE_STEEL),
         .catchRate = 90,

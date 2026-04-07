@@ -147,8 +147,8 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .baseHP        = 78,
         .baseAttack    = 107,
         .baseDefense   = 75,
-        .baseSpeed     = 70,
-        .baseSpAttack  = 100,
+        .baseSpeed     = 100,
+        .baseSpAttack  = 70,
         .baseSpDefense = 100,
         .types = MON_TYPES(TYPE_GRASS, TYPE_GHOST),
         .catchRate = 45,
@@ -214,10 +214,10 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
     {
         .baseHP        = 88,
         .baseAttack    = 112,
-        .baseDefense   = 80,
-        .baseSpeed     = 60,
-        .baseSpAttack  = 95,
-        .baseSpDefense = 95,
+        .baseDefense   = 85,
+        .baseSpeed     = 70,
+        .baseSpAttack  = 75,
+        .baseSpDefense = 105,
         .types = MON_TYPES(TYPE_GRASS, TYPE_FIGHTING),
         .catchRate = 45,
         .expYield = 265,
@@ -809,7 +809,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
 
     [SPECIES_TOUCANNON] =
     {
-        .baseHP        = 80,
+        .baseHP        = 90,
         .baseAttack    = 120,
         .baseDefense   = 75,
         .baseSpeed     = 60,
@@ -944,7 +944,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
 
     [SPECIES_GUMSHOOS] =
     {
-        .baseHP        = 88,
+        .baseHP        = 93,
         .baseAttack    = 110,
         .baseDefense   = 60,
         .baseSpeed     = 45,
@@ -1005,7 +1005,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
 
     [SPECIES_GUMSHOOS_TOTEM] =
     {
-        .baseHP        = 88,
+        .baseHP        = 93,
         .baseAttack    = 110,
         .baseDefense   = 60,
         .baseSpeed     = 45,
@@ -2358,7 +2358,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
 #if P_FAMILY_WISHIWASHI
     [SPECIES_WISHIWASHI_SOLO] =
     {
-        .baseHP        = 45,
+        .baseHP        = 60,
         .baseAttack    = 20,
         .baseDefense   = 20,
         .baseSpeed     = 40,
@@ -2425,7 +2425,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
 
     [SPECIES_WISHIWASHI_SCHOOL] =
     {
-        .baseHP        = 45,
+        .baseHP        = 60,
         .baseAttack    = 140,
         .baseDefense   = 130,
         .baseSpeed     = 30,
@@ -3212,7 +3212,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
 
     [SPECIES_SHIINOTIC] =
     {
-        .baseHP        = 60,
+        .baseHP        = 75,
         .baseAttack    = 45,
         .baseDefense   = 80,
         .baseSpeed     = 30,
@@ -4690,7 +4690,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
 #if P_FAMILY_KOMALA
     [SPECIES_KOMALA] =
     {
-        .baseHP        = 65,
+        .baseHP        = 75,
         .baseAttack    = 115,
         .baseDefense   = 65,
         .baseSpeed     = 65,
@@ -4756,8 +4756,8 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
 #if P_FAMILY_TURTONATOR
     [SPECIES_TURTONATOR] =
     {
-        .baseHP        = 60,
-        .baseAttack    = 78,
+        .baseHP        = 70,
+        .baseAttack    = 68,
         .baseDefense   = 135,
         .baseSpeed     = 36,
         .baseSpAttack  = 91,
@@ -4829,7 +4829,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
     {
         .baseHP        = 65,
         .baseAttack    = 98,
-        .baseDefense   = 63,
+        .baseDefense   = 73,
         .baseSpeed     = 96,
         .baseSpAttack  = 40,
         .baseSpDefense = 73,
@@ -4891,7 +4891,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
     {
         .baseHP        = 65,
         .baseAttack    = 98,
-        .baseDefense   = 63,
+        .baseDefense   = 73,
         .baseSpeed     = 96,
         .baseSpAttack  = 40,
         .baseSpDefense = 73,
@@ -5195,7 +5195,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
 #if P_FAMILY_BRUXISH
     [SPECIES_BRUXISH] =
     {
-        .baseHP        = 68,
+        .baseHP        = 78,
         .baseAttack    = 105,
         .baseDefense   = 70,
         .baseSpeed     = 92,
