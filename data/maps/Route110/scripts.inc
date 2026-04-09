@@ -463,6 +463,7 @@ Route110_EventScript_GiveItemfinder::
 
 Route110_EventScript_RivalExit::
 	closemessage
+	setflag FLAG_RIVAL_ROUTE_110
 	call_if_eq VAR_0x8008, 1, Route110_EventScript_MoveRival1
 	call_if_eq VAR_0x8008, 2, Route110_EventScript_MoveRival2
 	call_if_eq VAR_0x8008, 3, Route110_EventScript_MoveRival3
