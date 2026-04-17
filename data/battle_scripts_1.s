@@ -5599,6 +5599,12 @@ BattleScript_AftermathDmg::
 BattleScript_AftermathDmgRet:
 	return
 
+BattleScript_SpicySprayBurn::
+	waitstate
+	call BattleScript_AbilityPopUpScripting
+	setnonvolatilestatus TRIGGER_ON_ABILITY
+	return
+
 BattleScript_DampPreventsAftermath::
 	pause B_WAIT_TIME_SHORT
 	call BattleScript_AbilityPopUp

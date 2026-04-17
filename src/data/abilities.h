@@ -2477,4 +2477,11 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Recovers HP every turn."),
         .aiRating = 3,
     },
+
+    [ABILITY_SPICY_SPRAY] =
+    {
+        .name = _("Spicy Spray"),
+        .description = COMPOUND_STRING("Burns attackers on hit."),
+        .aiRating = 6,
+    },
 };

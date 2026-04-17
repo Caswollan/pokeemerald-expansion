@@ -4081,6 +4081,20 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
                 effect++;
             }
             break;
+        case ABILITY_SPICY_SPRAY:
+            if (!IsBattlerUnaffectedByMove(gBattlerTarget)
+             && IsBattlerAlive(gBattlerAttacker)
+             && IsBattlerTurnDamaged(gBattlerTarget)
+             && CanBeBurned(gBattlerTarget, gBattlerAttacker, GetBattlerAbility(gBattlerAttacker)))
+            {
+                gEffectBattler = gBattlerAttacker;
+                gBattleScripting.battler = gBattlerTarget;
+                gBattleScripting.moveEffect = MOVE_EFFECT_BURN;
+                PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                BattleScriptCall(BattleScript_SpicySprayBurn);
+                effect++;
+            }
+            break;
         case ABILITY_AFTERMATH:
             if (!IsBattlerUnaffectedByMove(gBattlerTarget)
              && !IsBattlerAlive(gBattlerTarget)
