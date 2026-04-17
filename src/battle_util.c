@@ -6721,6 +6721,10 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct BattleContext *ctx)
             if (moveType == TYPE_GHOST && gBattleStruct->battlerState[battlerAtk].ateBoost)
                 modifier = uq4_12_multiply(modifier, UQ_4_12(1.2));
             break;
+        case ABILITY_DRAGONIZE:
+            if (moveType == TYPE_DRAGON && gBattleStruct->battlerState[battlerAtk].ateBoost)
+                modifier = uq4_12_multiply(modifier, UQ_4_12(1.2));
+            break;
         case ABILITY_PUNK_ROCK:
             if (IsSoundMove(move))
                 modifier = uq4_12_multiply(modifier, UQ_4_12(1.3));
