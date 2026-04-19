@@ -8,14 +8,9 @@ VictoryRoad_2F_EventScript_DoubleEdgeTutor::
 	goto_if_eq VAR_RESULT, NO, EventScript_DoubleEdgeDeclined
 	call EventScript_CanOnlyBeLearnedOnce
 	goto_if_eq VAR_RESULT, NO, EventScript_DoubleEdgeDeclined
-	msgbox Text_DoubleEdgeWhichMon
-	setvar VAR_0x8005, MOVE_DOUBLE_EDGE
-	call EventScript_ChooseMoveTutorMon
-	goto_if_eq VAR_RESULT, FALSE, EventScript_DoubleEdgeDeclined
-.if I_REUSABLE_TMS == FALSE
-	setflag FLAG_TUTOR_DOUBLE_EDGE
-.endif
-	goto EventScript_DoubleEdgeTaught
+	giveitem ITEM_TM_AERIAL_ACE
+	waitstate
+	release
 	end
 
 EventScript_DoubleEdgeDeclined::
@@ -38,14 +33,9 @@ EventScript_ThunderWaveTutor::
 	goto_if_eq VAR_RESULT, NO, EventScript_ThunderWaveDeclined
 	call EventScript_CanOnlyBeLearnedOnce
 	goto_if_eq VAR_RESULT, NO, EventScript_ThunderWaveDeclined
-	msgbox Text_ThunderWaveWhichMon
-	setvar VAR_0x8005, MOVE_THUNDER_WAVE
-	call EventScript_ChooseMoveTutorMon
-	goto_if_eq VAR_RESULT, FALSE, EventScript_ThunderWaveDeclined
-.if I_REUSABLE_TMS == FALSE
-	setflag FLAG_TUTOR_THUNDER_WAVE
-.endif
-	goto EventScript_ThunderWaveTaught
+	giveitem ITEM_TM_AERIAL_ACE
+	waitstate
+	release
 	end
 
 EventScript_ThunderWaveDeclined::
@@ -68,14 +58,9 @@ RockTunnel_B1F_EventScript_RockSlideTutor::
 	goto_if_eq VAR_RESULT, NO, EventScript_RockSlideDeclined
 	call EventScript_CanOnlyBeLearnedOnce
 	goto_if_eq VAR_RESULT, NO, EventScript_RockSlideDeclined
-	msgbox Text_RockSlideWhichMon
-	setvar VAR_0x8005, MOVE_ROCK_SLIDE
-	call EventScript_ChooseMoveTutorMon
-	goto_if_eq VAR_RESULT, FALSE, EventScript_RockSlideDeclined
-.if I_REUSABLE_TMS == FALSE
-	setflag FLAG_TUTOR_ROCK_SLIDE
-.endif
-	goto EventScript_RockSlideTaught
+	giveitem ITEM_TM_AERIAL_ACE
+	waitstate
+	release
 	end
 
 EventScript_RockSlideDeclined::
@@ -98,14 +83,9 @@ MtEmber_Exterior_EventScript_ExplosionTutor::
 	goto_if_eq VAR_RESULT, NO, EventScript_ExplosionDeclined
 	call EventScript_CanOnlyBeLearnedOnce
 	goto_if_eq VAR_RESULT, NO, EventScript_ExplosionDeclined
-	msgbox Text_ExplosionWhichMon
-	setvar VAR_0x8005, MOVE_EXPLOSION
-	call EventScript_ChooseMoveTutorMon
-	goto_if_eq VAR_RESULT, FALSE, EventScript_ExplosionDeclined
-.if I_REUSABLE_TMS == FALSE
-	setflag FLAG_TUTOR_EXPLOSION
-.endif
-	goto EventScript_ExplosionTaught
+	giveitem ITEM_TM_AERIAL_ACE
+	waitstate
+	release
 	end
 
 EventScript_ExplosionDeclined::
@@ -128,14 +108,9 @@ Route4_EventScript_MegaPunchTutor::
 	goto_if_eq VAR_RESULT, NO, EventScript_MegaPunchDeclined
 	call EventScript_CanOnlyBeLearnedOnce
 	goto_if_eq VAR_RESULT, NO, EventScript_MegaPunchDeclined
-	msgbox Text_MegaPunchWhichMon
-	setvar VAR_0x8005, MOVE_MEGA_PUNCH
-	call EventScript_ChooseMoveTutorMon
-	goto_if_eq VAR_RESULT, FALSE, EventScript_MegaPunchDeclined
-.if I_REUSABLE_TMS == FALSE
-	setflag FLAG_TUTOR_MEGA_PUNCH
-.endif
-	goto EventScript_MegaPunchTaught
+	giveitem ITEM_TM_AERIAL_ACE
+	waitstate
+	release
 	end
 
 EventScript_MegaPunchDeclined::
@@ -158,14 +133,9 @@ Route4_EventScript_MegaKickTutor::
 	goto_if_eq VAR_RESULT, NO, EventScript_MegaKickDeclined
 	call EventScript_CanOnlyBeLearnedOnce
 	goto_if_eq VAR_RESULT, NO, EventScript_MegaKickDeclined
-	msgbox Text_MegaKickWhichMon
-	setvar VAR_0x8005, MOVE_MEGA_KICK
-	call EventScript_ChooseMoveTutorMon
-	goto_if_eq VAR_RESULT, FALSE, EventScript_MegaKickDeclined
-.if I_REUSABLE_TMS == FALSE
-	setflag FLAG_TUTOR_MEGA_KICK
-.endif
-	goto EventScript_MegaKickTaught
+	giveitem ITEM_TM_AERIAL_ACE
+	waitstate
+	release
 	end
 
 EventScript_MegaKickDeclined::
@@ -188,14 +158,9 @@ EventScript_DreamEaterTutor::
 	goto_if_eq VAR_RESULT, NO, EventScript_DreamEaterDeclined
 	call EventScript_CanOnlyBeLearnedOnce
 	goto_if_eq VAR_RESULT, NO, EventScript_DreamEaterDeclined
-	msgbox Text_DreamEaterWhichMon
-	setvar VAR_0x8005, MOVE_DREAM_EATER
-	call EventScript_ChooseMoveTutorMon
-	goto_if_eq VAR_RESULT, FALSE, EventScript_DreamEaterDeclined
-.if I_REUSABLE_TMS == FALSE
-	setflag FLAG_TUTOR_DREAM_EATER
-.endif
-	goto EventScript_DreamEaterTaught
+	giveitem ITEM_TM_AERIAL_ACE
+	waitstate
+	release
 	end
 
 EventScript_DreamEaterDeclined::
@@ -218,14 +183,9 @@ EventScript_SoftboiledTutor::
 	goto_if_eq VAR_RESULT, NO, EventScript_SoftboiledDeclined
 	call EventScript_CanOnlyBeLearnedOnce
 	goto_if_eq VAR_RESULT, NO, EventScript_SoftboiledDeclined
-	msgbox Text_SoftboiledWhichMon
-	setvar VAR_0x8005, MOVE_SOFT_BOILED
-	call EventScript_ChooseMoveTutorMon
-	goto_if_eq VAR_RESULT, FALSE, EventScript_SoftboiledDeclined
-.if I_REUSABLE_TMS == FALSE
-	setflag FLAG_TUTOR_SOFT_BOILED
-.endif
-	goto EventScript_SoftboiledTaught
+	giveitem ITEM_TM_AERIAL_ACE
+	waitstate
+	release
 	end
 
 EventScript_SoftboiledDeclined::
@@ -248,14 +208,9 @@ FuchsiaCity_EventScript_SubstituteTutor::
 	goto_if_eq VAR_RESULT, NO, EventScript_SubstituteDeclined
 	call EventScript_CanOnlyBeLearnedOnce
 	goto_if_eq VAR_RESULT, NO, EventScript_SubstituteDeclined
-	msgbox Text_SubstituteWhichMon
-	setvar VAR_0x8005, MOVE_SUBSTITUTE
-	call EventScript_ChooseMoveTutorMon
-	goto_if_eq VAR_RESULT, FALSE, EventScript_SubstituteDeclined
-.if I_REUSABLE_TMS == FALSE
-	setflag FLAG_TUTOR_SUBSTITUTE
-.endif
-	goto EventScript_SubstituteTaught
+	giveitem ITEM_TM_AERIAL_ACE
+	waitstate
+	release
 	end
 
 EventScript_SubstituteDeclined::
@@ -278,14 +233,9 @@ SevenIsland_EventScript_SwordsDanceTutor::
 	goto_if_eq VAR_RESULT, NO, EventScript_SwordsDanceDeclined
 	call EventScript_CanOnlyBeLearnedOnce
 	goto_if_eq VAR_RESULT, NO, EventScript_SwordsDanceDeclined
-	msgbox Text_SwordsDanceWhichMon
-	setvar VAR_0x8005, MOVE_SWORDS_DANCE
-	call EventScript_ChooseMoveTutorMon
-	goto_if_eq VAR_RESULT, FALSE, EventScript_SwordsDanceDeclined
-.if I_REUSABLE_TMS == FALSE
-	setflag FLAG_TUTOR_SWORDS_DANCE
-.endif
-	goto EventScript_SwordsDanceTaught
+	giveitem ITEM_TM_AERIAL_ACE
+	waitstate
+	release
 	end
 
 EventScript_SwordsDanceDeclined::
@@ -308,14 +258,9 @@ PewterCity_Museum_1F_EventScript_SeismicTossTutor::
 	goto_if_eq VAR_RESULT, NO, EventScript_SeismicTossDeclined
 	call EventScript_CanOnlyBeLearnedOnce
 	goto_if_eq VAR_RESULT, NO, EventScript_SeismicTossDeclined
-	msgbox Text_SeismicTossWhichMon
-	setvar VAR_0x8005, MOVE_SEISMIC_TOSS
-	call EventScript_ChooseMoveTutorMon
-	goto_if_eq VAR_RESULT, FALSE, EventScript_SeismicTossDeclined
-.if I_REUSABLE_TMS == FALSE
-	setflag FLAG_TUTOR_SEISMIC_TOSS
-.endif
-	goto EventScript_SeismicTossTaught
+	giveitem ITEM_TM_AERIAL_ACE
+	waitstate
+	release
 	end
 
 EventScript_SeismicTossDeclined::
@@ -338,14 +283,9 @@ EventScript_CounterTutor::
 	goto_if_eq VAR_RESULT, NO, EventScript_CounterDeclined
 	call EventScript_CanOnlyBeLearnedOnce
 	goto_if_eq VAR_RESULT, NO, EventScript_CounterDeclined
-	msgbox Text_CounterWhichMon
-	setvar VAR_0x8005, MOVE_COUNTER
-	call EventScript_ChooseMoveTutorMon
-	goto_if_eq VAR_RESULT, FALSE, EventScript_CounterDeclined
-.if I_REUSABLE_TMS == FALSE
-	setflag FLAG_TUTOR_COUNTER
-.endif
-	goto EventScript_CounterTaught
+	giveitem ITEM_TM_AERIAL_ACE
+	waitstate
+	release
 	end
 
 EventScript_CounterDeclined::
@@ -368,14 +308,9 @@ EventScript_MetronomeTutor::
 	goto_if_eq VAR_RESULT, NO, EventScript_MetronomeDeclined
 	call EventScript_CanOnlyBeLearnedOnce
 	goto_if_eq VAR_RESULT, NO, EventScript_MetronomeDeclined
-	msgbox Text_MetronomeWhichMon
-	setvar VAR_0x8005, MOVE_METRONOME
-	call EventScript_ChooseMoveTutorMon
-	goto_if_eq VAR_RESULT, FALSE, EventScript_MetronomeDeclined
-.if I_REUSABLE_TMS == FALSE
-	setflag FLAG_TUTOR_METRONOME
-.endif
-	goto EventScript_MetronomeTaught
+	giveitem ITEM_TM_AERIAL_ACE
+	waitstate
+	release
 	end
 
 EventScript_MetronomeDeclined::
@@ -396,17 +331,9 @@ EventScript_MimicTutor::
 	goto_if_eq VAR_RESULT, NO, EventScript_MimicDeclined
 	call EventScript_CanOnlyBeLearnedOnce
 	goto_if_eq VAR_RESULT, NO, EventScript_MimicDeclined
-	msgbox Text_MimicWhichMon
-	setvar VAR_0x8005, MOVE_MIMIC
-	call EventScript_ChooseMoveTutorMon
-	lock
-	faceplayer
-	goto_if_eq VAR_RESULT, 0, EventScript_MimicDeclined
-	removeitem ITEM_POKE_DOLL
-.if I_REUSABLE_TMS == FALSE
-	setflag FLAG_TUTOR_MIMIC
-.endif
-	goto EventScript_MimicTaught
+	giveitem ITEM_TM_AERIAL_ACE
+	waitstate
+	release
 	end
 
 EventScript_MimicDeclined::
@@ -439,14 +366,9 @@ FourIsland_House1_EventScript_BodySlamTutor::
 	goto_if_eq VAR_RESULT, NO, EventScript_BodySlamDeclined
 	call EventScript_CanOnlyBeLearnedOnce
 	goto_if_eq VAR_RESULT, NO, EventScript_BodySlamDeclined
-	msgbox Text_BodySlamWhichMon
-	setvar VAR_0x8005, MOVE_BODY_SLAM
-	call EventScript_ChooseMoveTutorMon
-	goto_if_eq VAR_RESULT, FALSE, EventScript_BodySlamDeclined
-.if I_REUSABLE_TMS == FALSE
-	setflag FLAG_TUTOR_BODY_SLAM
-.endif
-	goto EventScript_BodySlamTaught
+	giveitem ITEM_TM_AERIAL_ACE
+	waitstate
+	release
 	end
 
 EventScript_BodySlamDeclined::
