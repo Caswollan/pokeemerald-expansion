@@ -5884,9 +5884,21 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Poochyena
+Zigzagoon
 Level: 5
+Ability: ABILITY_QUICK_FEET
+Nature: Hardy
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Tackle
+- Growl
+
+Fletchling
+Level: 5
+Ability: ABILITY_BIG_PECKS
+Nature: Hardy
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Quick Attack
+- Growl
 
 === TRAINER_BILLY ===
 Name: BILLY
