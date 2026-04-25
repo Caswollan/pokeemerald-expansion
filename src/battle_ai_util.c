@@ -6198,7 +6198,7 @@ enum AIScore BattlerBenefitsFromAbilityScore(enum BattlerId battler, enum Abilit
         if (HasMoveWithCategory(battler, DAMAGE_CATEGORY_PHYSICAL))
             return BEST_EFFECT;
         break;
-    case ABILITY_MYSTIC_POWER:
+    case ABILITY_FELINE_PROWESS:
         if (HasMoveWithCategory(battler, DAMAGE_CATEGORY_SPECIAL))
             return BEST_EFFECT;
         break;

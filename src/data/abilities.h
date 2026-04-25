@@ -2422,9 +2422,9 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .aiRating = 6,
     },
 
-    [ABILITY_MYSTIC_POWER] =
+    [ABILITY_FELINE_PROWESS] =
     {
-        .name = _("Mystic Power"),
+        .name = _("Feline Prowess"),
         .description = COMPOUND_STRING("Raises Special Attack."),
         .aiRating = 10,
     },

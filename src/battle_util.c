@@ -7006,7 +7006,7 @@ static inline u32 CalcAttackStat(struct BattleContext *ctx)
         if (IsBattleMovePhysical(move))
             modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(2.0));
         break;
-    case ABILITY_MYSTIC_POWER:
+    case ABILITY_FELINE_PROWESS:
         if (IsBattleMoveSpecial(move))
             modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(2.0));
         break;
