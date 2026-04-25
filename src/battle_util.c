@@ -8419,6 +8419,17 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(struct BattleCont
         if (B_GLARE_GHOST < GEN_4 && ctx->move == MOVE_GLARE && IS_BATTLER_OF_TYPE(ctx->battlerDef, TYPE_GHOST))
             modifier = UQ_4_12(0.0);
     }
+    else if (ctx->moveType == TYPE_POISON && ctx->abilityDef == ABILITY_PASTEL_VEIL)
+    {
+        modifier = UQ_4_12(0.0);
+        ctx->abilityBlocked = TRUE;
+        if (ctx->updateFlags)
+        {
+            gBattleStruct->moveResultFlags[ctx->battlerDef] |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
+            gLastUsedAbility = ABILITY_PASTEL_VEIL;
+            RecordAbilityBattle(ctx->battlerDef, ABILITY_PASTEL_VEIL);
+        }
+    }
     else if (ctx->moveType == TYPE_GROUND && !IsBattlerGroundedInverseCheck(ctx->battlerDef, ctx->abilityDef, ctx->holdEffectDef, INVERSE_BATTLE, ctx->isAnticipation) && !(MoveIgnoresTypeIfFlyingAndUngrounded(ctx->move)))
     {
         modifier = UQ_4_12(0.0);
