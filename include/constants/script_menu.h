@@ -169,6 +169,7 @@
 #define MULTI_HOF_EGGS_VICTORIES_QUIT                    158
 #define MULTI_POKEMON_CENTER_SERVICES                    159
 #define MULTI_NATURE_SELECT                              160
+#define MULTI_STARTER_GENERATION                         161
 
 #define MULTI_NONE 255
 

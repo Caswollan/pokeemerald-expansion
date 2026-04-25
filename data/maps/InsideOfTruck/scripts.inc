@@ -22,6 +22,7 @@ InsideOfTruck_EventScript_SetIntroFlags::
 	end
 
 InsideOfTruck_EventScript_SetIntroFlagsMale::
+	call InsideOfTruck_EventScript_ChooseStarterGeneration
 	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F
 	setvar VAR_LITTLEROOT_INTRO_STATE, 1
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_MOM
@@ -35,6 +36,7 @@ InsideOfTruck_EventScript_SetIntroFlagsMale::
 	end
 
 InsideOfTruck_EventScript_SetIntroFlagsFemale::
+	call InsideOfTruck_EventScript_ChooseStarterGeneration
 	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_MAYS_HOUSE_2F
 	setvar VAR_LITTLEROOT_INTRO_STATE, 2
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_MOM
@@ -56,3 +58,19 @@ InsideOfTruck_Text_BoxPrintedWithMonLogo:
 	.string "It's a POKéMON brand moving and\n"
 	.string "delivery service.$"
 
+
+InsideOfTruck_EventScript_ChooseStarterGeneration::
+	goto_if_set FLAG_STARTER_GEN_CHOSEN, InsideOfTruck_EventScript_ChooseStarterGenerationEnd
+	msgbox InsideOfTruck_Text_ChooseStarterGen, MSGBOX_DEFAULT
+	closemessage
+	multichoice 0, 0, MULTI_STARTER_GENERATION, FALSE
+	copyvar VAR_STARTER_GENERATION, VAR_RESULT
+	setflag FLAG_STARTER_GEN_CHOSEN
+InsideOfTruck_EventScript_ChooseStarterGenerationEnd:
+	return
+
+InsideOfTruck_Text_ChooseStarterGen:
+	.string "Another child...\n"
+	.string "Another journey they never asked for.\p"
+	.string "From which region do you want their story to?\n"
+	.string "begin?$"

@@ -3,6 +3,7 @@
 #include "data.h"
 #include "decompress.h"
 #include "event_data.h"
+#include "constants/vars.h"
 #include "gpu_regs.h"
 #include "international_string_util.h"
 #include "main.h"
@@ -114,7 +115,29 @@ static const u8 sStarterLabelCoords[STARTER_MON_COUNT][2] =
 #define FIRE_STARTER  (IS_FRLG ? SPECIES_CHARMANDER : SPECIES_TORCHIC)
 #define WATER_STARTER (IS_FRLG ? SPECIES_SQUIRTLE   : SPECIES_MUDKIP )
 
-static const u16 sStarterMon[STARTER_MON_COUNT] =
+static const u16 sStartersByGen[9][STARTER_MON_COUNT] =
+{
+    // Kanto
+    { SPECIES_BULBASAUR,  SPECIES_CHARMANDER, SPECIES_SQUIRTLE },
+    // Johto
+    { SPECIES_CHIKORITA,  SPECIES_CYNDAQUIL,  SPECIES_TOTODILE },
+    // Hoenn
+    { SPECIES_TREECKO,    SPECIES_TORCHIC,    SPECIES_MUDKIP   },
+    // Sinnoh
+    { SPECIES_TURTWIG,    SPECIES_CHIMCHAR,   SPECIES_PIPLUP   },
+    // Unova
+    { SPECIES_SNIVY,      SPECIES_TEPIG,      SPECIES_OSHAWOTT },
+    // Kalos
+    { SPECIES_CHESPIN,    SPECIES_FENNEKIN,   SPECIES_FROAKIE  },
+    // Alola
+    { SPECIES_ROWLET,     SPECIES_LITTEN,     SPECIES_POPPLIO  },
+    // Galar
+    { SPECIES_GROOKEY,    SPECIES_SCORBUNNY,  SPECIES_SOBBLE   },
+    // Paldea
+    { SPECIES_SPRIGATITO, SPECIES_FUECOCO,    SPECIES_QUAXLY   },
+};
+
+static const u16 sStarterMon_Unused[STARTER_MON_COUNT] =
 {
     GRASS_STARTER,
     FIRE_STARTER,
@@ -349,9 +372,10 @@ static const struct SpriteTemplate sSpriteTemplate_StarterCircle =
 // .text
 u16 GetStarterPokemon(u16 chosenStarterId)
 {
-    if (chosenStarterId > STARTER_MON_COUNT)
-        chosenStarterId = 0;
-    return sStarterMon[chosenStarterId];
+    u16 gen = VarGet(VAR_STARTER_GENERATION);
+    if (gen >= 9) gen = 2;
+    if (chosenStarterId >= STARTER_MON_COUNT) chosenStarterId = 0;
+    return sStartersByGen[gen][chosenStarterId];
 }
 
 static void VblankCB_StarterChoose(void)
