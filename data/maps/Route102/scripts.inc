@@ -107,3 +107,53 @@ Route102_Text_RouteSignOldale:
 Route102_Text_RouteSignPetalburg:
 	.string "ROUTE 102\n"
 	.string "{LEFT_ARROW} PETALBURG CITY$"
+
+Route102_EventScript_OldRodFisherman::
+        lock
+        faceplayer
+        goto_if_set FLAG_RECEIVED_OLD_ROD, Route102_EventScript_OldRod_HowsFishing
+        msgbox Route102_Text_OldRod_Offer, MSGBOX_YESNO
+        goto_if_eq VAR_RESULT, YES, Route102_EventScript_GiveOldRod
+        goto_if_eq VAR_RESULT, NO, Route102_EventScript_OldRod_Decline
+        end
+
+Route102_EventScript_GiveOldRod::
+        msgbox Route102_Text_OldRod_Give, MSGBOX_DEFAULT
+        giveitem ITEM_OLD_ROD
+        goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+        setflag FLAG_RECEIVED_OLD_ROD
+        msgbox Route102_Text_OldRod_Advice, MSGBOX_DEFAULT
+        release
+        end
+
+Route102_EventScript_OldRod_Decline::
+        msgbox Route102_Text_OldRod_TooBad, MSGBOX_DEFAULT
+        release
+        end
+
+Route102_EventScript_OldRod_HowsFishing::
+        msgbox Route102_Text_OldRod_Later, MSGBOX_DEFAULT
+        release
+        end
+
+Route102_Text_OldRod_Offer:
+        .string "Hey, kid! This is a great spot\n"
+        .string "to fish right here.\p"
+        .string "Want me to give you an OLD ROD?$"
+
+Route102_Text_OldRod_Give:
+        .string "Take good care of it!\p"
+        .string "Face the water and use the ROD\n"
+        .string "from your BAG to start fishing.$"
+
+Route102_Text_OldRod_Advice:
+        .string "Wait for an !, then press A\n"
+        .string "as fast as you can. Good luck!$"
+
+Route102_Text_OldRod_TooBad:
+        .string "Come back if you change\n"
+        .string "your mind!$"
+
+Route102_Text_OldRod_Later:
+        .string "How's the fishing going?\n"
+        .string "Catch anything good?$"
