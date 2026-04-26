@@ -2507,9 +2507,23 @@ Music: Rich
 Double Battle: No
 AI: Basic Trainer
 
-Zigzagoon @ Nugget
-Level: 7
+Rattata
+Level: 11
+Ability: ABILITY_HUSTLE
+Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Hyper Fang
+- Bite
+- Quick Attack
+
+Salandit
+Level: 11
+Ability: ABILITY_CORROSION
+Nature: Modest
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Ember
+- Smog
+- Mud Slap
 
 === TRAINER_MOLLIE ===
 Name: MOLLIE
@@ -6318,17 +6332,23 @@ Music: Hiker
 Double Battle: No
 AI: Basic Trainer
 
-Magikarp
-Level: 5
+Tentacool
+Level: 12
+Ability: ABILITY_LIQUID_OOZE
+Nature: Modest
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Sludge
+- Bubblebeam
+- Toxic Spikes
+- Supersonic
 
-Magikarp
-Level: 6
+Buizel
+Level: 12
+Ability: ABILITY_WATER_VEIL
+Nature: Modest
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-
-Magikarp
-Level: 7
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Aqua Jet
+- Sonic Boom
 
 === TRAINER_CLAUDE ===
 Name: CLAUDE
@@ -8794,13 +8814,21 @@ Music: Twins
 Double Battle: Yes
 AI: Basic Trainer
 
-Seedot
-Level: 6
+Klink
+Level: 13
+Ability: ABILITY_MINUS
+Nature: Brave
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Thunder Shock
+- Gear Grind
 
-Lotad
-Level: 6
+Klink
+Level: 13
+Ability: ABILITY_PLUS
+Nature: Brave
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Thunder Shock
+- Gear Grind
 
 === TRAINER_MIU_AND_YUKI ===
 Name: MIU & YUKI
@@ -11061,13 +11089,32 @@ Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Lotad
-Level: 6
+Swablu
+Level: 11
+Ability: ABILITY_CLOUD_NINE
+Nature: Hardy
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Fury Attack
+- Pluck
+- Disarming Voice
 
-Shroomish
-Level: 6
+Toedscool
+Level: 11
+Ability: ABILITY_MOLD_BREAKER
+Nature: Modest
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Mega Drain
+- Mud Slap
+- Supersonic
+
+Hatenna
+Level: 11
+Ability: ABILITY_MAGIC_BOUNCE
+Nature: Modest
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Confusion
+- Disarming Voice
+- Life Dew
 
 === TRAINER_JANICE ===
 Name: JANICE
