@@ -4782,29 +4782,44 @@ Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Geodude
-Level: 12
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Tackle
-- Defense Curl
-- Rock Throw
-- Rock Tomb
-
-Geodude
-Level: 12
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Tackle
-- Defense Curl
-- Rock Throw
-- Rock Tomb
-
-Nosepass @ Oran Berry
+Geodude Alola @ Custap Berry
 Level: 15
+Ability: ABILITY_STURDY
+Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Block
-- Harden
-- Tackle
 - Rock Tomb
+- Spark
+- Bulldoze
+- Rock Polish
+
+Wooper-Paldea @ Air Balloon
+Level: 15
+Ability: ABILITY_WATER_ABSORB
+Nature: Impish
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Poison Tail
+- Bulldoze
+- Toxic
+
+Nosepass @ Chesto Berry
+Level: 15
+Ability: ABILITY_STURDY
+Nature: Impish
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Rock Tomb
+- Spark
+- Block
+- Rest
+
+Archen @ Berry Juice
+Level: 15
+Ability: ABILITY_DEFEATIST
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Rock Tomb
+- Pluck
+- Bulldoze
+- Facade
 
 === TRAINER_BRAWLY_1 ===
 Name: BRAWLY
@@ -5229,9 +5244,22 @@ Music: Girl
 Double Battle: No
 AI: Basic Trainer
 
-Shroomish
-Level: 9
+Petilil
+Level: 13
+Ability: ABILITY_OWN_TEMPO
+Nature: Modest
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Mega Drain
+- Baby Doll Eyes
+
+Doduo
+Level: 13
+Ability: ABILITY_EARLY_BIRD
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Peck
+- Fury Attack
+- Pursuit
 
 === TRAINER_GEORGIA ===
 Name: GEORGIA
@@ -6007,9 +6035,14 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Machop
-Level: 9
+Stufful
+Level: 14
+Ability: ABILITY_FLUFFY
+Nature: Hardy
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Low Sweep
+- Tackle
+- Aerial Ace
 
 === TRAINER_BEN ===
 Name: BEN
@@ -11355,13 +11388,22 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Wurmple
-Level: 8
+Skorupi
+Level: 12
+Ability: ABILITY_KEEN_EYE
+Nature: Hardy
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Pin Missile
+- Poison Sting
+- Bite
 
 Nincada
-Level: 8
+Level: 12
+Ability: ABILITY_POISON_TOUCH
+Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bug Bite
+- Fury Swipes
 
 === TRAINER_DOUG ===
 Name: DOUG
@@ -11624,9 +11666,24 @@ Music: Hiker
 Double Battle: No
 AI: Basic Trainer
 
-Geodude
-Level: 8
+Rockruff
+Level: 13
+Ability: ABILITY_VITAL_SPIRIT
+Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Rock Throw
+- Bite
+- Trailblaze
+- Howl
+
+Baltoy
+Level: 13
+Ability: ABILITY_LEVITATE
+Nature: Modest
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Mud Shot
+- Confusion
+- Grass Knot
 
 === TRAINER_ERIC ===
 Name: ERIC
@@ -13938,13 +13995,22 @@ Music: Hiker
 Double Battle: No
 AI: Basic Trainer
 
-Geodude
-Level: 8
+Aron
+Level: 13
+Ability: ABILITY_STURDY
+Nature: Hardy
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Metal Claw
+- Headbutt
 
-Geodude
-Level: 8
+Silicobra
+Level: 13
+Ability: ABILITY_SHED_SKIN
+Nature: Hardy
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Brutal Swing
+- Wrap
+- Glare
 
 === TRAINER_JOHNSON ===
 Name: JOHNSON
@@ -13955,13 +14021,22 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Shroomish
-Level: 8
+Voltorb-Hisui
+Level: 13
+Ability: ABILITY_SOUNDPROOF
+Nature: Modest
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Electroweb
+- Magical Leaf
 
-Lotad
-Level: 8
+Aipom
+Level: 13
+Ability: ABILITY_RUN_AWAY
+Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Fake Out
+- Quick Attack
+- Tail Slap
 
 === TRAINER_MELINA ===
 Name: MELINA
