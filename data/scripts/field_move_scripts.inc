@@ -60,9 +60,11 @@ EventScript_RockSmash::
         checkitem ITEM_HM06
         goto_if_eq VAR_RESULT, FALSE, EventScript_CantSmashRock
         goto EventScript_RockSmashCommon
+	
 EventScript_RockSmashCommon:
-        playSE SE_M_ROCK_SMASH
+        playSE SE_M_ROCK_THROW
         goto EventScript_SmashRock
+
 EventScript_SmashRock:: @ fallthrough
 	setflag FLAG_SAFE_FOLLOWER_MOVEMENT
 	call_if_eq VAR_0x8004, TRUE, EventScript_FollowerFieldMove
