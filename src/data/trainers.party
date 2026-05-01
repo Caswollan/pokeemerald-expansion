@@ -335,9 +335,33 @@ Music: Aqua
 Double Battle: No
 AI: Basic Trainer
 
-Poochyena
-Level: 11
+Croagunk
+Level: 18
+Ability: ABILITY_POISON_TOUCH
+Nature: Timid
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Sludge
+- Vacuum Wave
+- Mud Bomb
+
+Scraggy
+Level: 18
+Ability: ABILITY_MOXIE
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Low Sweep
+- Feint Attack
+- Fake Out
+
+Mightyena @ Berry Juice
+Level: 18
+Ability: ABILITY_STRONG_JAW
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bite
+- Ice Fang
+- Fire Fang
+- Howl
 
 === TRAINER_GRUNT_WEATHER_INST_1 ===
 Name: GRUNT
@@ -5125,9 +5149,15 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Ralts
-Level: 9
+Glameow
+Level: 17
+Ability: ABILITY_LIMBER
+Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Fake Out
+- Headbutt
+- Bite
+- Hypnosis
 
 === TRAINER_TED ===
 Name: TED
@@ -10887,13 +10917,33 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Lotad
-Level: 13
+Morgrem
+Level: 20
+Ability: ABILITY_PRANKSTER
+Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bite
+- Covet
+- Thunder Wave
 
-Torchic
-Level: 15
+Staravia
+Level: 20
+Ability: ABILITY_INTIMIDATE
+Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Wing Attack
+- Quick Attack
+- U Turn
+
+Combusken @ Berry Juice
+Level: 20
+Ability: ABILITY_BLAZE
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Flame Charge
+- Double Kick
+- Rock Tomb
+- Cut
 
 === TRAINER_BRENDAN_RUSTBORO_MUDKIP ===
 Name: BRENDAN
@@ -10904,13 +10954,33 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Wingull
-Level: 13
+Morgrem
+Level: 20
+Ability: ABILITY_PRANKSTER
+Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bite
+- Covet
+- Thunder Wave
 
-Treecko
-Level: 15
+Staravia
+Level: 20
+Ability: ABILITY_INTIMIDATE
+Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Wing Attack
+- Quick Attack
+- U Turn
+
+Grovyle @ Berry Juice
+Level: 20
+Ability: ABILITY_OVERGROW
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bullet Seed
+- Rock Tomb
+- Fury Cutter
+- Pursuit
 
 === TRAINER_PAXTON ===
 Name: PAXTON
@@ -11010,13 +11080,33 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Slugma
-Level: 13
+Morgrem
+Level: 20
+Ability: ABILITY_PRANKSTER
+Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bite
+- Covet
+- Thunder Wave
 
-Mudkip
-Level: 15
+Staravia
+Level: 20
+Ability: ABILITY_INTIMIDATE
+Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Wing Attack
+- Quick Attack
+- U Turn
+
+Marshtomp
+Level: 20
+Ability: ABILITY_TORRENT
+Nature: Quiet
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Brine
+- Mud Shot
+- Rock Tomb
+- Bite
 
 === TRAINER_MAY_RUSTBORO_MUDKIP ===
 Name: MAY
@@ -11027,13 +11117,33 @@ Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Wingull
-Level: 13
+Morgrem
+Level: 20
+Ability: ABILITY_PRANKSTER
+Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bite
+- Covet
+- Thunder Wave
 
-Treecko
-Level: 15
+Staravia
+Level: 20
+Ability: ABILITY_INTIMIDATE
+Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Wing Attack
+- Quick Attack
+- U Turn
+
+Grovyle @ Berry Juice
+Level: 20
+Ability: ABILITY_OVERGROW
+Nature: Jolly
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bullet Seed
+- Rock Tomb
+- Fury Cutter
+- Pursuit
 
 === TRAINER_MAXIE_MAGMA_HIDEOUT ===
 Name: MAXIE
@@ -13066,13 +13176,14 @@ Music: Rich
 Double Battle: No
 AI: Basic Trainer
 
-Zigzagoon @ Nugget
-Level: 8
+Lombre
+Level: 17
+Ability: ABILITY_OWN_TEMPO
+Nature: Hardy
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-
-Poochyena
-Level: 8
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bullet Seed
+- Bubble
+- Aurora Beam
 
 === TRAINER_SARAH ===
 Name: SARAH
@@ -13083,13 +13194,14 @@ Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Lotad
-Level: 8
+Tadbulb
+Level: 17
+Ability: ABILITY_STATIC
+Nature: Modest
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-
-Zigzagoon @ Nugget
-Level: 8
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Thunder Shock
+- Mud Shot
+- Water Gun
 
 === TRAINER_DARIAN ===
 Name: DARIAN
@@ -14279,13 +14391,33 @@ Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Lotad
-Level: 13
+Morgrem
+Level: 20
+Ability: ABILITY_PRANKSTER
+Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bite
+- Covet
+- Thunder Wave
 
-Torchic
-Level: 15
+Staravia
+Level: 20
+Ability: ABILITY_INTIMIDATE
+Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Wing Attack
+- Quick Attack
+- U Turn
+
+Combusken @ Berry Juice
+Level: 20
+Ability: ABILITY_BLAZE
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Flame Charge
+- Double Kick
+- Rock Tomb
+- Cut
 
 === TRAINER_MAY_RUSTBORO_TORCHIC ===
 Name: MAY
@@ -14296,13 +14428,33 @@ Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Torkoal
-Level: 13
+Morgrem
+Level: 20
+Ability: ABILITY_PRANKSTER
+Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Bite
+- Covet
+- Thunder Wave
 
-Mudkip
-Level: 15
+Staravia
+Level: 20
+Ability: ABILITY_INTIMIDATE
+Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Wing Attack
+- Quick Attack
+- U Turn
+
+Marshtomp
+Level: 20
+Ability: ABILITY_TORRENT
+Nature: Quiet
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Brine
+- Mud Shot
+- Rock Tomb
+- Bite
 
 === TRAINER_ROXANNE_2 ===
 Name: ROXANNE
