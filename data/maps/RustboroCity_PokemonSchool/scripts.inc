@@ -77,16 +77,16 @@ RustboroCity_PokemonSchool_EventScript_StudentNotebook::
 RustboroCity_PokemonSchool_EventScript_Teacher::
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_QUICK_CLAW, RustboroCity_PokemonSchool_EventScript_GaveQuickClaw
+	goto_if_set FLAG_RECEIVED_WISE_GLASSES, RustboroCity_PokemonSchool_EventScript_GaveWiseGlasses
 	call_if_eq VAR_FACING, DIR_EAST, RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsEast
 	call_if_eq VAR_FACING, DIR_WEST, RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsWest
-	msgbox RustboroCity_PokemonSchool_Text_StudentsWhoDontStudyGetQuickClaw, MSGBOX_DEFAULT
-	giveitem ITEM_QUICK_CLAW
+	msgbox RustboroCity_PokemonSchool_Text_StudentsWhoDontStudyGetWiseGlasses, MSGBOX_DEFAULT
+	giveitem ITEM_WISE_GLASSES
 	goto_if_eq VAR_RESULT, 0, Common_EventScript_ShowBagIsFull
 	closemessage
 	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
-	setflag FLAG_RECEIVED_QUICK_CLAW
+	setflag FLAG_RECEIVED_WISE_GLASSES
 	release
 	end
 
@@ -100,8 +100,8 @@ RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsWest::
 	waitmovement 0
 	return
 
-RustboroCity_PokemonSchool_EventScript_GaveQuickClaw::
-	msgbox RustboroCity_PokemonSchool_Text_ExplainQuickClaw, MSGBOX_DEFAULT
+RustboroCity_PokemonSchool_EventScript_GaveWiseGlasses::
+	msgbox RustboroCity_PokemonSchool_Text_ExplainWiseGlasses, MSGBOX_DEFAULT
 	closemessage
 	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
@@ -243,21 +243,21 @@ RustboroCity_PokemonSchool_Text_ExplainFreeze:
 	.string "It will remain frozen after battle.\n"
 	.string "Thaw it out using an ICE HEAL.$"
 
-RustboroCity_PokemonSchool_Text_StudentsWhoDontStudyGetQuickClaw:
-	.string "Students who don't study get a little\n"
-	.string "taste of my QUICK CLAW.\p"
-	.string "Whether or not you are a good student \n"
-	.string "will be evident from the way you use\l"
-	.string "this item.$"
+RustboroCity_PokemonSchool_Text_StudentsWhoDontStudyGetWiseGlasses:
+	.string "Students who don't study won't unlock\n"
+	.string "the true power of these WISE GLASSES.\p"
+	.string "A good student knows how to think and\n"
+	.string "use knowledge to their advantage.\l"
+	.string "This item rewards that wisdom.$"
 
-RustboroCity_PokemonSchool_Text_ExplainQuickClaw:
-	.string "A POKéMON holding the QUICK CLAW will\n"
-	.string "occasionally speed up and get to move\l"
-	.string "before its opponent.\p"
-	.string "There are many other items that are\n"
-	.string "meant to be held by POKéMON.\p"
-	.string "Just those alone will give you many\n"
-	.string "topics to study!$"
+RustboroCity_PokemonSchool_Text_ExplainWiseGlasses:
+	.string "A POKéMON holding WISE GLASSES will\n"
+	.string "have the power of its special moves\l"
+	.string "boosted.\p"
+	.string "Items like this can enhance different\n"
+	.string "aspects of a POKéMON's abilities.\p"
+	.string "Learning how to use them well is part\n"
+	.string "of becoming a skilled TRAINER!$"
 
 RustboroCity_PokemonSchool_Text_TradingRightNow:
 	.string "I'm trading POKéMON with my friend\n"

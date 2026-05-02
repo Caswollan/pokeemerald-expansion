@@ -320,7 +320,9 @@ RusturfTunnel_EventScript_Grunt::
 	msgbox RusturfTunnel_Text_PeekoGladToSeeYouSafe, MSGBOX_DEFAULT
 	applymovement LOCALID_RUSTURF_TUNNEL_BRINEY, Common_Movement_FacePlayer
 	waitmovement 0
-	message RusturfTunnel_Text_ThankYouLetsGoHomePeeko
+	msgbox RusturfTunnel_Text_ThankYouLetsGoHomePeeko
+	giveitem ITEM_TM_ROOST
+	msgbox RusturfTunnel_Text_BrineyGivesRoost, MSGBOX_DEFAULT
 	waitmessage
 	waitse
 	playmoncry SPECIES_WINGULL, CRY_MODE_NORMAL
@@ -467,6 +469,14 @@ RusturfTunnel_Text_ThankYouLetsGoHomePeeko:
 	.string "Come, PEEKO, we should make our way\n"
 	.string "home.\p"
 	.string "PEEKO: Pihyoh!$"
+
+RusturfTunnel_Text_BrineyGivesRoost:
+	.string "Please, take this as a token of\n"
+	.string "my gratitude.\p"
+	.string "That's TM ROOST.\n"
+	.string "When PEEKO tires from long flights,\l"
+	.string "she uses it to rest and regain\l"
+	.string "her strength!$"
 
 RusturfTunnel_Text_WhyCantTheyKeepDigging:
 	.string "… …\p"

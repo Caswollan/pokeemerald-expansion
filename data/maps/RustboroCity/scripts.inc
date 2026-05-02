@@ -841,12 +841,8 @@ RustboroCity_EventScript_MayEncounter::
 	setvar VAR_RUSTBORO_CITY_STATE, 8
 	setvar VAR_ROUTE104_STATE, 2
 	setvar VAR_0x8008, 0
-	msgbox RustboroCity_Text_MayPassedBrineyWantToBattle, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, RustboroCity_EventScript_BattleMay
-	msgbox RustboroCity_Text_MayOhHaventRaisedPokemonEnough, MSGBOX_DEFAULT
-	call RustboroCity_EventScript_RestoreBgm
-	releaseall
-	end
+	msgbox RustboroCity_Text_MayPassedBrineyWantToBattle, MSGBOX_DEFAULT
+	goto RustboroCity_EventScript_BattleMay
 
 RustboroCity_EventScript_MayAskToBattle::
 	setvar VAR_0x8008, 1
@@ -857,7 +853,6 @@ RustboroCity_EventScript_MayAskToBattle::
 	end
 
 RustboroCity_EventScript_BattleMay::
-	msgbox RustboroCity_Text_MayImNotGoingToLose, MSGBOX_DEFAULT
 	switch VAR_STARTER_MON
 	case 0, RustboroCity_EventScript_BattleMayTreecko
 	case 1, RustboroCity_EventScript_BattleMayTorchic
@@ -908,12 +903,8 @@ RustboroCity_EventScript_BrendanEncounter::
 	setflag FLAG_ENABLE_RIVAL_MATCH_CALL
 	setvar VAR_RUSTBORO_CITY_STATE, 8
 	setvar VAR_ROUTE104_STATE, 2
-	msgbox RustboroCity_Text_BrendanPassedBrineyWantToBattle, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, RustboroCity_EventScript_BattleBrendan
-	msgbox RustboroCity_Text_BrendanNoConfidenceInPokemon, MSGBOX_DEFAULT
-	call RustboroCity_EventScript_RestoreBgm
-	releaseall
-	end
+	msgbox RustboroCity_Text_BrendanPassedBrineyWantToBattle, MSGBOX_DEFAULT
+	goto RustboroCity_EventScript_BattleBrendan
 
 RustboroCity_EventScript_BrendanAskToBattle::
 	msgbox RustboroCity_Text_BrendanWantToBattle, MSGBOX_YESNO
@@ -923,7 +914,6 @@ RustboroCity_EventScript_BrendanAskToBattle::
 	end
 
 RustboroCity_EventScript_BattleBrendan::
-	msgbox RustboroCity_Text_BrendanIWontGoEasy, MSGBOX_DEFAULT
 	switch VAR_STARTER_MON
 	case 0, RustboroCity_EventScript_BattleBrendanTreecko
 	case 1, RustboroCity_EventScript_BattleBrendanTorchic
@@ -1147,7 +1137,7 @@ RustboroCity_Text_MayPassedBrineyWantToBattle:
 	.string "How's your POKéDEX coming along,\n"
 	.string "{PLAYER}{KUN}? Mine's looking pretty decent!\p"
 	.string "So…\n"
-	.string "How about a little battle?$"
+	.string "Let's battle!$"
 
 RustboroCity_Text_MayOhHaventRaisedPokemonEnough:
 	.string "MAY: Oh, what's the matter?\p"
@@ -1158,10 +1148,6 @@ RustboroCity_Text_MayOhHaventRaisedPokemonEnough:
 RustboroCity_Text_MayWantToBattle:
 	.string "MAY: So, what do you think?\n"
 	.string "How about a little battle here?$"
-
-RustboroCity_Text_MayImNotGoingToLose:
-	.string "MAY: You just became a TRAINER,\n"
-	.string "{PLAYER}{KUN}. I'm not going to lose!$"
 
 RustboroCity_Text_MayDefeat:
 	.string "Yikes!\n"
@@ -1194,8 +1180,8 @@ RustboroCity_Text_BrendanPassedBrineyWantToBattle:
 	.string "{PLAYER}, how's your POKéDEX?\n"
 	.string "Have you filled in any pages yet?\p"
 	.string "Mine rules.\p"
-	.string "Want to have a battle to test how\n"
-	.string "far you've progressed?$"
+	.string "Let's battle to test how\n"
+	.string "far you've progressed!$"
 
 RustboroCity_Text_BrendanNoConfidenceInPokemon:
 	.string "BRENDAN: What's the matter? Don't have\n"
@@ -1204,10 +1190,6 @@ RustboroCity_Text_BrendanNoConfidenceInPokemon:
 RustboroCity_Text_BrendanWantToBattle:
 	.string "BRENDAN: What's up?\n"
 	.string "Want to have a battle with me?$"
-
-RustboroCity_Text_BrendanIWontGoEasy:
-	.string "BRENDAN: I know you just became\n"
-	.string "a TRAINER, but I won't go easy!$"
 
 RustboroCity_Text_BrendanDefeat:
 	.string "Hmm…\n"

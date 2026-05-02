@@ -349,8 +349,8 @@ Level: 18
 Ability: ABILITY_MOXIE
 Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Low Sweep
 - Feint Attack
+- Low Sweep
 - Fake Out
 
 Mightyena @ Berry Juice
@@ -6034,10 +6034,14 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Geodude
-Level: 10
+Growlithe-Hisui
+Level: 14
+Ability: ABILITY_INTIMIDATE
+Nature: Impish
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Tackle
+- Rock Throw
+- Flame Wheel
+- Covet
 
 === TRAINER_TOMMY ===
 Name: TOMMY
@@ -6048,13 +6052,21 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Geodude
-Level: 8
+Glimmet
+Level: 13
+Ability: ABILITY_TOXIC_DEBRIS
+Nature: Hardy
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Rock Throw
+- Acid Spray
 
-Geodude
-Level: 8
+Roggenrola
+Level: 13
+Ability: ABILITY_STURDY
+Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Rock Blast
+- Headbutt
 
 === TRAINER_JOEY ===
 Name: JOEY
@@ -10627,13 +10639,21 @@ Music: Hiker
 Double Battle: No
 AI: Basic Trainer
 
-Geodude
-Level: 8
+Nacli
+Level: 13
+Ability: ABILITY_STURDY
+Nature: Impish
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Smack Down
+- Headbutt
 
-Geodude
-Level: 8
+Drilbur
+Level: 13
+Ability: ABILITY_MOLD_BREAKER
+Nature: Jolly
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Metal Claw
+- Fury Swipes
 
 === TRAINER_BRENDEN ===
 Name: BRENDEN
@@ -11268,9 +11288,14 @@ Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Marill
-Level: 9
+Cutiefly
+Level: 17
+Ability: ABILITY_SHIELD_DUST
+Nature: Modest
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Silver Wind
+- Draining Kiss
+- Mega Drain
 
 === TRAINER_VIVI ===
 Name: VIVI
@@ -11509,7 +11534,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
 Nincada
 Level: 12
-Ability: ABILITY_POISON_TOUCH
+Ability: ABILITY_COMPOUND_EYES
 Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Bug Bite

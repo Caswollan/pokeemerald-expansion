@@ -66,10 +66,10 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_LASS",
-      "x": 8,
-      "y": 7,
+      "x": 2,
+      "y": 6,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_RIGHT",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -91,17 +91,17 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "graphics_id": "OBJ_EVENT_GFX_TM_BALL",
       "x": 11,
       "y": 15,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "ITEM_POTION",
+      "trainer_sight_or_berry_tree_id": "ITEM_TM_ELECTROWEB",
       "script": "Common_EventScript_FindItem",
-      "flag": "FLAG_ITEM_ROUTE_102_POTION"
+      "flag": "FLAG_ITEM_ROUTE_102_TM_ELECTROWEB"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
@@ -131,10 +131,10 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
-      "x": 19,
-      "y": 4,
+      "x": 20,
+      "y": 5,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NORMAL",

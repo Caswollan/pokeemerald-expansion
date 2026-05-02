@@ -310,7 +310,7 @@
 #define FLAG_RECEIVED_EXP_SHARE              0x110
 #define FLAG_POKERUS_EXPLAINED               0x111
 #define FLAG_RECEIVED_RUNNING_SHOES          0x112
-#define FLAG_RECEIVED_QUICK_CLAW             0x113
+#define FLAG_RECEIVED_WISE_GLASSES           0x113
 #define FLAG_RECEIVED_KINGS_ROCK             0x114
 #define FLAG_RECEIVED_MACHO_BRACE            0x115
 #define FLAG_RECEIVED_SOOTHE_BELL            0x116
@@ -1054,7 +1054,7 @@
 #define FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT                0x3E7
 
 // Item Ball Flags
-#define FLAG_ITEM_ROUTE_102_POTION                                  0x3E8
+#define FLAG_ITEM_ROUTE_102_TM_ELECTROWEB                           0x3E8
 #define FLAG_ITEM_ROUTE_116_X_SPECIAL                               0x3E9
 #define FLAG_ITEM_ROUTE_104_PP_UP                                   0x3EA
 #define FLAG_ITEM_ROUTE_105_IRON                                    0x3EB
@@ -1070,10 +1070,10 @@
 #define FLAG_ITEM_ROUTE_113_SUPER_REPEL                             0x3F5
 #define FLAG_ITEM_ROUTE_114_RARE_CANDY                              0x3F6
 #define FLAG_ITEM_ROUTE_114_PROTEIN                                 0x3F7
-#define FLAG_ITEM_ROUTE_115_SUPER_POTION                            0x3F8
+#define FLAG_ITEM_ROUTE_115_MUSCLE_BAND                             0x3F8
 #define FLAG_ITEM_ROUTE_115_TM_FOCUS_PUNCH                          0x3F9
 #define FLAG_ITEM_ROUTE_115_IRON                                    0x3FA
-#define FLAG_ITEM_ROUTE_116_ETHER                                   0x3FB
+#define FLAG_ITEM_ROUTE_116_TM_TELEPORT                             0x3FB
 #define FLAG_ITEM_ROUTE_116_REPEL                                   0x3FC
 #define FLAG_ITEM_ROUTE_116_HP_UP                                   0x3FD
 #define FLAG_ITEM_ROUTE_117_GREAT_BALL                              0x3FE
@@ -1102,7 +1102,7 @@
 #define FLAG_ITEM_METEOR_FALLS_1F_1R_FULL_HEAL                      0x415
 #define FLAG_ITEM_METEOR_FALLS_1F_1R_MOON_STONE                     0x416
 #define FLAG_ITEM_METEOR_FALLS_1F_1R_PP_UP                          0x417
-#define FLAG_ITEM_RUSTURF_TUNNEL_POKE_BALL                          0x418
+#define FLAG_ITEM_RUSTURF_TUNNEL_TM_DEFOG                           0x418
 #define FLAG_ITEM_RUSTURF_TUNNEL_MAX_ETHER                          0x419
 #define FLAG_ITEM_GRANITE_CAVE_1F_ESCAPE_ROPE                       0x41A
 #define FLAG_ITEM_GRANITE_CAVE_B1F_POKE_BALL                        0x41B
@@ -1111,8 +1111,8 @@
 #define FLAG_ITEM_GRANITE_CAVE_B2F_RARE_CANDY                       0x41E
 #define FLAG_ITEM_PETALBURG_WOODS_X_ATTACK                          0x41F
 #define FLAG_ITEM_PETALBURG_WOODS_GREAT_BALL                        0x420
-#define FLAG_ITEM_ROUTE_104_POKE_BALL                               0x421
-#define FLAG_ITEM_PETALBURG_WOODS_ETHER                             0x422
+#define FLAG_ITEM_ROUTE_104_TM_STRUGGLE_BUG                         0x421
+#define FLAG_ITEM_PETALBURG_TM_BUG_BITE                             0x422
 #define FLAG_ITEM_MAGMA_HIDEOUT_3F_3R_ECAPE_ROPE                    0x423
 #define FLAG_ITEM_TRICK_HOUSE_PUZZLE_1_ORANGE_MAIL                  0x424
 #define FLAG_ITEM_TRICK_HOUSE_PUZZLE_2_HARBOR_MAIL                  0x425
@@ -1169,7 +1169,7 @@
 #define FLAG_ITEM_SHOAL_CAVE_ICE_ROOM_TM_HAIL                       0x458
 #define FLAG_ITEM_SHOAL_CAVE_ICE_ROOM_NEVER_MELT_ICE                0x459
 #define FLAG_ITEM_ROUTE_103_GUARD_SPEC                              0x45A
-#define FLAG_ITEM_ROUTE_104_X_ACCURACY                              0x45B
+#define FLAG_ITEM_ROUTE_104_TM_LOW_SWEEP                            0x45B
 #define FLAG_ITEM_MAUVILLE_CITY_X_SPEED                             0x45C
 #define FLAG_ITEM_PETALBURG_WOODS_PARALYZE_HEAL                     0x45D
 #define FLAG_ITEM_ROUTE_115_GREAT_BALL                              0x45E
