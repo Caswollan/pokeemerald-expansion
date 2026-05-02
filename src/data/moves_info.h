@@ -8892,7 +8892,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .description = COMPOUND_STRING(
             "An uppercut thrown as if\n"
             "leaping into the sky."),
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_SUPER_EFFECTIVE_ON_ARG,
         .power = 85,
         .type = TYPE_FIGHTING,
         .accuracy = 100,
@@ -8900,6 +8900,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .target = TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
+        .argument = { .type = TYPE_FLYING },
         .makesContact = TRUE,
         .punchingMove = TRUE,
         .damagesAirborne = TRUE,
