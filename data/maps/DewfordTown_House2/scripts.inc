@@ -4,11 +4,11 @@ DewfordTown_House2_MapScripts::
 DewfordTown_House2_EventScript_Man::
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_SILK_SCARF, DewfordTown_House2_EventScript_ExplainSilkScarf
-	msgbox DewfordTown_House2_Text_WantYouToHaveSilkScarf, MSGBOX_DEFAULT
-	giveitem ITEM_SILK_SCARF
+	goto_if_set FLAG_RECEIVED_PUNCHING_GLOVE, DewfordTown_House2_EventScript_ExplainPunchingGlove
+	msgbox DewfordTown_House2_Text_WantYouToHavePunchingGlove, MSGBOX_DEFAULT
+	giveitem ITEM_PUNCHING_GLOVE
 	goto_if_eq VAR_RESULT, FALSE, DewfordTown_House2_EventScript_NoRoomForScarf
-	setflag FLAG_RECEIVED_SILK_SCARF
+	setflag FLAG_RECEIVED_PUNCHING_GLOVE
 	release
 	end
 
@@ -17,8 +17,8 @@ DewfordTown_House2_EventScript_NoRoomForScarf::
 	release
 	end
 
-DewfordTown_House2_EventScript_ExplainSilkScarf::
-	msgbox DewfordTown_House2_Text_ExplainSilkScarf, MSGBOX_DEFAULT
+DewfordTown_House2_EventScript_ExplainPunchingGlove::
+	msgbox DewfordTown_House2_Text_ExplainPunchingGlove, MSGBOX_DEFAULT
 	release
 	end
 
@@ -26,26 +26,26 @@ DewfordTown_House2_EventScript_Boy::
 	msgbox DewfordTown_House2_Text_BrawlySoCool, MSGBOX_NPC
 	end
 
-DewfordTown_House2_Text_WantYouToHaveSilkScarf:
+DewfordTown_House2_Text_WantYouToHavePunchingGlove:
 	.string "Gorge your eyes on this!\p"
-	.string "It's a SILK SCARF. It's right at the\n"
-	.string "cutting edge of fashion, yeah!\p"
+	.string "It's a PUNCHING GLOVE. The ultimate\n"
+	.string "gear for any fighting trainer, yeah!\p"
 	.string "Oh, I can see your eyes twinkling!\n"
-	.string "You appreciate my dazzling style!\p"
+	.string "You appreciate my impeccable taste!\p"
 	.string "Oh, you're a delight!\n"
 	.string "Here you go. I want you to have it!$"
 
 DewfordTown_House2_Text_NoRoom:
 	.string "Oh, you don't have room?\p"
-	.string "Now, listen tight, this SCARF is a must-\n"
-	.string "have! Why, I would sell all my items\l"
-	.string "in order to get it!$"
+	.string "Now, listen tight, this PUNCHING GLOVE\n"
+	.string "is a must-have! Why, I would sell all\l"
+	.string "my items in order to get it!$"
 
-DewfordTown_House2_Text_ExplainSilkScarf:
-	.string "The SILK SCARF raises the power of\n"
-	.string "NORMAL-type moves.\p"
-	.string "It's a marvelous SCARF that will go\n"
-	.string "with almost all POKéMON!$"
+DewfordTown_House2_Text_ExplainPunchingGlove:
+	.string "The PUNCHING GLOVE raises the power\n"
+	.string "of punching moves.\p"
+	.string "It also prevents contact effects\n"
+	.string "from triggering!$"
 
 DewfordTown_House2_Text_BrawlySoCool:
 	.string "Wow, you bothered to cross the sea\n"

@@ -324,7 +324,7 @@
 #define FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE  0x11E
 #define FLAG_MET_DEVON_EMPLOYEE              0x11F
 #define FLAG_MET_RIVAL_RUSTBORO              0x120
-#define FLAG_RECEIVED_SILK_SCARF             0x121
+#define FLAG_RECEIVED_PUNCHING_GLOVE         0x121
 #define FLAG_NOT_READY_FOR_BATTLE_ROUTE_120  0x122
 #define FLAG_RECEIVED_SS_TICKET              0x123
 #define FLAG_MET_RIVAL_LILYCOVE              0x124
@@ -1058,7 +1058,7 @@
 #define FLAG_ITEM_ROUTE_116_X_SPECIAL                               0x3E9
 #define FLAG_ITEM_ROUTE_104_PP_UP                                   0x3EA
 #define FLAG_ITEM_ROUTE_105_IRON                                    0x3EB
-#define FLAG_ITEM_ROUTE_106_PROTEIN                                 0x3EC
+#define FLAG_ITEM_ROUTE_106_TM_WATER_PULSE                          0x3EC
 #define FLAG_ITEM_ROUTE_109_PP_UP                                   0x3ED
 #define FLAG_ITEM_ROUTE_110_RARE_CANDY                              0x3EE
 #define FLAG_ITEM_ROUTE_110_DIRE_HIT                                0x3EF

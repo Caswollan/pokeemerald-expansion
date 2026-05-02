@@ -4854,29 +4854,45 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Machop
-Level: 16
+Kubfu @ Eviolite
+Level: 25
+Ability: ABILITY_INNER_FOCUS
+Nature: Jolly
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Karate Chop
-- Low Kick
-- Seismic Toss
-- Bulk Up
+- Low Sweep
+- Power Up Punch
+- Zen Headbutt
+- Aerial Ace
 
-Meditite
-Level: 16
+Sandslash-Alola @ Chople Berry
+Level: 25
+Ability: ABILITY_ICE_SCALES
+Nature: Lonely
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Focus Punch
-- Light Screen
-- Reflect
-- Bulk Up
+- Ice Shard
+- Metal Claw
+- Bulldoze
+- Hone Claws
 
-Makuhita @ Sitrus Berry
-Level: 19
+Poliwhirl @ Expert Belt
+Level: 25
+Ability: ABILITY_WATER_ABSORB
+Nature: Careful
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Arm Thrust
-- Vital Throw
-- Reversal
-- Bulk Up
+- Bubble Beam
+- Ice Punch
+- Low Sweep
+- Hidden Power
+
+Hariyama @ Flame Orb
+Level: 25
+Ability: ABILITY_GUTS
+Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Low Sweep
+- Knock Off
+- Rock Tomb
+- Fake Out
 
 === TRAINER_WATTSON_1 ===
 Name: WATTSON
@@ -6455,17 +6471,22 @@ Music: Hiker
 Double Battle: No
 AI: Basic Trainer
 
-Magikarp
-Level: 10
+Binacle
+Level: 23
+Ability: ABILITY_TOUGH_CLAWS
+Nature: Adamant
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Accelerock
+- Slash
+- Rock Smash
 
-Tentacool
-Level: 7
+Wailmer
+Level: 23
+Ability: ABILITY_WATER_VEIL
+Nature: Hardy
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-
-Magikarp
-Level: 10
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Water Pulse
+- Rollout
 
 === TRAINER_NED ===
 Name: NED
@@ -6476,9 +6497,24 @@ Music: Hiker
 Double Battle: No
 AI: Basic Trainer
 
-Tentacool
-Level: 11
+Psyduck
+Level: 22
+Ability: ABILITY_DAMP
+Nature: Hardy
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Water Pulse
+- Zen Headbutt
+- Fury Swipes
+- Rain Dance
+
+Finneon
+Level: 22
+Ability: ABILITY_SWIFT_SWIM
+Nature: Modest
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Water Pulse
+- Aurora Beam
+- Air Cutter
 
 === TRAINER_DALE ===
 Name: DALE

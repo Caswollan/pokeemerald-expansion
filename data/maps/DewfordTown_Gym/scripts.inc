@@ -168,16 +168,24 @@ DewfordTown_Gym_EventScript_BrawlyDefeated::
 	end
 
 DewfordTown_Gym_EventScript_GiveBulkUp::
-	giveitem ITEM_TM_AERIAL_ACE
+	giveitem ITEM_TM_LOW_SWEEP
 	goto_if_eq VAR_RESULT, 0, Common_EventScript_BagIsFull
-	msgbox DewfordTown_Gym_Text_ExplainBulkUp, MSGBOX_DEFAULT
+	giveitem ITEM_EVIOLITE
+	goto_if_eq VAR_RESULT, 0, Common_EventScript_BagIsFull
+	giveitem ITEM_EXPERT_BELT
+	goto_if_eq VAR_RESULT, 0, Common_EventScript_BagIsFull
+	msgbox DewfordTown_Gym_Text_ExplainRewards, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_TM_BULK_UP
 	return
 
 DewfordTown_Gym_EventScript_GiveBulkUp2:
-	giveitem ITEM_TM_AERIAL_ACE
+	giveitem ITEM_TM_LOW_SWEEP
 	goto_if_eq VAR_RESULT, 0, Common_EventScript_ShowBagIsFull
-	msgbox DewfordTown_Gym_Text_ExplainBulkUp, MSGBOX_DEFAULT
+	giveitem ITEM_EVIOLITE
+	goto_if_eq VAR_RESULT, 0, Common_EventScript_ShowBagIsFull
+	giveitem ITEM_EXPERT_BELT
+	goto_if_eq VAR_RESULT, 0, Common_EventScript_ShowBagIsFull
+	msgbox DewfordTown_Gym_Text_ExplainRewards, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_TM_BULK_UP
 	release
 	end
@@ -403,15 +411,19 @@ DewfordTown_Gym_Text_KnuckleBadgeInfoTakeThis:
 	.string "The KNUCKLE BADGE makes all POKéMON\n"
 	.string "up to Level 30, even those you get in\l"
 	.string "trades, obey without question.\p"
-	.string "And, you'll be able to use the HM move\n"
-	.string "FLASH outside of battle.\p"
-	.string "If you'd like, use this TECHNICAL\n"
-	.string "MACHINE, too.$"
+	.string "If you'd like, take these as well:\n"
+	.string "a TM, an EVIOLITE, and an\l"
+	.string "EXPERT BELT!$"
 
-DewfordTown_Gym_Text_ExplainBulkUp:
-	.string "That TM08 contains BULK UP.\p"
-	.string "It's a move that raises both ATTACK\n"
-	.string "and DEFENSE stats.\p"
+DewfordTown_Gym_Text_ExplainRewards:
+	.string "That's TM LOW SWEEP.\p"
+	.string "It's a FIGHTING-type move that\n"
+	.string "also lowers the foe's Speed.\p"
+	.string "Take this EVIOLITE, too.\n"
+	.string "It boosts the defenses of POKéMON\l"
+	.string "that can still evolve.\p"
+	.string "And this EXPERT BELT for when\n"
+	.string "you hit a foe's weakness.\p"
 	.string "… … … … … …$"
 
 DewfordTown_Gym_Text_RegisteredBrawly:
