@@ -9516,6 +9516,7 @@ AI: Basic Trainer
 Treecko
 Level: 5
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- False Swipe
 
 === TRAINER_BRENDAN_ROUTE_110_MUDKIP ===
 Name: BRENDAN
@@ -9571,6 +9572,7 @@ AI: Check Bad Move / Try To Faint / Force Setup First Turn
 Torchic
 Level: 5
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- False Swipe
 
 === TRAINER_BRENDAN_ROUTE_110_TREECKO ===
 Name: BRENDAN
@@ -9626,6 +9628,7 @@ AI: Basic Trainer
 Mudkip
 Level: 5
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- False Swipe
 
 === TRAINER_BRENDAN_ROUTE_110_TORCHIC ===
 Name: BRENDAN
@@ -9681,6 +9684,7 @@ AI: Basic Trainer
 Treecko
 Level: 5
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- False Swipe
 
 === TRAINER_MAY_ROUTE_110_MUDKIP ===
 Name: MAY
@@ -9736,6 +9740,7 @@ AI: Basic Trainer
 Torchic
 Level: 5
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- False Swipe
 
 === TRAINER_MAY_ROUTE_110_TREECKO ===
 Name: MAY
@@ -9791,6 +9796,7 @@ AI: Basic Trainer
 Mudkip
 Level: 5
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- False Swipe
 
 === TRAINER_MAY_ROUTE_110_TORCHIC ===
 Name: MAY
