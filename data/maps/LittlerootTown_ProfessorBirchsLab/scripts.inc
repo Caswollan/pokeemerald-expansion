@@ -513,8 +513,44 @@ LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex::
 	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterRight
 	waitmovement 0
 	checkplayergender
-	call_if_eq VAR_RESULT, MALE, LittlerootTown_ProfessorBirchsLab_EventScript_MayGivePokeBalls
-	call_if_eq VAR_RESULT, FEMALE, LittlerootTown_ProfessorBirchsLab_EventScript_BrendanGivePokeBalls
+	goto_if_eq VAR_RESULT, MALE, LittlerootTown_ProfessorBirchsLab_EventScript_MayGivePokeBalls
+	goto_if_eq VAR_RESULT, FEMALE, LittlerootTown_ProfessorBirchsLab_EventScript_BrendanGivePokeBalls
+	end
+
+LittlerootTown_ProfessorBirchsLab_EventScript_MayGivePokeBalls::
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_MayGotPokedexTooTakeThese, MSGBOX_DEFAULT
+	additem ITEM_POKE_BALL, 5
+	playfanfare MUS_OBTAIN_ITEM
+	message LittlerootTown_ProfessorBirchsLab_Text_ReceivedPokeBalls
+	waitmessage
+	waitfanfare
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_CatchCutePokemonWithPokeBalls, MSGBOX_DEFAULT
+	closemessage
+	goto LittlerootTown_ProfessorBirchsLab_EventScript_BirchGiveItems
+	end
+
+LittlerootTown_ProfessorBirchsLab_EventScript_BrendanGivePokeBalls::
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_BrendanGotPokedexTooTakeThese, MSGBOX_DEFAULT
+	additem ITEM_POKE_BALL, 5
+	playfanfare MUS_OBTAIN_ITEM
+	message LittlerootTown_ProfessorBirchsLab_Text_ReceivedPokeBalls
+	waitmessage
+	waitfanfare
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_CatchCoolPokemonWithPokeBalls, MSGBOX_DEFAULT
+	closemessage
+	goto LittlerootTown_ProfessorBirchsLab_EventScript_BirchGiveItems
+	end
+
+LittlerootTown_ProfessorBirchsLab_EventScript_BirchGiveItems::
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterUp
+	waitmovement 0
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_BirchGiveItems, MSGBOX_DEFAULT
+	additem ITEM_INFINITE_CANDY
+	playfanfare MUS_OBTAIN_ITEM
+	message LittlerootTown_ProfessorBirchsLab_Text_BirchItemsAdded
+	waitmessage
+	waitfanfare
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_BirchItemsAdded2, MSGBOX_DEFAULT
 	setvar VAR_BIRCH_LAB_STATE, 5
 	setflag FLAG_ADVENTURE_STARTED
 	setvar VAR_OLDALE_TOWN_STATE, 1
@@ -522,22 +558,6 @@ LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex::
 	setvar VAR_LITTLEROOT_TOWN_STATE, 3
 	releaseall
 	end
-
-LittlerootTown_ProfessorBirchsLab_EventScript_MayGivePokeBalls::
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_MayGotPokedexTooTakeThese, MSGBOX_DEFAULT
-	giveitem ITEM_POKE_BALL, 5
-	call_if_eq VAR_RESULT, FALSE, LittlerootTown_ProfessorBirchsLab_EventScript_MayNoRoomForPokeBalls
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_CatchCutePokemonWithPokeBalls, MSGBOX_DEFAULT
-	setvar VAR_RESULT, 0
-	return
-
-LittlerootTown_ProfessorBirchsLab_EventScript_BrendanGivePokeBalls::
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_BrendanGotPokedexTooTakeThese, MSGBOX_DEFAULT
-	giveitem ITEM_POKE_BALL, 5
-	call_if_eq VAR_RESULT, FALSE, LittlerootTown_ProfessorBirchsLab_EventScript_BrendanNoRoomForPokeBalls
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_CatchCoolPokemonWithPokeBalls, MSGBOX_DEFAULT
-	setvar VAR_RESULT, 1
-	return
 
 LittlerootTown_ProfessorBirchsLab_EventScript_ReceivePokedex::
 	playfanfare MUS_OBTAIN_ITEM
@@ -992,3 +1012,20 @@ LittlerootTown_ProfessorBirchsLab_Text_ScottAboardSSTidalCall:
 	.string "we meet. I'll be waiting!\p"
 	.string "… … … … … …\n"
 	.string "… … … … … Click!$"
+
+LittlerootTown_ProfessorBirchsLab_Text_ReceivedPokeBalls:
+	.string "{PLAYER} received 99 POKé BALLS\n"
+	.string "and 99 QUICK BALLS!$"
+
+LittlerootTown_ProfessorBirchsLab_Text_BirchGiveItems:
+	.string "PROF. BIRCH: Before you go,\n"
+	.string "{PLAYER}{KUN}!\p"
+	.string "You'll need these items for your journey!$"
+
+LittlerootTown_ProfessorBirchsLab_Text_BirchItemsAdded:
+	.string "Many items were added to your BAG!$"
+
+LittlerootTown_ProfessorBirchsLab_Text_BirchItemsAdded2:
+	.string "PROF. BIRCH: They will serve you well\n"
+	.string "on your adventure, {PLAYER}{KUN}!\p"
+	.string "Now go, and good luck!$"

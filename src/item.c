@@ -218,6 +218,9 @@ static bool32 NONNULL BagPocket_CheckHasItem(struct BagPocket *pocket, enum Item
 
 bool32 CheckBagHasItem(enum Item itemId, u16 count)
 {
+    if (itemId == ITEM_INFINITE_CANDY)
+        return TRUE;
+
     if (GetItemPocket(itemId) >= POCKETS_COUNT)
         return FALSE;
     if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE || FlagGet(FLAG_STORING_ITEMS_IN_PYRAMID_BAG) == TRUE)
@@ -406,6 +409,9 @@ static bool32 NONNULL BagPocket_RemoveItem(struct BagPocket *pocket, enum Item i
 
 bool32 RemoveBagItem(enum Item itemId, u16 count)
 {
+    if (itemId == ITEM_INFINITE_CANDY)
+        return TRUE;
+
     itemId = SanitizeBagItemId(itemId);
     if (itemId == ITEM_NONE)
         return FALSE;
