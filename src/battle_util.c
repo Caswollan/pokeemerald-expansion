@@ -9206,10 +9206,7 @@ void TryRestoreHeldItems(void)
         {
             u32 lostItem = gBattleStruct->itemLost[B_TRAINER_PLAYER][i].originalItem;
 
-            if (GetItemPocket(lostItem) == POCKET_BERRIES && GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_HELD_ITEM) != lostItem)
-                lostItem = ITEM_NONE;
-
-            if ((lostItem != ITEM_NONE || returnNPCItems) && GetItemPocket(lostItem) != POCKET_BERRIES)
+            if (lostItem != ITEM_NONE || returnNPCItems)
                 SetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_HELD_ITEM, &lostItem);
         }
     }
