@@ -641,3 +641,4 @@ gSpecials::
 	def_special CheckAddCoins
 	def_special Script_SetMonNature
 	def_special OpenNatureMenu
+	def_special SetMonGender

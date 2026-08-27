@@ -1806,6 +1806,7 @@ u8 GetBoxMonGender(struct BoxPokemon *boxMon)
 {
     enum Species species = GetBoxMonData(boxMon, MON_DATA_SPECIES);
     u32 personality = GetBoxMonData(boxMon, MON_DATA_PERSONALITY);
+    u8 gender;
 
     switch (gSpeciesInfo[species].genderRatio)
     {
@@ -1815,10 +1816,12 @@ u8 GetBoxMonGender(struct BoxPokemon *boxMon)
         return gSpeciesInfo[species].genderRatio;
     }
 
-    if (gSpeciesInfo[species].genderRatio > (personality & 0xFF))
-        return MON_FEMALE;
-    else
-        return MON_MALE;
+    gender = (gSpeciesInfo[species].genderRatio > (personality & 0xFF)) ? MON_FEMALE : MON_MALE;
+    
+    if (boxMon->genderFlipped)
+        gender = (gender == MON_FEMALE) ? MON_MALE : MON_FEMALE;
+    
+    return gender;
 }
 
 u8 GetGenderFromSpeciesAndPersonality(enum Species species, u32 personality)
@@ -6807,4 +6810,18 @@ bool32 HasShedinjaHPHandling(enum Species species)
     if (P_BASE_HP_1_SHEDINJA_HANDLING && GetSpeciesBaseHP(species) == 1)
         return TRUE;
     return FALSE;
+}
+
+void SetMonGenderKeepData(struct Pokemon *mon, u8 targetGender)
+{
+    struct BoxPokemon *boxMon = &mon->box;
+    u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+    u8 genderRatio = gSpeciesInfo[species].genderRatio;
+
+    if (genderRatio == MON_MALE || genderRatio == MON_FEMALE || genderRatio == MON_GENDERLESS)
+        return;
+
+    u8 naturalGender = GetGenderFromSpeciesAndPersonality(species, boxMon->personality);
+    boxMon->genderFlipped = (naturalGender != targetGender) ? 1 : 0;
+    CalculateMonStats(mon);
 }
