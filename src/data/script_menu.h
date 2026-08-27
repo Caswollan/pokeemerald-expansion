@@ -1170,6 +1170,19 @@ struct MultichoiceListStruct
     u8 count;
 };
 
+static const struct MenuAction MultichoiceList_StarterGeneration[] =
+{
+    {COMPOUND_STRING("Kanto")},
+    {COMPOUND_STRING("Johto")},
+    {COMPOUND_STRING("Hoenn")},
+    {COMPOUND_STRING("Sinnoh")},
+    {COMPOUND_STRING("Unova")},
+    {COMPOUND_STRING("Kalos")},
+    {COMPOUND_STRING("Alola")},
+    {COMPOUND_STRING("Galar")},
+    {COMPOUND_STRING("Paldea")},
+};
+
 static const struct MultichoiceListStruct sMultichoiceLists[] =
 {
     [MULTI_BRINEY_ON_DEWFORD]          = MULTICHOICE(MultichoiceList_BrineyOnDewford),
@@ -1333,6 +1346,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_HOF_EGGS_VICTORIES_QUIT]                    = MULTICHOICE(sMultichoiceList_HOF_Eggs_Victories_Quit),
     [MULTI_POKEMON_CENTER_SERVICES]                    = MULTICHOICE(MultichoiceList_PokemonCenterServices),
     [MULTI_NATURE_SELECT]                              = MULTICHOICE(MultichoiceList_NatureSelect),
+    [MULTI_STARTER_GENERATION]                         = MULTICHOICE(MultichoiceList_StarterGeneration),
 };
 
 const u8 *const gStdStrings[] =
