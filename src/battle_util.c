@@ -2320,6 +2320,10 @@ bool32 CanAbilityAbsorbMove(struct DamageContext *ctx)
                 battleScript = BattleScript_AbilityProtectedTarget;
         }
         break;
+    case ABILITY_MOUNTAINEER:
+        if (ctx->moveType == TYPE_ROCK)
+            battleScript = BattleScript_AbilityProtectedTarget;
+        break;
     default:
         break;
     }
@@ -3604,6 +3608,15 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
                 {
                     BattleScriptCall(BattleScript_IceBodyHeal);
                     SetHealAmount(battler, GetNonDynamaxMaxHP(battler) / 16);
+                    effect++;
+                }
+                break;
+            case ABILITY_SELF_SUFFICIENT:
+                if (!IsBattlerAtMaxHp(battler)
+                    && !gBattleMons[battler].volatiles.healBlock)
+                {
+                    SetHealAmount(battler, GetNonDynamaxMaxHP(battler) / 16);
+                    BattleScriptExecute(BattleScript_IceBodyHeal);
                     effect++;
                 }
                 break;
@@ -6543,6 +6556,10 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageContext *ctx)
         if (IsPunchingMove(move))
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.2));
         break;
+    case ABILITY_STRIKER:
+        if (IsKickingMove(move))
+            modifier = uq4_12_multiply(modifier, UQ_4_12(1.2));
+        break;
     case ABILITY_SHEER_FORCE:
         if (MoveIsAffectedBySheerForce(move))
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.3));
@@ -6556,7 +6573,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageContext *ctx)
         if (AreBattlersOfSameGender(battlerAtk, battlerDef))
             modifier = uq4_12_multiply(modifier, UQ_4_12(1.25));
         else if (AreBattlersOfOppositeGender(battlerAtk, battlerDef))
-            modifier = uq4_12_multiply(modifier, UQ_4_12(0.75));
+            modifier = uq4_12_multiply(modifier, UQ_4_12(1.0));
         break;
     case ABILITY_ANALYTIC:
         if (moveEffect == EFFECT_FUTURE_SIGHT)
@@ -6616,6 +6633,10 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageContext *ctx)
         if (moveType == TYPE_NORMAL && gBattleStruct->battlerState[battlerAtk].ateBoost && GetConfig(B_ATE_MULTIPLIER) >= GEN_7)
             modifier = uq4_12_multiply(modifier, UQ_4_12(1.2));
         break;
+    case ABILITY_PHANTOMIZE:
+        if (moveType == TYPE_GHOST && gBattleStruct->battlerState[battlerAtk].ateBoost)
+            modifier = uq4_12_multiply(modifier, UQ_4_12(1.2));
+        break;
     case ABILITY_PUNK_ROCK:
         if (IsSoundMove(move))
             modifier = uq4_12_multiply(modifier, UQ_4_12(1.3));
@@ -6630,6 +6651,10 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageContext *ctx)
         break;
     case ABILITY_SUPREME_OVERLORD:
         modifier = uq4_12_multiply(modifier, GetSupremeOverlordModifier(battlerAtk));
+        break;
+    case ABILITY_LIQUID_VOICE:
+        if (IsSoundMove(move))
+            modifier = uq4_12_multiply(modifier, UQ_4_12(1.2));
         break;
     default:
         break;
@@ -6669,21 +6694,25 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageContext *ctx)
     // target's abilities
     switch (ctx->abilities[ctx->battlerDef])
     {
-    case ABILITY_HEATPROOF:
-    case ABILITY_WATER_BUBBLE:
-        if (moveType == TYPE_FIRE)
-        {
-            modifier = uq4_12_multiply(modifier, UQ_4_12(0.5));
-            if (ctx->updateFlags)
-                RecordAbilityBattle(battlerDef, ctx->abilities[ctx->battlerDef]);
-        }
-        break;
-    case ABILITY_DRY_SKIN:
-        if (moveType == TYPE_FIRE)
-            modifier = uq4_12_multiply(modifier, UQ_4_12(1.25));
-        break;
-    default:
-        break;
+        case ABILITY_HEATPROOF:
+        case ABILITY_WATER_BUBBLE:
+            if (moveType == TYPE_FIRE)
+            {
+                modifier = uq4_12_multiply(modifier, UQ_4_12(0.5));
+                if (ctx->updateFlags)
+                    RecordAbilityBattle(battlerDef, ctx->abilities[ctx->battlerDef]);
+            }
+            break;
+        case ABILITY_DRY_SKIN:
+            if (moveType == TYPE_FIRE)
+                modifier = uq4_12_multiply(modifier, UQ_4_12(1.25));
+            break;
+        case ABILITY_WATER_COMPACTION:
+            if (moveType == TYPE_WATER)
+                modifier = uq4_12_multiply(modifier, UQ_4_12(0.5));
+             break;
+        default:
+            break;
     }
 
     holdEffectParamAtk = GetBattlerHoldEffectParam(battlerAtk);
@@ -6865,6 +6894,10 @@ static inline u32 CalcAttackStat(struct DamageContext *ctx)
     case ABILITY_HUGE_POWER:
     case ABILITY_PURE_POWER:
         if (IsBattleMovePhysical(move))
+            modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(2.0));
+        break;
+    case ABILITY_FELINE_PROWESS:
+        if (IsBattleMoveSpecial(move))
             modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(2.0));
         break;
     case ABILITY_SLOW_START:
@@ -7456,6 +7489,10 @@ static inline uq4_12_t GetAttackerAbilitiesModifier(enum BattlerId battlerAtk, u
         if (typeEffectivenessModifier <= UQ_4_12(0.5))
             return UQ_4_12(2.0);
         break;
+    case ABILITY_BONE_ZONE:
+        if (gMovesInfo[gCurrentMove].boneMove && typeEffectivenessModifier <= UQ_4_12(0.5))
+            return UQ_4_12(2.0);
+        break;
     default:
         break;
     }
@@ -7509,6 +7546,13 @@ static inline uq4_12_t GetDefenderAbilitiesModifier(struct DamageContext *ctx)
         if (IsBattleMoveSpecial(ctx->move))
         {
             modifier =  UQ_4_12(0.5);
+            recordAbility = TRUE;
+        }
+        break;
+    case ABILITY_MAGMA_ARMOR:
+        if (ctx->moveType == TYPE_WATER)
+        {
+            modifier = UQ_4_12(0.125);
             recordAbility = TRUE;
         }
         break;
@@ -8119,6 +8163,22 @@ static inline void MulByTypeEffectiveness(struct DamageContext *ctx, uq4_12_t *m
     else if ((ctx->moveType == TYPE_FIGHTING || ctx->moveType == TYPE_NORMAL) && defType == TYPE_GHOST
         && (ctx->abilities[ctx->battlerAtk] == ABILITY_SCRAPPY || ctx->abilities[ctx->battlerAtk] == ABILITY_MINDS_EYE)
         && mod == UQ_4_12(0.0))
+    {
+        mod = UQ_4_12(1.0);
+        if (ctx->updateFlags)
+            RecordAbilityBattle(ctx->battlerAtk, ctx->abilities[ctx->battlerAtk]);
+    }
+    else if (ctx->moveType == TYPE_POISON && defType == TYPE_STEEL
+        && ctx->abilities[ctx->battlerAtk] == ABILITY_CORROSION 
+        && mod == UQ_4_12(0.0))
+    {
+        mod = UQ_4_12(1.0);
+        if (ctx->updateFlags)
+            RecordAbilityBattle(ctx->battlerAtk, ctx->abilities[ctx->battlerAtk]);
+    }
+    else if (gMovesInfo[ctx->move].boneMove &&
+        ctx->abilities[ctx->battlerAtk] == ABILITY_BONE_ZONE &&
+        mod == UQ_4_12(0.0))
     {
         mod = UQ_4_12(1.0);
         if (ctx->updateFlags)
@@ -10367,6 +10427,9 @@ u32 GetTotalAccuracy(enum BattlerId battlerAtk, enum BattlerId battlerDef, enum 
     case ABILITY_HUSTLE:
         if (IsBattleMovePhysical(move))
             calc = (calc * 80) / 100; // 1.2 hustle loss
+        break;
+    case ABILITY_ILLUMINATE:
+        calc = (calc * 120) / 100; // 1.3 illuminate boost
         break;
     default:
         break;

@@ -4781,6 +4781,10 @@ s32 GetBattleMovePriority(enum BattlerId battler, enum Ability ability, enum Mov
     {
         priority += 3;
     }
+    else if (ability == ABILITY_BLAZING_SOUL && IsBattlerAtMaxHp(battler) && GetMoveType(move) == TYPE_FIRE)
+    {
+        priority++;
+    }
 
     return priority;
 }
@@ -5765,6 +5769,9 @@ enum Type TrySetAteType(enum Move move, enum BattlerId battlerAtk, enum Ability 
         break;
     case ABILITY_DRAGONIZE:
         ateType = TYPE_DRAGON;
+        break;
+    case ABILITY_PHANTOMIZE:
+        ateType = TYPE_GHOST;
         break;
     default:
         ateType = TYPE_NONE;

@@ -270,8 +270,8 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_ILLUMINATE] =
     {
         .name = _("Illuminate"),
-        .description = COMPOUND_STRING("Encounter rate increases."),
-        .aiRating = 0,
+        .description = COMPOUND_STRING("Raises accuracy."),
+        .aiRating = 7,
         .breakable = TRUE,
     },
 
@@ -309,8 +309,8 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_MAGMA_ARMOR] =
     {
         .name = _("Magma Armor"),
-        .description = COMPOUND_STRING("Prevents freezing."),
-        .aiRating = 1,
+        .description = COMPOUND_STRING("Resistance 8x to Water."),
+        .aiRating = 8,
         .breakable = TRUE,
     },
 
@@ -2472,4 +2472,54 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .name = _("Spicy Spray"),
         .description = COMPOUND_STRING("Burns the foe when damaged."),
     },
+
+    [ABILITY_STRIKER] =
+    {
+        .name = _("Striker"),
+        .description = COMPOUND_STRING("Boosts kicking moves."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_BLAZING_SOUL] =
+    {
+        .name = _("Blazing Soul"),
+        .description = COMPOUND_STRING("Fire moves go first."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_BONE_ZONE] =
+    {
+        .name = _("Bone Zone"),
+        .description = COMPOUND_STRING("Bone ignore imm & res."),
+        .aiRating = 7,
+    },
+
+    [ABILITY_FELINE_PROWESS] =
+    {
+        .name = _("Feline Prowess"),
+        .description = COMPOUND_STRING("Raises Special Attack."),
+        .aiRating = 10,
+    },
+
+    [ABILITY_MOUNTAINEER] =
+    {
+        .name = _("Mountaineer"),
+        .description = COMPOUND_STRING("Cannot hit by Rock moves."),
+        .aiRating = 9,
+    },
+
+    [ABILITY_PHANTOMIZE] =
+    {
+        .name = _("Phantomize"),
+        .description = COMPOUND_STRING("Normal moves turn Ghost."),
+        .aiRating = 8,
+    },
+
+    [ABILITY_SELF_SUFFICIENT] =
+    {
+        .name = _("Self Sufficient"),
+        .description = COMPOUND_STRING("Recovers HP every turn."),
+        .aiRating = 3,
+    },
+
 };

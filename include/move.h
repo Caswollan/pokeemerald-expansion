@@ -120,6 +120,7 @@ struct MoveInfo
     bool32 snatchAffected:1;
     bool32 ignoresKingsRock:1;
     bool32 punchingMove:1;
+    bool32 kickingMove:1;
     bool32 bitingMove:1;
     bool32 pulseMove:1;
     bool32 soundMove:1;
@@ -130,6 +131,7 @@ struct MoveInfo
     bool32 slicingMove:1;
     bool32 healingMove:1;
     bool32 minimizeDoubleDamage:1;
+    bool32 boneMove:1;
     // end of word
     bool32 ignoresTargetAbility:1;
     bool32 ignoresTargetDefenseEvasionStages:1;
@@ -367,6 +369,11 @@ static inline bool32 IsPunchingMove(enum Move moveId)
     return gMovesInfo[SanitizeMoveId(moveId)].punchingMove;
 }
 
+static inline bool32 IsKickingMove(enum Move moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].kickingMove;
+}
+
 static inline bool32 IsBitingMove(enum Move moveId)
 {
     return gMovesInfo[SanitizeMoveId(moveId)].bitingMove;
@@ -415,6 +422,11 @@ static inline bool32 IsHealingMove(enum Move moveId)
 static inline bool32 MoveIncreasesPowerToMinimizedTargets(enum Move moveId)
 {
     return gMovesInfo[SanitizeMoveId(moveId)].minimizeDoubleDamage;
+}
+
+static inline bool32 IsBoneMove(enum Move moveId)
+{
+    return gMovesInfo[SanitizeMoveId(moveId)].boneMove;
 }
 
 static inline bool32 MoveIgnoresTargetAbility(enum Move moveId)
