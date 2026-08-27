@@ -519,7 +519,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex::
 
 LittlerootTown_ProfessorBirchsLab_EventScript_MayGivePokeBalls::
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_MayGotPokedexTooTakeThese, MSGBOX_DEFAULT
-	additem ITEM_POKE_BALL, 5
+	additem ITEM_POKE_BALL, 999
 	playfanfare MUS_OBTAIN_ITEM
 	message LittlerootTown_ProfessorBirchsLab_Text_ReceivedPokeBalls
 	waitmessage
@@ -531,7 +531,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_MayGivePokeBalls::
 
 LittlerootTown_ProfessorBirchsLab_EventScript_BrendanGivePokeBalls::
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_BrendanGotPokedexTooTakeThese, MSGBOX_DEFAULT
-	additem ITEM_POKE_BALL, 5
+	additem ITEM_POKE_BALL, 999
 	playfanfare MUS_OBTAIN_ITEM
 	message LittlerootTown_ProfessorBirchsLab_Text_ReceivedPokeBalls
 	waitmessage
@@ -546,6 +546,35 @@ LittlerootTown_ProfessorBirchsLab_EventScript_BirchGiveItems::
 	waitmovement 0
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_BirchGiveItems, MSGBOX_DEFAULT
 	additem ITEM_INFINITE_CANDY
+	additem ITEM_ABILITY_CAPSULE, 999
+	additem ITEM_BLACK_BELT, 10
+	additem ITEM_BLACK_GLASSES, 10
+	additem ITEM_CHARCOAL, 10
+	additem ITEM_DRAGON_FANG, 10
+	additem ITEM_HARD_STONE, 10
+	additem ITEM_MAGNET, 10
+	additem ITEM_METAL_COAT, 10
+	additem ITEM_MIRACLE_SEED, 10
+	additem ITEM_MYSTIC_WATER, 10
+	additem ITEM_NEVER_MELT_ICE, 10
+	additem ITEM_POISON_BARB, 10
+	additem ITEM_SHARP_BEAK, 10
+	additem ITEM_SILK_SCARF, 10
+	additem ITEM_SILVER_POWDER, 10
+	additem ITEM_SOFT_SAND, 10
+	additem ITEM_SPELL_TAG, 10
+	additem ITEM_TWISTED_SPOON, 10
+	additem ITEM_FAIRY_FEATHER, 10
+	additem ITEM_LIGHT_BALL, 10
+	additem ITEM_CHERI_BERRY, 10
+    additem ITEM_CHESTO_BERRY, 10
+    additem ITEM_PECHA_BERRY, 10
+    additem ITEM_RAWST_BERRY, 10
+    additem ITEM_ASPEAR_BERRY, 10
+    additem ITEM_LEPPA_BERRY, 10
+    additem ITEM_ORAN_BERRY, 10
+    additem ITEM_PERSIM_BERRY, 10
+	additem ITEM_POMEG_BERRY, 999
 	playfanfare MUS_OBTAIN_ITEM
 	message LittlerootTown_ProfessorBirchsLab_Text_BirchItemsAdded
 	waitmessage
@@ -1014,8 +1043,7 @@ LittlerootTown_ProfessorBirchsLab_Text_ScottAboardSSTidalCall:
 	.string "… … … … … Click!$"
 
 LittlerootTown_ProfessorBirchsLab_Text_ReceivedPokeBalls:
-	.string "{PLAYER} received 99 POKé BALLS\n"
-	.string "and 99 QUICK BALLS!$"
+	.string "{PLAYER} received 999 POKé BALLS!$"
 
 LittlerootTown_ProfessorBirchsLab_Text_BirchGiveItems:
 	.string "PROF. BIRCH: Before you go,\n"
