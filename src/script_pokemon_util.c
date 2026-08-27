@@ -663,3 +663,14 @@ void Script_GiveRandomBerry(struct ScriptContext *ctx)
 
     gSpecialVar_Result = BerryTypeToItemId(RandomUniform(RNG_RANDOM_BERRY, loBerry, hiBerry));
 }
+
+void Script_SetMonNature(void)
+{
+    u32 slot = gSpecialVar_0x8004;
+    u32 nature = gSpecialVar_0x8005;
+    if (slot < PARTY_SIZE && nature < NUM_NATURES)
+    {
+        SetMonData(&gPlayerParty[slot], MON_DATA_HIDDEN_NATURE, &nature);
+        CalculateMonStats(&gPlayerParty[slot]);
+    }
+}
