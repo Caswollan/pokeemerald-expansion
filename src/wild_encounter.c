@@ -30,6 +30,7 @@
 #include "constants/items.h"
 #include "constants/layouts.h"
 #include "constants/weather.h"
+#include "constants/flags.h"
 
 extern const u8 EventScript_SprayWoreOff[];
 
@@ -1073,7 +1074,11 @@ bool8 UpdateRepelCounter(void)
 
     if (steps != 0)
     {
-        steps--;
+        if (!FlagGet(FLAG_QUICK_REPEL_ACTIVE))
+        {
+            steps--;
+        }
+        
         if (!isLure)
         {
             VarSet(VAR_REPEL_STEP_COUNT, steps);
