@@ -9890,6 +9890,8 @@ static u32 GetBattleMonCatchRate(struct BattlePokemon *battleMon)
 
 static u32 ComputeCaptureOdds(u32 wildMonBattler, u32 playerBattler)
 {
+    return CAPTURE_GUARANTEED;
+
     struct BallData ball;
     ComputeBallData(wildMonBattler, playerBattler, &ball);
 
