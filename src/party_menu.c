@@ -5627,13 +5627,13 @@ static void Task_LearnNextMoveOrClosePartyMenu(u8 taskId)
 {
     if (IsFanfareTaskInactive() && ((JOY_NEW(A_BUTTON)) || (JOY_NEW(B_BUTTON))))
     {
-        if (gPartyMenu.data1 == 1)
+        if (gPartyMenu.learnMoveState == 1)
         {
             Task_TryLearningNextMove(taskId);
         }
         else
         {
-            if (gPartyMenu.data1 == 2) // never occurs
+            if (gPartyMenu.learnMoveState == 2) // never occurs
                 gSpecialVar_Result = TRUE;
             Task_ClosePartyMenu(taskId);
         }
@@ -5906,7 +5906,7 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
 
 void ItemUseCB_InfiniteCandy(u8 taskId, TaskFunc task)
 {
-    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][gPartyMenu.slotId];
     struct PartyMenuInternal *ptr = sPartyMenuInternal;
     s16 *arrayPtr = ptr->data;
     u16 *itemPtr = &gSpecialVar_ItemId;
@@ -5927,7 +5927,7 @@ void ItemUseCB_InfiniteCandy(u8 taskId, TaskFunc task)
     PlaySE(SE_SELECT);
     if (cannotUseEffect)
     {
-        u32 targetSpecies = SPECIES_NONE;
+        enum Species targetSpecies = SPECIES_NONE;
         bool32 canStopEvo = TRUE;
 
         // Resets values to 0 so other means of teaching moves doesn't overwrite levels
