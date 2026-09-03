@@ -54,6 +54,7 @@ MagmaHideout_4F_EventScript_Maxie::
 	msgbox MagmaHideout_4F_Text_MaxieOhItWasYou, MSGBOX_DEFAULT
 	closemessage
 	trainerbattle_no_intro TRAINER_MAXIE_MAGMA_HIDEOUT, MagmaHideout_4F_Text_MaxieDefeat
+	setflag FLAG_MAGMA_HIDEOUT
 	msgbox MagmaHideout_4F_Text_MaxieImGoingAfterGroudon, MSGBOX_DEFAULT
 	closemessage
 	clearflag FLAG_HIDE_SLATEPORT_CITY_CAPTAIN_STERN

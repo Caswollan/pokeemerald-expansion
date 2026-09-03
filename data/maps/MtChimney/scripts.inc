@@ -44,6 +44,7 @@ MtChimney_EventScript_Maxie::
 	waitmovement 0
 	msgbox MtChimney_Text_MaxieIntro, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_MAXIE_MT_CHIMNEY, MtChimney_Text_MaxieDefeat
+	setflag FLAG_MAGMA_MT_CHIMEY
 	msgbox MtChimney_Text_MaxieYouHaventSeenLastOfMagma, MSGBOX_DEFAULT
 	closemessage
 	delay 30

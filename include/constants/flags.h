@@ -51,21 +51,25 @@
 
 #else
 
-#define FLAG_UNUSED_0x020    0x20 // Unused Flag
-#define FLAG_UNUSED_0x021    0x21 // Unused Flag
-#define FLAG_UNUSED_0x022    0x22 // Unused Flag
-#define FLAG_UNUSED_0x023    0x23 // Unused Flag
-#define FLAG_UNUSED_0x024    0x24 // Unused Flag
-#define FLAG_UNUSED_0x025    0x25 // Unused Flag
-#define FLAG_UNUSED_0x026    0x26 // Unused Flag
-#define FLAG_UNUSED_0x027    0x27 // Unused Flag
-#define FLAG_UNUSED_0x028    0x28 // Unused Flag
-#define FLAG_UNUSED_0x029    0x29 // Unused Flag
-#define FLAG_UNUSED_0x02A    0x2A // Unused Flag
-#define FLAG_UNUSED_0x02B    0x2B // Unused Flag
-#define FLAG_UNUSED_0x02C    0x2C // Unused Flag
-#define FLAG_UNUSED_0x02D    0x2D // Unused Flag
-#define FLAG_UNUSED_0x02E    0x2E // Unused Flag
+#define FLAG_QUICK_REPEL_ACTIVE 0x20
+
+//Flag for Level CAP
+#define FLAG_AQUA_PETALBURG_WOODS   0x21
+#define FLAG_AQUA_RUSTURF_TUNNEL    0x22
+#define FLAG_AQUA_OCEANIC_MUSEUM    0x23
+#define FLAG_RIVAL_ROUTE_110        0x24
+#define FLAG_WALLY_MAUVILLE_CITY    0x25
+#define FLAG_MAGMA_MT_CHIMEY        0x26
+#define FLAG_AQUA_WEATHER_INSTITUTE 0x27
+#define FLAG_RIVAL_ROUTE_119        0x28
+#define FLAG_RIVAL_LILYCOVE_CITY    0x29
+#define FLAG_MAGMA_HIDEOUT          0x2A
+#define FLAG_AQUA_HIDEOUT           0x2B
+#define FLAG_MAGMA_SPACE_CENTER     0x2C
+#define FLAG_AQUA_SEAFLOOR_CAVERN   0x2D
+#define FLAG_WALLY_VICTORY_ROAD     0x2E
+//End Flag for Level CAP
+
 #define FLAG_UNUSED_0x02F    0x2F // Unused Flag
 #define FLAG_UNUSED_0x030    0x30 // Unused Flag
 #define FLAG_UNUSED_0x031    0x31 // Unused Flag
@@ -99,8 +103,6 @@
 #define FLAG_UNUSED_0x04D    0x4D // Unused Flag
 #define FLAG_UNUSED_0x04E    0x4E // Unused Flag
 #define FLAG_UNUSED_0x04F    0x4F // Unused Flag
-
-#define FLAG_QUICK_REPEL_ACTIVE  FLAG_UNUSED_0x020
 
 // Scripts
 #define FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA_STILL  0x50
