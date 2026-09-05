@@ -1684,7 +1684,7 @@ static s32 GetSwitchinWeatherImpact(enum BattlerId battler)
     {
         if ((weather  & B_WEATHER_HAIL)
          && !IS_BATTLER_OF_TYPE(battler, TYPE_ICE)
-         && ability != ABILITY_SNOW_CLOAK && ability != ABILITY_ICE_BODY)
+         && ability != ABILITY_SNOW_CLOAK && ability != ABILITY_ICE_BODY && ability != ABILITY_SNOW_FORCE)
         {
             weatherImpact = maxHP / 16;
             if (weatherImpact == 0)
