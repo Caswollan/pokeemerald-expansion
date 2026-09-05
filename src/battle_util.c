@@ -7339,6 +7339,13 @@ static inline uq4_12_t GetParentalBondModifier(enum BattlerId battlerAtk)
     return B_PARENTAL_BOND_DMG >= GEN_7 ? UQ_4_12(0.25) : UQ_4_12(0.5);
 }
 
+static inline uq4_12_t GetRagingBoxerModifier(enum BattlerId battlerAtk)
+{
+    if (gSpecialStatuses[battlerAtk].ragingBoxerState != RAGING_BOXER_2ND_HIT)
+        return UQ_4_12(1.0);
+    return UQ_4_12(0.5);
+}
+
 static inline uq4_12_t GetSameTypeAttackBonusModifier(struct DamageContext *ctx)
 {
     if (ctx->moveType == TYPE_MYSTERY)
@@ -7705,6 +7712,7 @@ static inline s32 DoMoveDamageCalcVars(struct DamageContext *ctx)
     dmg = CalculateBaseDamage(gBattleMovePower, userFinalAttack, gBattleMons[ctx->battlerAtk].level, targetFinalDefense);
     DAMAGE_APPLY_MODIFIER(GetTargetDamageModifier(ctx));
     DAMAGE_APPLY_MODIFIER(GetParentalBondModifier(ctx->battlerAtk));
+    DAMAGE_APPLY_MODIFIER(GetRagingBoxerModifier(ctx->battlerAtk));
     DAMAGE_APPLY_MODIFIER(GetWeatherDamageModifier(ctx));
     DAMAGE_APPLY_MODIFIER(GetCriticalModifier(ctx->isCrit));
     DAMAGE_APPLY_MODIFIER(GetGlaiveRushModifier(ctx->battlerDef));

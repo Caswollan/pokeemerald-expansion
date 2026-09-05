@@ -2145,7 +2145,10 @@ static bool32 ShouldSkipAccuracyCalcPastFirstHit(enum BattlerId battlerAtk, enum
 {
     if (gSpecialStatuses[battlerAtk].parentalBondState == PARENTAL_BOND_2ND_HIT)
         return TRUE;
-
+    
+    if (gSpecialStatuses[battlerAtk].ragingBoxerState == RAGING_BOXER_2ND_HIT)
+        return TRUE;
+    
     if (!gSpecialStatuses[battlerAtk].multiHitOn)
         return FALSE;
 
@@ -2293,6 +2296,22 @@ static bool32 IsMoveParentalBondAffected(struct BattleCalcValues *cv)
     return TRUE;
 }
 
+static bool32 IsMoveRagingBoxerAffected(struct BattleCalcValues *cv)
+{
+    if (cv->abilities[cv->battlerAtk] != ABILITY_RAGING_BOXER
+     || !IsPunchingMove(cv->move)
+     || gBattleStruct->numSpreadTargets > 1
+     || IsMoveParentalBondBanned(cv->move)
+     || GetMoveCategory(cv->move) == DAMAGE_CATEGORY_STATUS
+     || gBattleMoveEffects[cv->moveEffect].twoTurnEffect
+     || cv->moveEffect == EFFECT_OHKO
+     || GetActiveGimmick(cv->battlerAtk) == GIMMICK_Z_MOVE
+     || (cv->moveEffect == EFFECT_PRESENT && gBattleStruct->presentBasePower == 0)
+     || cv->move == MOVE_STRUGGLE)
+        return FALSE;
+    return TRUE;
+}
+
 static void SetPossibleNewSmartTarget(u32 move)
 {
     if (!IsBattlerUnaffectedByMove(gBattlerTarget)
@@ -2386,6 +2405,12 @@ static enum CancelerResult CancelerMultihitMoves(struct BattleCalcValues *cv)
     else if (IsMoveParentalBondAffected(cv))
     {
         gSpecialStatuses[gBattlerAttacker].parentalBondState = PARENTAL_BOND_1ST_HIT;
+        gMultiHitCounter = 2;
+        PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
+    }
+    else if (IsMoveRagingBoxerAffected(cv))
+    {
+        gSpecialStatuses[gBattlerAttacker].ragingBoxerState = RAGING_BOXER_1ST_HIT;
         gMultiHitCounter = 2;
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
     }
@@ -3270,6 +3295,9 @@ static enum MoveEndResult MoveEndMultihitMove(struct BattleCalcValues *cv)
             {
                 if (gSpecialStatuses[cv->battlerAtk].parentalBondState)
                     gSpecialStatuses[cv->battlerAtk].parentalBondState--;
+                
+                if (gSpecialStatuses[cv->battlerAtk].ragingBoxerState)
+                    gSpecialStatuses[cv->battlerAtk].ragingBoxerState--;
 
                 gBattleStruct->eventState.atkCanceler = CANCELER_ACCURACY_CHECK;
                 gBattleStruct->eventState.atkCancelerBattler = 0;
@@ -3291,6 +3319,7 @@ static enum MoveEndResult MoveEndMultihitMove(struct BattleCalcValues *cv)
 
     gMultiHitCounter = 0;
     gSpecialStatuses[cv->battlerAtk].parentalBondState = PARENTAL_BOND_OFF;
+    gSpecialStatuses[cv->battlerAtk].ragingBoxerState = RAGING_BOXER_OFF;
     gSpecialStatuses[cv->battlerAtk].multiHitOn = 0;
     gBattleScripting.moveendState++;
     return result;

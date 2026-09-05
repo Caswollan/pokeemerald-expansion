@@ -5066,6 +5066,7 @@ static void TurnValuesCleanUp(bool8 var0)
             gBattleStruct->battlerState[i].commandingDondozo = FALSE;
 
         gSpecialStatuses[i].parentalBondState = PARENTAL_BOND_OFF;
+        gSpecialStatuses[i].ragingBoxerState = RAGING_BOXER_OFF;
         gBattleStruct->battlerState[i].usedEjectItem = FALSE;
         gProtectStructs[i].lashOutAffected = FALSE;
         gBattleMons[i].volatiles.endured = FALSE;

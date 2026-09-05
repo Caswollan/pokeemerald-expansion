@@ -811,6 +811,13 @@ static inline void CalcDynamicMoveDamage(struct DamageContext *ctx, u16 *medianD
         maximum += maximum / (B_PARENTAL_BOND_DMG >= GEN_7 ? 4 : 2);
         random  += random  / (B_PARENTAL_BOND_DMG >= GEN_7 ? 4 : 2);
     }
+    else if (ctx->abilities[ctx->battlerAtk] == ABILITY_RAGING_BOXER && IsPunchingMove(ctx->move))
+    {
+        median  += median  / 2;
+        minimum += minimum / 2;
+        maximum += maximum / 2;
+        random  += random  / 2;
+    }
 
     if (median == 0)
         median = 1;

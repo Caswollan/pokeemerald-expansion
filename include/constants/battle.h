@@ -754,6 +754,11 @@ enum MoveTarget
 #define PARENTAL_BOND_2ND_HIT 1
 #define PARENTAL_BOND_OFF     0
 
+// Constants for Raging Boxer
+#define RAGING_BOXER_1ST_HIT 2
+#define RAGING_BOXER_2ND_HIT 1
+#define RAGING_BOXER_OFF     0
+
 // Constants for Torment
 #define PERMANENT_TORMENT   0xF
 

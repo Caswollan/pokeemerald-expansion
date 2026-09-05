@@ -2527,6 +2527,13 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .name = _("Snow Force"),
         .description = COMPOUND_STRING("Powers up in Hail or Snow."),
         .aiRating = 4,
-    }, 
+    },
+
+    [ABILITY_RAGING_BOXER] =
+    {
+        .name = _("Raging Boxer"),
+        .description = COMPOUND_STRING("Punch moves hit twice."),
+        .aiRating = 10,
+    },
 
 };
