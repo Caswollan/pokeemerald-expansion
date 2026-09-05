@@ -2536,4 +2536,11 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .aiRating = 10,
     },
 
+    [ABILITY_HORN_FORCE] =
+    {
+        .name = _("Horn Force"),
+        .description = COMPOUND_STRING("Boosts horn moves."),
+        .aiRating = 6,
+    },
+
 };

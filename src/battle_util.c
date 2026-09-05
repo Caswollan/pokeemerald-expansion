@@ -6574,6 +6574,10 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageContext *ctx)
             && ctx->weather & B_WEATHER_ICY_ANY)
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.3));
         break;
+    case ABILITY_HORN_FORCE:
+        if (IsHornMove(move))
+            modifier = uq4_12_multiply(modifier, UQ_4_12(1.2));
+        break;
     case ABILITY_RIVALRY:
         if (AreBattlersOfSameGender(battlerAtk, battlerDef))
             modifier = uq4_12_multiply(modifier, UQ_4_12(1.25));
