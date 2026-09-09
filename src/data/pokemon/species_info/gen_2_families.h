@@ -7281,7 +7281,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
-        .abilities = { ABILITY_GOOD_AS_GOLD, ABILITY_GOOD_AS_GOLD, ABILITY_GOOD_AS_GOLD },
+        .abilities = { ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS },
         .bodyColor = BODY_COLOR_YELLOW,
         .speciesName = _("Skarmory"),
     #if P_MODIFIED_MEGA_CRIES
