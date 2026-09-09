@@ -6704,6 +6704,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageContext *ctx)
     switch (ctx->abilities[ctx->battlerDef])
     {
         case ABILITY_HEATPROOF:
+        case ABILITY_THERMAL_EXCHANGE:
         case ABILITY_WATER_BUBBLE:
             if (moveType == TYPE_FIRE)
             {

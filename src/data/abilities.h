@@ -2079,7 +2079,7 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_THERMAL_EXCHANGE] =
     {
         .name = _("Thermal Exchange"),
-        .description = COMPOUND_STRING("Fire hits up Attack."),
+        .description = COMPOUND_STRING("Fire hits up Attack, half dmg."),
         .aiRating = 4,
         .breakable = TRUE,
     },
