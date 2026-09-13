@@ -5226,6 +5226,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .target = TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_SPECIAL,
+        .pulseMove = TRUE,
         .ballisticMove = TRUE,
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_STAT_MINUS,
@@ -11939,6 +11940,8 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .target = TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_SPECIAL,
+        .pulseMove = TRUE,
+        .ballisticMove = TRUE,
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_STAT_MINUS,
             .spDef = 1,
@@ -17111,7 +17114,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .power = 0,
         .type = TYPE_GRASS,
         .accuracy = 100,
-        .pp = 10,
+        .pp = 5,
         .target = TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_STATUS,
@@ -17566,7 +17569,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
             "Dances with mystical power.\n"
             "Matches user's first type."),
         .effect = EFFECT_REVELATION_DANCE,
-        .power = 90,
+        .power = 100,
         .type = TYPE_NORMAL,
         .accuracy = 100,
         .pp = 15,
@@ -17724,7 +17727,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
             "Swings its whole body\n"
             "like a hammer to damage."),
         .effect = EFFECT_HIT,
-        .power = 90,
+        .power = 100,
         .type = TYPE_DRAGON,
         .accuracy = 100,
         .pp = 15,
@@ -19032,10 +19035,10 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
             "Snares the target in a snap\n"
             "trap for four to five turns."),
         .effect = EFFECT_HIT,
-        .power = 35,
-        .type = TYPE_GRASS,
+        .power = 100,
+        .type = TYPE_STEEL,
         .accuracy = 100,
-        .pp = 15,
+        .pp = 5,
         .target = TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
@@ -20995,7 +20998,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
             "Furiously strains its legs.\n"
             "Harshly lowers user's Speed."),
         .effect = EFFECT_HIT,
-        .power = 100,
+        .power = 110,
         .type = TYPE_STEEL,
         .accuracy = 100,
         .pp = 5,
@@ -21660,6 +21663,8 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .target = TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_SPECIAL,
+        .pulseMove = TRUE,
+        .ballisticMove = TRUE,
         .metronomeBanned = TRUE,
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_STAT_MINUS,

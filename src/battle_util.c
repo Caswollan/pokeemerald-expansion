@@ -3727,14 +3727,10 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
                 BattleScriptCall(BattleScript_BadDreamsActivates);
                 effect++;
                 break;
-            case ABILITY_SOLAR_POWER:
-                if (IsBattlerWeatherAffected(GetBattlerHoldEffect(battler), GetWeather(), B_WEATHER_SUN))
-                {
-                SOLAR_POWER_HP_DROP:
+            SOLAR_POWER_HP_DROP:
                     SetPassiveDamageAmount(battler, GetNonDynamaxMaxHP(battler) / 8);
                     BattleScriptCall(BattleScript_SolarPowerActivates);
                     effect++;
-                }
                 break;
             case ABILITY_HEALER:
                 gBattleScripting.battler = GetPartnerBattler(battler);
@@ -6504,7 +6500,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageContext *ctx)
         if (B_KNOCK_OFF_DMG >= GEN_6
             && gBattleMons[battlerDef].item != ITEM_NONE
             && CanBattlerGetOrLoseItem(battlerDef, battlerAtk, gBattleMons[battlerDef].item))
-            modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
+            modifier = uq4_12_multiply(modifier, UQ_4_12(1.3));
         break;
     default:
         break;

@@ -1700,7 +1700,7 @@ static s32 GetSwitchinWeatherImpact(enum BattlerId battler)
         }
     }
     if ((weather  & B_WEATHER_SUN) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA
-     && (ability == ABILITY_SOLAR_POWER || ability == ABILITY_DRY_SKIN))
+     && (ability == ABILITY_DRY_SKIN))
     {
         weatherImpact = maxHP / 8;
         if (weatherImpact == 0)
