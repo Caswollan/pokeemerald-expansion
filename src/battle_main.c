@@ -1861,6 +1861,27 @@ void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon 
     }
 }
 
+static const struct {
+    u16 trainerId;
+    s8 levelOffsets[PARTY_SIZE];
+} sScaledLevelTrainers[] =
+{
+    { TRAINER_BRENDAN_PLACEHOLDER, {0, -2, -5, 0, 0, 0} },
+};
+
+static bool32 GetTrainerLevelScalingOffset(const struct Trainer *trainer, u32 slotIndex, s8 *offset)
+{
+    for (u32 i = 0; i < ARRAY_COUNT(sScaledLevelTrainers); i++)
+    {
+        if (trainer == GetTrainerStructFromId(sScaledLevelTrainers[i].trainerId))
+        {
+            *offset = sScaledLevelTrainers[i].levelOffsets[slotIndex];
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+
 u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer *trainer, bool32 halfTeam, u32 battleTypeFlags)
 {
     u32 personalityValue;
@@ -1915,7 +1936,18 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 otId.method = OT_ID_PRESET;
                 otId.value = HIHALF(personalityValue) ^ LOHALF(personalityValue);
             }
-            CreateMon(&party[i], partyData[monIndex].species, partyData[monIndex].lvl, personalityValue, otId);
+
+            u8 monLevel = partyData[monIndex].lvl;
+            s8 levelOffset;
+            if (GetTrainerLevelScalingOffset(trainer, i, &levelOffset))
+            {
+                s32 scaledLevel = GetHighestLevelInPlayerParty() + levelOffset;
+                if (scaledLevel > MAX_LEVEL)
+                    scaledLevel = MAX_LEVEL;
+                monLevel = scaledLevel;
+            }
+
+            CreateMon(&party[i], partyData[monIndex].species, monLevel, personalityValue, otId);
             SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[monIndex].heldItem);
 
             CustomTrainerPartyAssignMoves(&party[i], &partyData[monIndex]);
