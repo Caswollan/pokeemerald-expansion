@@ -10104,6 +10104,18 @@ bool32 TrySwitchInEjectPack(enum EjectPackTiming timing)
     return FALSE;
 }
 
+void QueueEmergencyExitIfThresholdCrossed(enum BattlerId battler, enum Ability ability)
+{
+    if ((ability != ABILITY_EMERGENCY_EXIT && ability != ABILITY_WIMP_OUT)
+     || !IsBattlerAlive(battler))
+        return;
+    
+    if (HadMoreThanHalfHpNowDoesnt(battler) || gSpecialStatuses[battler].shellBellEmergencyExit)
+    {
+        gBattleStruct->battlerState[battler].emergencyExitQueued = TRUE;
+    }
+}
+
 bool32 EmergencyExitCanBeTriggered(enum BattlerId battler, enum Ability ability)
 {
     if (ability != ABILITY_EMERGENCY_EXIT && ability != ABILITY_WIMP_OUT)
@@ -10112,8 +10124,9 @@ bool32 EmergencyExitCanBeTriggered(enum BattlerId battler, enum Ability ability)
     if (IsBattlerAlive(battler)
      && !IsPursuitTargetSet()
      && gBattleStruct->battlerState[battler].commanderSpecies == SPECIES_NONE
-     && (HadMoreThanHalfHpNowDoesnt(battler) || gSpecialStatuses[battler].shellBellEmergencyExit)
-     && (CanBattlerSwitch(battler) || !(gBattleTypeFlags & BATTLE_TYPE_TRAINER))
+     && gBattleStruct->battlerState[battler].emergencyExitQueued
+     && gBattleMons[battler].hp <= gBattleMons[battler].maxHP / 2
+     && CanBattlerSwitch(battler)
      && !(gBattleTypeFlags & BATTLE_TYPE_ARENA)
      && gBattleMons[battler].volatiles.semiInvulnerable != STATE_SKY_DROP_TARGET)
         return TRUE;

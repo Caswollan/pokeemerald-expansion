@@ -3917,58 +3917,18 @@ static enum MoveEndResult MoveEndLifeOrbShellBell(struct BattleCalcValues *cv)
 
 static enum MoveEndResult MoveEndEmergencyExit(struct BattleCalcValues *cv)
 {
-    enum MoveEndResult result = MOVEEND_RESULT_CONTINUE;
-    u32 numEmergencyExitBattlers = 0;
-    u32 emergencyExitBattlers = 0;
-
-    if (HasAnyBattlerQueuedSwitch())
-    {
-        gBattleScripting.moveendState++;
-        return result;
-    }
-
-    // Because sorting the battlers by speed takes lots of cycles,
-    // we check if EE can be activated and count how many.
+    // Emergency Exit / Wimp Out no longer trigger a switch immediately after being hit;
+    // instead, the threshold-crossing is recorded here and the switch is forced
+    // at the end of the turn (see HandleEndTurnEmergencyExit), giving residual
+    // healing (Sitrus Berry, Leftovers, etc.) a chance to save the battler.
     for (enum BattlerId i = 0; i < gBattlersCount; i++)
     {
-        if (!IsBattleMoveStatus(cv->move)
-         && !gBattleStruct->unableToUseMove
-         && EmergencyExitCanBeTriggered(i, cv->abilities[i]))
-        {
-            emergencyExitBattlers |= 1u << i;
-            numEmergencyExitBattlers++;
-        }
-    }
-
-    if (numEmergencyExitBattlers == 0)
-    {
-        gBattleScripting.moveendState++;
-        return result;
-    }
-
-    for (enum BattlerId i = 0; i < gBattlersCount; i++)
-        gBattleMons[i].volatiles.tryEjectPack = FALSE;
-
-    enum BattlerId battlers[MAX_BATTLERS_COUNT] = {0, 1, 2, 3};
-    if (numEmergencyExitBattlers > 1)
-        SortBattlersBySpeed(battlers, FALSE);
-
-    for (u32 i = 0; i < gBattlersCount; i++)
-    {
-        enum BattlerId battler = battlers[i];
-
-        if (!(emergencyExitBattlers & 1u << battler))
-            continue;
-
-        gBattleScripting.battler = battler;
-        gSpecialStatuses[battler].queuedSwitch = QUEUED_SWITCH_OPEN_PARTY_SCREEN;
-        BattleScriptCall(BattleScript_EmergencyExit);
-        result = MOVEEND_RESULT_RUN_SCRIPT;
-        break; // Only the fastest Emergency Exit / Wimp Out activates
+        if (!IsBattleMoveStatus(cv->move) && !gBattleStruct->unableToUseMove)
+            QueueEmergencyExitIfThresholdCrossed(i, cv->abilities[i]);
     }
 
     gBattleScripting.moveendState++;
-    return result;
+    return MOVEEND_RESULT_CONTINUE;
 }
 
 static bool32 CanPartingShotTrigger(enum BattlerId battlerAtk)

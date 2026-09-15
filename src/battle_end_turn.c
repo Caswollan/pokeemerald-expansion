@@ -1612,7 +1612,7 @@ static bool32 HandleEndTurnEmergencyExit(enum BattlerId battler)
 {
     bool32 effect = FALSE;
     enum Ability ability = GetBattlerAbility(battler);
-
+    
     if (EmergencyExitCanBeTriggered(battler, ability))
     {
         gBattleScripting.battler = gBattlerAbility = battler;
@@ -1647,6 +1647,7 @@ bool32 DoEndTurnEffects(void)
                 bool32 effect = HandleEndTurnEmergencyExit(battler);
 
                 gBattleStruct->battlerState[battler].wasAboveHalfHp = gBattleMons[battler].hp > gBattleMons[battler].maxHP / 2;
+                gBattleStruct->battlerState[battler].emergencyExitQueued = FALSE;
 
                 if (effect)
                     return TRUE;

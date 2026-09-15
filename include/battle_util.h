@@ -370,6 +370,7 @@ bool32 HasWeatherEffect(void);
 bool32 HadMoreThanHalfHpNowDoesnt(enum BattlerId battler);
 void ChooseStatBoostAnimation(enum BattlerId battler);
 bool32 TrySwitchInEjectPack(enum EjectPackTiming timing);
+void QueueEmergencyExitIfThresholdCrossed(enum BattlerId battler, enum Ability ability);
 bool32 EmergencyExitCanBeTriggered(enum BattlerId battler, enum Ability ability);
 bool32 TryTriggerSymbiosis(enum BattlerId battler, u32 ally);
 bool32 TrySymbiosis(enum BattlerId battler, enum Item itemId, const u8 *nextInstr);

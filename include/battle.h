@@ -526,6 +526,7 @@ struct BattlerState
     u32 canPickupItem:1;
     u32 ateBoost:1;
     u32 wasAboveHalfHp:1; // For Berserk, Emergency Exit, Wimp Out and Anger Shell.
+    u32 emergencyExitQueued:1; // Set immediately after crossing below half HP mid-turn; consumed at end of turn to (possibly) trigger Emergency Exit / Wimp Out.
     u32 commanderSpecies:11;
     u32 selectionScriptFinished:1;
     u32 lastMoveTarget:3; // The last target on which each mon used a move, for the sake of Instruct
