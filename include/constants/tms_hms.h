@@ -82,7 +82,9 @@
     F(SHADOW_SNEAK) \
     F(SHADOW_CLAW) \
     F(SHADOW_PUNCH) \
+    F(PHANTOM_FORCE) \
     F(POLTERGEIST) \
+    F(HEX) \
     F(SHADOW_BALL) \
     F(BULLET_SEED) \
     F(TRAILBLAZE) \
